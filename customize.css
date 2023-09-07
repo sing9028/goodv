@@ -1,0 +1,177 @@
+.d-none{
+	display:none;
+}
+.d-flex{
+    display: flex;
+}
+.ast-stock-detail,
+.woocommerce-ordering,
+.woocommerce-result-count,
+.ajax_add_to_cart,
+.single-product .woocommerce-product-gallery{
+	display:none;
+}
+.single-product .entry-summary{
+	float:left !important;
+	width:100% !important;
+}
+.single-product.woocommerce div.product form.cart table,
+.woocommerce div.product form.cart table.table_result{
+	/* border-right: 1px solid #ddd; */
+    border: 0;
+}
+.table_result tr{
+	display:flex;
+    /* 	white-space:nowrap; */
+	/* justify-content: space-between; */
+}
+.table_result th,
+.table_result td{
+	/* border: 1px solid #ddd; */
+	/* border-width: 1px 0px 0px 1px; */
+    border: 0;
+	/* max-width: 110px; */
+	width: 100%;
+	padding: 5px;
+}
+.table_result td#design_RE,
+.table_result td#design_LE{
+	/* border-right:0; */
+}
+.table_result td#design_RE_r,
+.table_result td#design_LE_r{
+	/* border-left:0; */
+}
+#btn_confirm,
+#btn_cal{
+	display:block;
+	/* margin-top:1.5em */
+    background-color: #6750A4;
+}
+.woocommerce div.product form.cart .variations .table_result tr,
+.woocommerce div.product form.cart .variations .table_result th{
+	margin-bottom: 0;
+}
+.woocommerce div.product form.cart table.wck-inner-table{
+	border-bottom: 0;
+}
+.woocommerce div.product form.cart .variations{
+	border-bottom: 0;
+}
+.wck-cart{
+    /* 	display: flex; */
+    /*  max-width: 300px; */
+    /*  flex-flow: wrap; */
+	max-height: 200px;
+    overflow: auto;
+    padding-left: 10px;
+}
+.woocommerce div.product form.cart{
+    display: flex;
+    flex-direction: column;
+}
+.woocommerce div.product form.cart,
+.woocommerce div.product form.cart input{
+    font-size: 14px;
+    line-height: 20px;
+    color: #000;
+    /* font-family: 'Inter'; */
+}
+#confirmation,
+#modification,
+.thwepo-extra-options.thwepo_simple{
+    max-width: 540px;
+    /* max-width: 450px; */
+}
+.thwepo-extra-options.thwepo_simple.patient{
+    order: -3;
+}
+.thwepo-extra-options.thwepo_simple.order{
+    order: -2;
+}
+.single-product .variations.wck-layout-two-col{
+    order: -1; 
+}
+.thwepo-extra-options.thwepo_simple.modiification2 tbody,
+.thwepo-extra-options.thwepo_simple.modiification tbody,
+.thwepo-extra-options.thwepo_simple.order tbody{
+    display: flex;
+    flex-flow: wrap;
+    align-items: end;
+    justify-content: space-between;
+    /* justify-content: left; */
+}
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr,
+.lens_val tr th,
+.lens_val tr td,
+.patient_val tr td,
+.thwepo-extra-options.thwepo_simple.order tbody tr{
+    /* max-width: 120px; */
+    /* width: 33.3%; */
+    /* width: 100px; */
+    /* width: 120px; */
+    width: 190px;
+}
+.thwepo-extra-options.thwepo_simple.modiification tbody tr{
+    width: 95px;
+}
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(3n+4),
+.thwepo-extra-options.thwepo_simple.modiification tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_simple.modiification tbody tr:nth-child(5n+6),
+.lens_val tr th:nth-child(1),
+.lens_val tr td:nth-child(1),
+.patient_val tr td:nth-child(1),
+.thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(1),
+.thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(3),
+.thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
+    width: 160px;
+}
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr .value,
+.thwepo-extra-options.thwepo_simple.modiification tbody tr .value,
+.thwepo-extra-options.thwepo_simple.order tbody tr .value{
+    width: 100%;
+    display: block;
+    width: inherit;
+}
+.confirm_val_le tbody tr td,
+.confirm_val_re tbody tr td{
+    width: 95px;
+}
+.confirm_val_le tbody tr td:nth-child(1),
+.confirm_val_le tbody tr td:nth-child(3),
+.confirm_val_le tbody tr td:nth-child(5n+8),
+.confirm_val_le tbody tr td:nth-child(5n+6),
+.confirm_val_re tbody tr td:nth-child(1),
+.confirm_val_re tbody tr td:nth-child(3),
+.confirm_val_re tbody tr td:nth-child(5n+8),
+.confirm_val_re tbody tr td:nth-child(5n+6){
+    width: 125px;
+}
+#confirmation,
+.single-product.woocommerce button.button[name="add-to-cart"],
+.thwepo-extra-options.thwepo_simple.modiification2,
+.thwepo-extra-options.thwepo_simple.modiification,
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr .label,
+.thwepo-extra-options.thwepo_simple.modiification tbody tr .label,
+.thwepo-extra-options.thwepo_simple.order tbody tr .label,
+.single-product .summary .price,
+.single-product .summary .quantity,
+#modification{
+    display: none;
+}
+.woocommerce div.product form.cart .button.single_add_to_cart_button{
+    /* width: fit-content; */
+    width: max-content;
+}
+.confirm_title{
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 700;
+}
+.confirm_price{
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #7e868c;
+}
