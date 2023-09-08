@@ -62,16 +62,22 @@ var text_patient_name="N";
 // After RE/LE checkbox clicked
 var cbox_re="Y";
 var cbox_le="Y";
+var re_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="re"]';
+var le_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="le"]';
+var re_all_input_check="Y";
+var le_all_input_check="Y";
+var re_check="N";
+var le_check="N";
 jQuery(".cbox_eye input").on( "click", function() {
     if(jQuery(this).attr("id") == "checkbox_re"){
-        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="re"]');
+        var number_name=jQuery(re_all_input);
         if(cbox_re=="Y"){
             cbox_re="N";
         }else{
             cbox_re="Y";
         }
     }else{
-        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="le"]');
+        var number_name=jQuery(le_all_input);
         if(cbox_le=="Y"){
             cbox_le="N";
         }else{
@@ -83,9 +89,17 @@ jQuery(".cbox_eye input").on( "click", function() {
         if(cbox.is(':checked')){
             // console.log("cbox_eye checked");
             jQuery(this).removeAttr('disabled');
+            jQuery(this).parent().removeClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").removeClass("width-auto");
         }else{
             // console.log("cbox_eye unchecked");
             jQuery(this).attr('disabled', 'disabled').val("");
+            jQuery(this).parent().addClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
         }
     });
 });
@@ -94,7 +108,68 @@ jQuery(".cbox_eye input").on( "click", function() {
 jQuery("#btn_cal").on( "click", function() {
     // console.log("cbox_re="+cbox_re+"||cbox_le="+cbox_le);
     var error_msg="";
-    if(cbox_re=="Y"||cbox_le=="Y"){
+    if(jQuery('input[name="patient_id"]').val() != ""){
+        text_patient_id="Y";
+    }else{
+        text_patient_id="N";
+    }
+    if(jQuery('input[name="patient_name"]').val() != ""){
+        text_patient_name="Y";
+    }else{
+        text_patient_name="N";
+    }
+    if(text_patient_id=="N"){
+        error_msg+="\nPatient ID is required";
+    }
+    if(text_patient_name=="N"){
+        error_msg+="\nPatient Name is required";
+    }
+    if(cbox_re=="N"&&cbox_le=="N"){
+        error_msg+="\nSelect at least one checkbox(RE/LE)";
+    }
+    if(cbox_re=="Y"){
+        jQuery(re_all_input).each(function() {
+            if(jQuery(this).val() == ""){
+                re_all_input_check="N";
+            }
+        });
+        if(re_all_input_check=="N"){
+            error_msg+="\nAll RE field is required";
+        }else if(re_all_input_check=="Y"){
+            re_check="Y";
+        }
+    }
+    if(cbox_le=="Y"){
+        jQuery(le_all_input).each(function() {
+            if(jQuery(this).val() == ""){
+                le_all_input_check="N";
+            }
+        });
+        if(le_all_input_check=="N"){
+            error_msg+="\nAll LE field is required";
+        }else if(le_all_input_check=="Y"){
+            le_check="Y";
+        }
+    }
+    if(cbox_re=="Y"&&cbox_le=="Y"){
+        if(re_check=="Y"&&le_check=="N"){
+            re_check="N";
+            le_check="N";
+        }else if(re_check=="N"&&le_check=="Y"){
+            re_check="N";
+            le_check="N";
+        }
+    }
+    if(error_msg != ""){
+        jQuery(".error_msg").html(error_msg);
+    }
+    console.log(cbox_re);
+    console.log(re_all_input_check);
+    console.log(re_check);
+    console.log(cbox_le);
+    console.log(le_all_input_check);
+    console.log(le_check);
+    if(text_patient_id=="Y"&&text_patient_name=="Y"&&(re_check=="Y"||le_check=="Y")){
         jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
         jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
         jQuery("#btn_cal").hide();
@@ -108,41 +183,48 @@ jQuery("#btn_cal").on( "click", function() {
             scrollTop: $("#modification").offset().top-150
         }, 500);
         orderClick("cal",cbox_re,cbox_le);
-    }else{
-        error_msg+="Please select at least one checkbox(RE/LE) and inputted all the related field";
-    }
-    if(error_msg != ""){
-        jQuery(".error_msg").html(error_msg);
     }
 });
 
 // After Modiification RE/LE checkbox clicked
 var cbox_re_m="Y";
 var cbox_le_m="Y";
+var re_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="re"]';
+var le_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="le"]';
+var re_all_input_check_m="Y";
+var le_all_input_check_m="Y";
 jQuery(".cbox_eye_m input").on( "click", function() {
     if(jQuery(this).attr("id") == "checkbox_re_m"){
-        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="re"]');
+        var number_name_m=jQuery(re_all_input_m);
         if(cbox_re_m=="Y"){
             cbox_re_m="N";
         }else{
             cbox_re_m="Y";
         }
     }else{
-        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="le"]');
+        var number_name_m=jQuery(le_all_input_m);
         if(cbox_le_m=="Y"){
             cbox_le_m="N";
         }else{
             cbox_le_m="Y";
         }
     }
-    var cbox=jQuery(this);
-    jQuery(number_name).each(function() {
+    var cbox_m=jQuery(this);
+    jQuery(number_name_m).each(function() {
         if(cbox.is(':checked')){
             // console.log("cbox_eye checked");
             jQuery(this).removeAttr('disabled');
+            jQuery(this).parent().removeClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").removeClass("width-auto");
         }else{
             // console.log("cbox_eye unchecked");
             jQuery(this).attr('disabled', 'disabled').val("");
+            jQuery(this).parent().addClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
         }
     });
 });

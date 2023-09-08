@@ -39,7 +39,7 @@ jQuery(".thwepo-extra-options.thwepo_simple .value input").each(function() {
     // console.log(jQuery(input_name).val());
     if(jQuery(input_name).val() != ""){
         jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
-        jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-notched-outline--notched");
+        // jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-notched-outline--notched");
     }
 });
 

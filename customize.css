@@ -1,11 +1,19 @@
+body, button, input, select, textarea, .ast-button, .ast-custom-button {
+    font-family: 'Inter';
+}
 .d-none{
 	display:none;
 }
 .d-flex{
     display: flex;
 }
-body, button, input, select, textarea, .ast-button, .ast-custom-button {
-    font-family: 'Inter';
+.width-auto{
+    width: auto !important;
+}
+.error_msg{
+    color: #B3261E;
+    white-space: break-spaces;
+    margin-top: -16px;
 }
 .ast-stock-detail,
 .woocommerce-ordering,
@@ -210,9 +218,6 @@ label.mdc-text-field,
 .thwepo-extra-options.thwepo_simple.order .cbox_eye label{
     margin-right: 0 !important;
     color: #6A4DA8;
-}
-.error_msg{
-    color: #B3261E;
 }
 @media (max-width: 580px) {
     .thwepo-extra-options.thwepo_simple.modiification0 tbody tr:nth-child(1),
