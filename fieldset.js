@@ -1,29 +1,3 @@
-// patient set testing data
-jQuery('input[name="patient_id"]').val("test1");
-jQuery('input[name="patient_name"]').val("test2");
-// RE set testing data
-jQuery('input[name="sph_re"]').val(-8);
-jQuery('input[name="cyl_re"]').val(-6);
-jQuery('input[name="axis_re"]').val(1);
-jQuery('input[name="flat_k_re"]').val(7);
-jQuery('input[name="steep_k_re"]').val(7);
-jQuery('input[name="steep_k_axis_re"]').val(1);
-jQuery('input[name="flat_e_re"]').val(0.01);
-jQuery('input[name="steep_e_re"]').val(0.01);
-jQuery('input[name="hvid_re"]').val(8);
-jQuery('input[name="pupil_size_re"]').val(4);
-// LE set testing data
-jQuery('input[name="sph_le"]').val(-7);
-jQuery('input[name="cyl_le"]').val(-5);
-jQuery('input[name="axis_le"]').val(2);
-jQuery('input[name="flat_k_le"]').val(8);
-jQuery('input[name="steep_k_le"]').val(8);
-jQuery('input[name="steep_k_axis_le"]').val(90);
-jQuery('input[name="flat_e_le"]').val(0.02);
-jQuery('input[name="steep_e_le"]').val(0.02);
-jQuery('input[name="hvid_le"]').val(9);
-jQuery('input[name="pupil_size_le"]').val(5);
-
 // set order text
 jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').html("Order Lens");
 
@@ -81,23 +55,102 @@ jQuery('#btn_confirm').attr("tabindex", "44");
 // set all tab sequence of order button
 jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').attr("tabindex", "45");
 
-jQuery("#btn_cal").on( "click", function() {
-    jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
-    jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
-    jQuery("#btn_cal").hide();
-    jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
-    jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
-    jQuery("#modification").show();
-    jQuery(".thwepo-extra-options.thwepo_simple.modiification").show();
-    jQuery(".thwepo-extra-options.thwepo_simple.modiification2").show();
-    jQuery([document.documentElement, document.body]).animate({
-        scrollTop: $("#modification").offset().top-150
-    }, 500);
-    orderClick("cal");
+// set required textbox checking
+var text_patient_id="N";
+var text_patient_name="N";
+
+// After RE/LE checkbox clicked
+var cbox_re="Y";
+var cbox_le="Y";
+jQuery(".cbox_eye input").on( "click", function() {
+    if(jQuery(this).attr("id") == "checkbox_re"){
+        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="re"]');
+        if(cbox_re=="Y"){
+            cbox_re="N";
+        }else{
+            cbox_re="Y";
+        }
+    }else{
+        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="le"]');
+        if(cbox_le=="Y"){
+            cbox_le="N";
+        }else{
+            cbox_le="Y";
+        }
+    }
+    var cbox=jQuery(this);
+    jQuery(number_name).each(function() {
+        if(cbox.is(':checked')){
+            // console.log("cbox_eye checked");
+            jQuery(this).removeAttr('disabled');
+        }else{
+            // console.log("cbox_eye unchecked");
+            jQuery(this).attr('disabled', 'disabled').val("");
+        }
+    });
 });
 
+// After Calculate Lens button clicked
+jQuery("#btn_cal").on( "click", function() {
+    // console.log("cbox_re="+cbox_re+"||cbox_le="+cbox_le);
+    var error_msg="";
+    if(cbox_re=="Y"||cbox_le=="Y"){
+        jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
+        jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
+        jQuery("#btn_cal").hide();
+        jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
+        jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
+        jQuery("#modification").show();
+        jQuery(".thwepo-extra-options.thwepo_simple.modiification0").show();
+        jQuery(".thwepo-extra-options.thwepo_simple.modiification").show();
+        jQuery(".thwepo-extra-options.thwepo_simple.modiification2").show();
+        jQuery([document.documentElement, document.body]).animate({
+            scrollTop: $("#modification").offset().top-150
+        }, 500);
+        orderClick("cal",cbox_re,cbox_le);
+    }else{
+        error_msg+="Please select at least one checkbox(RE/LE) and inputted all the related field";
+    }
+    if(error_msg != ""){
+        jQuery(".error_msg").html(error_msg);
+    }
+});
+
+// After Modiification RE/LE checkbox clicked
+var cbox_re_m="Y";
+var cbox_le_m="Y";
+jQuery(".cbox_eye_m input").on( "click", function() {
+    if(jQuery(this).attr("id") == "checkbox_re_m"){
+        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="re"]');
+        if(cbox_re_m=="Y"){
+            cbox_re_m="N";
+        }else{
+            cbox_re_m="Y";
+        }
+    }else{
+        var number_name=jQuery('.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="le"]');
+        if(cbox_le_m=="Y"){
+            cbox_le_m="N";
+        }else{
+            cbox_le_m="Y";
+        }
+    }
+    var cbox=jQuery(this);
+    jQuery(number_name).each(function() {
+        if(cbox.is(':checked')){
+            // console.log("cbox_eye checked");
+            jQuery(this).removeAttr('disabled');
+        }else{
+            // console.log("cbox_eye unchecked");
+            jQuery(this).attr('disabled', 'disabled').val("");
+        }
+    });
+});
+
+// After Confirm Parameters button clicked
 jQuery("#btn_confirm").on( "click", function() {
     jQuery(".lens_val").hide();
+    jQuery(".thwepo-extra-options.thwepo_simple.modiification0").hide();
     jQuery(".thwepo-extra-options.thwepo_simple.modiification").hide();
     jQuery(".thwepo-extra-options.thwepo_simple.modiification2").hide();
     jQuery("#confirmation").show();
@@ -106,14 +159,14 @@ jQuery("#btn_confirm").on( "click", function() {
     jQuery([document.documentElement, document.body]).animate({
         scrollTop: $("#confirmation").offset().top-200
     }, 500);
-    orderClick("confirm");
+    orderClick("confirm",cbox_re,cbox_le);
 });
 
 // jQuery(".d-none").each(function() {
 //     jQuery(this).parent().parent().parent().parent().hide();
 // });
 
-function orderClick(page) {
+function orderClick(page,cbox_re,cbox_le) {
     //defining a list of all parameters
     param_list = ["sph","cyl","axis","flat_k","steep_k","steep_k_axis","flat_e","steep_e","hvid","pupil_size"]
     //Acquiring data from the form
@@ -260,17 +313,18 @@ function orderClick(page) {
             jQuery("#ac2_steep_"+eye_str_lc).html(ac2_steep);
             jQuery("#pc_flat_"+eye_str_lc).html(pc_flat);
             jQuery("#pc_steep_"+eye_str_lc).html(pc_steep);
+
+            // set value to hidden input
+            jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
+            jQuery('input[name="bozr_flat_'+eye_str_lc+'"]').val(bozr_flat);
+            jQuery('input[name="bozr_steep_'+eye_str_lc+'"]').val(bozr_steep);
+            jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);
+            jQuery('input[name="ac1_steep_'+eye_str_lc+'"]').val(ac1_steep);
+            jQuery('input[name="ac2_flat_'+eye_str_lc+'"]').val(ac2_flat);
+            jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val(ac2_steep);
+            jQuery('input[name="pc_flat_'+eye_str_lc+'"]').val(pc_flat);
+            jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
         }
-        // set value to hidden input
-        jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
-        jQuery('input[name="bozr_flat_'+eye_str_lc+'"]').val(bozr_flat);
-        jQuery('input[name="bozr_steep_'+eye_str_lc+'"]').val(bozr_steep);
-        jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);
-        jQuery('input[name="ac1_steep_'+eye_str_lc+'"]').val(ac1_steep);
-        jQuery('input[name="ac2_flat_'+eye_str_lc+'"]').val(ac2_flat);
-        jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val(ac2_steep);
-        jQuery('input[name="pc_flat_'+eye_str_lc+'"]').val(pc_flat);
-        jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
         
         // if (lens_param["Design"] == "Toric"){
         // // if the lens design if toric, then display the parameters according to steep K
@@ -327,14 +381,18 @@ function orderClick(page) {
         };
     }
 
-    //Running the lens calculation for RE
-    invalid_input_list_re = check_invalid_input(RE);
-    //console.log("invalid_input_list_re : ", invalid_input_list_re);
-    RE_lens_param = get_lens_param(RE, "RE", invalid_input_list_re, page);
-    // console.log("RE Lens Param : ", RE_lens_param);
+    if(cbox_re=="Y"){
+        //Running the lens calculation for RE
+        invalid_input_list_re = check_invalid_input(RE);
+        //console.log("invalid_input_list_re : ", invalid_input_list_re);
+        RE_lens_param = get_lens_param(RE, "RE", invalid_input_list_re, page);
+        // console.log("RE Lens Param : ", RE_lens_param);
+    }
     
-    //Running the lens calculation for LE
-    invalid_input_list_le = check_invalid_input(LE);
-    LE_lens_param = get_lens_param(LE, "LE", invalid_input_list_le, page);
-    // console.log(LE_lens_param);
+    if(cbox_le=="Y"){
+        //Running the lens calculation for LE
+        invalid_input_list_le = check_invalid_input(LE);
+        LE_lens_param = get_lens_param(LE, "LE", invalid_input_list_le, page);
+        // console.log(LE_lens_param);
+    }
 }

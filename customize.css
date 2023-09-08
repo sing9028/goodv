@@ -4,6 +4,9 @@
 .d-flex{
     display: flex;
 }
+body, button, input, select, textarea, .ast-button, .ast-custom-button {
+    font-family: 'Inter';
+}
 .ast-stock-detail,
 .woocommerce-ordering,
 .woocommerce-result-count,
@@ -22,6 +25,7 @@
 }
 .table_result tr{
 	display:flex;
+    align-items: center;
     /* 	white-space:nowrap; */
 	/* justify-content: space-between; */
 }
@@ -75,7 +79,9 @@
     font-size: 14px;
     line-height: 20px;
     color: #000;
-    /* font-family: 'Inter'; */
+}
+.thwepo-extra-options.thwepo_simple p{
+    margin-bottom: 0;
 }
 #confirmation,
 #modification,
@@ -92,29 +98,27 @@
 .single-product .variations.wck-layout-two-col{
     order: -1; 
 }
+.thwepo-extra-options.thwepo_simple.modiification0 tbody,
 .thwepo-extra-options.thwepo_simple.modiification2 tbody,
 .thwepo-extra-options.thwepo_simple.modiification tbody,
 .thwepo-extra-options.thwepo_simple.order tbody{
     display: flex;
     flex-flow: wrap;
-    align-items: end;
+    /* align-items: end; */
+    align-items: center;
     justify-content: space-between;
     /* justify-content: left; */
 }
-.thwepo-extra-options.thwepo_simple.modiification2 tbody tr,
-.lens_val tr th,
-.lens_val tr td,
-.patient_val tr td,
-.thwepo-extra-options.thwepo_simple.order tbody tr{
-    /* max-width: 120px; */
-    /* width: 33.3%; */
-    /* width: 100px; */
-    /* width: 120px; */
-    width: 190px;
+.thwepo-extra-options.thwepo_simple.modiification0 tbody tr .value,
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr .value,
+.thwepo-extra-options.thwepo_simple.modiification tbody tr .value,
+.thwepo-extra-options.thwepo_simple.order tbody tr .value{
+    width: 100%;
+    display: block;
+    width: inherit;
 }
-.thwepo-extra-options.thwepo_simple.modiification tbody tr{
-    width: 95px;
-}
+.thwepo-extra-options.thwepo_simple.modiification0 tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_simple.modiification0 tbody tr:nth-child(3n+4),
 .thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(1),
 .thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(3n+4),
 .thwepo-extra-options.thwepo_simple.modiification tbody tr:nth-child(1),
@@ -128,13 +132,29 @@
 .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
     width: 160px;
 }
-.thwepo-extra-options.thwepo_simple.modiification2 tbody tr .value,
-.thwepo-extra-options.thwepo_simple.modiification tbody tr .value,
-.thwepo-extra-options.thwepo_simple.order tbody tr .value{
-    width: 100%;
-    display: block;
-    width: inherit;
+.mdc-notched-outline--notched .mdc-notched-outline__notch{
+    padding-right: 0;
 }
+.mdc-text-field--outlined .mdc-floating-label{
+    left: 2px;
+}
+label.mdc-text-field,
+.btn_cal{
+    width: 100% !important;
+}
+.btn_cal p[name="btn_cal"]{
+    display: flex;
+    flex-direction: column;
+}
+.thwepo-extra-options.thwepo_simple.modiification0 tbody tr,
+.thwepo-extra-options.thwepo_simple.modiification2 tbody tr,
+.lens_val tr th,
+.lens_val tr td,
+.patient_val tr td,
+.thwepo-extra-options.thwepo_simple.order tbody tr{
+    width: 190px;
+}
+.thwepo-extra-options.thwepo_simple.modiification tbody tr,
 .confirm_val_le tbody tr td,
 .confirm_val_re tbody tr td{
     width: 95px;
@@ -151,9 +171,11 @@
 }
 #confirmation,
 .single-product.woocommerce button.button[name="add-to-cart"],
+.thwepo-extra-options.thwepo_simple.modiification0,
+.thwepo-extra-options.thwepo_simple.modiification0 tbody tr .label,
 .thwepo-extra-options.thwepo_simple.modiification2,
-.thwepo-extra-options.thwepo_simple.modiification,
 .thwepo-extra-options.thwepo_simple.modiification2 tbody tr .label,
+.thwepo-extra-options.thwepo_simple.modiification,
 .thwepo-extra-options.thwepo_simple.modiification tbody tr .label,
 .thwepo-extra-options.thwepo_simple.order tbody tr .label,
 .single-product .summary .price,
@@ -165,6 +187,11 @@
     /* width: fit-content; */
     width: max-content;
 }
+.mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
+    background-color: #6A4DA8;
+}
+.thwepo-extra-options.thwepo_simple.modiification0 .cbox_eye_m label,
+.thwepo-extra-options.thwepo_simple.order .cbox_eye label,
 .confirm_title{
     font-size: 16px;
     line-height: 24px;
@@ -174,4 +201,63 @@
     font-size: 1.5rem;
     font-weight: 700;
     color: #7e868c;
+}
+.thwepo-extra-options.thwepo_simple.modiification0 .cbox_eye_m,
+.thwepo-extra-options.thwepo_simple.order .cbox_eye{
+    display: flex;
+}
+.thwepo-extra-options.thwepo_simple.modiification0 .cbox_eye_m label,
+.thwepo-extra-options.thwepo_simple.order .cbox_eye label{
+    margin-right: 0 !important;
+    color: #6A4DA8;
+}
+.error_msg{
+    color: #B3261E;
+}
+@media (max-width: 580px) {
+    .thwepo-extra-options.thwepo_simple.modiification0 tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.modiification0 tbody tr:nth-child(3n+4),
+    .thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.modiification2 tbody tr:nth-child(3n+4),
+    .thwepo-extra-options.thwepo_simple.modiification tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.modiification tbody tr:nth-child(5n+6),
+    .lens_val tr th:nth-child(1),
+    .lens_val tr td:nth-child(1),
+    .patient_val tr td:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(3),
+    .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
+        /* width: 33vw; */
+        width: 26vw;
+    }
+    .thwepo-extra-options.thwepo_simple.modiification0 tbody tr,
+    .thwepo-extra-options.thwepo_simple.modiification2 tbody tr,
+    .lens_val tr th,
+    .lens_val tr td,
+    .patient_val tr td,
+    .thwepo-extra-options.thwepo_simple.order tbody tr{
+        width: 26vw;
+    }
+    .thwepo-extra-options.thwepo_simple.modiification tbody tr,
+    .confirm_val_le tbody tr td,
+    .confirm_val_re tbody tr td{
+        width: 13.1vw;
+    }
+    .confirm_val_le tbody tr td:nth-child(1),
+    .confirm_val_le tbody tr td:nth-child(3),
+    .confirm_val_le tbody tr td:nth-child(5n+8),
+    .confirm_val_le tbody tr td:nth-child(5n+6),
+    .confirm_val_re tbody tr td:nth-child(1),
+    .confirm_val_re tbody tr td:nth-child(3),
+    .confirm_val_re tbody tr td:nth-child(5n+8),
+    .confirm_val_re tbody tr td:nth-child(5n+6){
+        width: 26vw;
+    }
+    .thwepo-extra-options.thwepo_simple.modiification0 .cbox_eye_m label,
+    .thwepo-extra-options.thwepo_simple.order .cbox_eye label,
+    .confirm_title{
+        font-size: 11px;
+        line-height: 19px;
+    }
 }
