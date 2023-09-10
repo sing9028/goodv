@@ -54,11 +54,30 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .table_result td#design_LE_r{
 	/* border-left:0; */
 }
-#btn_confirm,
-#btn_cal{
-	display:block;
+.woocommerce div.product form.cart .button.single_add_to_cart_button{
+    /* width: fit-content; */
+    width: max-content;
+    padding: 11px 20px;
+    background-color: #6750A4 !important;
+    color: #fff !important;
+    border-radius: 20px;
+}
+.single-product.woocommerce button.button[name="add-to-cart"],
+.mdc-button{
+	/* display:block; */
 	/* margin-top:1.5em */
-    background-color: #6750A4;
+    background-color: #6750A4 !important;
+    color: #fff !important;
+}
+.woocommerce div.product form.cart .button.single_add_to_cart_button:hover{
+    background-color: rgba(103,80,164,0.95) !important;
+    box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
+}
+.mdc-button__label{
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 20px;
 }
 .woocommerce div.product form.cart .variations .table_result tr,
 .woocommerce div.product form.cart .variations .table_result th{
@@ -190,10 +209,6 @@ label.mdc-text-field,
 .single-product .summary .quantity,
 #modification{
     display: none;
-}
-.woocommerce div.product form.cart .button.single_add_to_cart_button{
-    /* width: fit-content; */
-    width: max-content;
 }
 .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
     background-color: #6A4DA8;

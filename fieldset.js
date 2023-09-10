@@ -62,8 +62,8 @@ var text_patient_name="N";
 // After RE/LE checkbox clicked
 var cbox_re="Y";
 var cbox_le="Y";
-var re_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="re"]';
-var le_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="le"]';
+var re_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="_re"]';
+var le_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="_le"]';
 var re_all_input_check="Y";
 var le_all_input_check="Y";
 var re_check="N";
@@ -163,12 +163,12 @@ jQuery("#btn_cal").on( "click", function() {
     if(error_msg != ""){
         jQuery(".error_msg").html(error_msg);
     }
-    console.log(cbox_re);
-    console.log(re_all_input_check);
-    console.log(re_check);
-    console.log(cbox_le);
-    console.log(le_all_input_check);
-    console.log(le_check);
+    // console.log(cbox_re);
+    // console.log(re_all_input_check);
+    // console.log(re_check);
+    // console.log(cbox_le);
+    // console.log(le_all_input_check);
+    // console.log(le_check);
     if(text_patient_id=="Y"&&text_patient_name=="Y"&&(re_check=="Y"||le_check=="Y")){
         jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
         jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
@@ -187,15 +187,50 @@ jQuery("#btn_cal").on( "click", function() {
 });
 
 // After Modiification RE/LE checkbox clicked
-var cbox_re_m="Y";
-var cbox_le_m="Y";
-var re_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="re"]';
-var le_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="le"]';
-var re_all_input_check_m="Y";
-var le_all_input_check_m="Y";
+var cbox_re_m="N";
+var cbox_le_m="N";
+var re_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="_re"]';
+var le_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="_le"]';
+var re_all_input2_m='.thwepo-extra-options.thwepo_simple.modiification2 input[name*="_re"]';
+var le_all_input2_m='.thwepo-extra-options.thwepo_simple.modiification2 input[name*="_le"]';
+var re_all_input_check_m="N";
+var le_all_input_check_m="N";
+jQuery(re_all_input_m).each(function() {
+    // console.log("cbox_eye unchecked");
+    jQuery(this).attr('disabled', 'disabled').val("");
+    jQuery(this).parent().addClass("mdc-text-field--disabled");
+    jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+    jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+    jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+});
+jQuery(le_all_input_m).each(function() {
+    // console.log("cbox_eye unchecked");
+    jQuery(this).attr('disabled', 'disabled').val("");
+    jQuery(this).parent().addClass("mdc-text-field--disabled");
+    jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+    jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+    jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+});
+jQuery(re_all_input2_m).each(function() {
+    // console.log("cbox_eye unchecked");
+    jQuery(this).attr('disabled', 'disabled').val("");
+    jQuery(this).parent().addClass("mdc-text-field--disabled");
+    jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+    jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+    jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+});
+jQuery(le_all_input2_m).each(function() {
+    // console.log("cbox_eye unchecked");
+    jQuery(this).attr('disabled', 'disabled').val("");
+    jQuery(this).parent().addClass("mdc-text-field--disabled");
+    jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+    jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+    jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+});
 jQuery(".cbox_eye_m input").on( "click", function() {
     if(jQuery(this).attr("id") == "checkbox_re_m"){
         var number_name_m=jQuery(re_all_input_m);
+        var number_name2_m=jQuery(re_all_input2_m);
         if(cbox_re_m=="Y"){
             cbox_re_m="N";
         }else{
@@ -203,6 +238,7 @@ jQuery(".cbox_eye_m input").on( "click", function() {
         }
     }else{
         var number_name_m=jQuery(le_all_input_m);
+        var number_name2_m=jQuery(le_all_input2_m);
         if(cbox_le_m=="Y"){
             cbox_le_m="N";
         }else{
@@ -211,7 +247,24 @@ jQuery(".cbox_eye_m input").on( "click", function() {
     }
     var cbox_m=jQuery(this);
     jQuery(number_name_m).each(function() {
-        if(cbox.is(':checked')){
+        if(cbox_m.is(':checked')){
+            // console.log("cbox_eye checked");
+            jQuery(this).removeAttr('disabled');
+            jQuery(this).parent().removeClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").removeClass("width-auto");
+        }else{
+            // console.log("cbox_eye unchecked");
+            jQuery(this).attr('disabled', 'disabled').val("");
+            jQuery(this).parent().addClass("mdc-text-field--disabled");
+            jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
+            jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
+            jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+        }
+    });
+    jQuery(number_name2_m).each(function() {
+        if(cbox_m.is(':checked')){
             // console.log("cbox_eye checked");
             jQuery(this).removeAttr('disabled');
             jQuery(this).parent().removeClass("mdc-text-field--disabled");
@@ -342,18 +395,17 @@ function orderClick(page,cbox_re,cbox_le) {
         lens_param = obj;
         var eye_str_lc = eye_str.toLowerCase();
 
-        var design = lens_param["Design"] + " " + lens_param["chord_width"]["LD"];
-        var bozr_flat = Math.round(lens_param["flat"]["BOZR"]*100)/100;
-        var bozr_steep = Math.round(lens_param["steep"]["BOZR"]*100)/100;
-        var ac1_flat = Math.round(lens_param["flat"]["AC1"]*100)/100;
-        var ac1_steep = Math.round(lens_param["steep"]["AC1"]*100)/100;
-        var ac2_flat = Math.round(lens_param["flat"]["AC2"]*100)/100;
-        var ac2_steep = Math.round(lens_param["steep"]["AC2"]*100)/100;
-        var pc_flat = Math.round(lens_param["flat"]["PC"]*100)/100;
-        var pc_steep = Math.round(lens_param["steep"]["PC"]*100)/100;
-
         if(page=="cal"){
             // set parameter value
+            var design = lens_param["default"]["Design"];
+            // var bozr_flat = Math.round(lens_param["default"]["flat"]["BOZR"]*100)/100;
+            // var bozr_steep = Math.round(lens_param["default"]["steep"]["BOZR"]*100)/100;
+            // var ac1_flat = Math.round(lens_param["default"]["flat"]["AC1"]*100)/100;
+            // var ac1_steep = Math.round(lens_param["default"]["steep"]["AC1"]*100)/100;
+            // var ac2_flat = Math.round(lens_param["default"]["flat"]["AC2"]*100)/100;
+            // var ac2_steep = Math.round(lens_param["default"]["steep"]["AC2"]*100)/100;
+            // var pc_flat = Math.round(lens_param["default"]["flat"]["PC"]*100)/100;
+            // var pc_steep = Math.round(lens_param["default"]["steep"]["PC"]*100)/100;
             var sph = jQuery('input[name="sph_'+eye_str_lc+'"]').val();
             var cyl = jQuery('input[name="cyl_'+eye_str_lc+'"]').val();
             var axis = jQuery('input[name="axis_'+eye_str_lc+'"]').val();
@@ -382,6 +434,15 @@ function orderClick(page,cbox_re,cbox_le) {
         }else if(page=="confirm"){
             // set parameter value
             var model = jQuery(".product_title.entry-title").text().split(" ");
+            var design = lens_param["modified"]["Design"];
+            var bozr_flat = Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
+            var bozr_steep = Math.round(lens_param["modified"]["steep"]["BOZR"]*100)/100;
+            var ac1_flat = Math.round(lens_param["modified"]["flat"]["AC1"]*100)/100;
+            var ac1_steep = Math.round(lens_param["modified"]["steep"]["AC1"]*100)/100;
+            var ac2_flat = Math.round(lens_param["modified"]["flat"]["AC2"]*100)/100;
+            var ac2_steep = Math.round(lens_param["modified"]["steep"]["AC2"]*100)/100;
+            var pc_flat = Math.round(lens_param["modified"]["flat"]["PC"]*100)/100;
+            var pc_steep = Math.round(lens_param["modified"]["steep"]["PC"]*100)/100;
 
             // show parameter value
             jQuery("#model_"+eye_str_lc).html(model[1]);
@@ -435,7 +496,8 @@ function orderClick(page,cbox_re,cbox_le) {
 
             $.ajax({
             type: "POST",
-            url: "https://gvcaltest.azurewebsites.net/api/HttpTriggerEyeParamCal",
+            // url: "https://gvcaltest.azurewebsites.net/api/HttpTriggerEyeParamCal",
+            url: "https://gvlenscal.azurewebsites.net/api/HttpTriggerLensCalculator",
             data: JSON.stringify(eye_obj),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
