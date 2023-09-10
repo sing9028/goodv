@@ -162,8 +162,8 @@ function orderFormInit() {
     // set all tab sequence of cal button
     jQuery('#btn_cal').attr("tabindex", "23");
     // set all tab sequence of all modiification RE field
-    jQuery('input[name="bozr_flat_re"]').attr("tabindex", "24");
-    jQuery('input[name="bozr_steep_re"]').attr("tabindex", "25");
+    jQuery('input[name="bc_flat_re"]').attr("tabindex", "24");
+    jQuery('input[name="bc_steep_re"]').attr("tabindex", "25");
     jQuery('input[name="ac_flat_re"]').attr("tabindex", "26");
     jQuery('input[name="ac_steep_re"]').attr("tabindex", "27");
     jQuery('input[name="pc_flat_re"]').attr("tabindex", "28");
@@ -173,8 +173,8 @@ function orderFormInit() {
     jQuery('input[name="diameter_re"]').attr("tabindex", "32");
     jQuery('input[name="remarks_re"]').attr("tabindex", "33");
     // set all tab sequence of all modiification LE field
-    jQuery('input[name="bozr_flat_le"]').attr("tabindex", "34");
-    jQuery('input[name="bozr_steep_le"]').attr("tabindex", "35");
+    jQuery('input[name="bc_flat_le"]').attr("tabindex", "34");
+    jQuery('input[name="bc_steep_le"]').attr("tabindex", "35");
     jQuery('input[name="ac_flat_le"]').attr("tabindex", "36");
     jQuery('input[name="ac_steep_le"]').attr("tabindex", "37");
     jQuery('input[name="pc_flat_le"]').attr("tabindex", "38");
@@ -237,10 +237,70 @@ function orderFormInit() {
         });
     });
 
+    var diameter_re=0;
+    var diameter_le=0;
+
+    var error_msg="";
+    function orderFormCheck(cbox){
+        if(cbox=="RE"){
+            var cbox_e=cbox_re;
+            var flat_k_val=parseFloat(jQuery('input[name="flat_k_re"]').val());
+            var steep_k_val=parseFloat(jQuery('input[name="steep_k_re"]').val());
+            var cbox_all_input=re_all_input;
+            var cbox_all_input_check=re_all_input_check;
+            var cbox_check=re_check;
+            var cbox_text="RE";
+        }else if(cbox=="LE"){
+            var cbox_e=cbox_le;
+            var flat_k_val=parseFloat(jQuery('input[name="flat_k_le"]').val());
+            var steep_k_val=parseFloat(jQuery('input[name="steep_k_le"]').val());
+            var cbox_all_input=le_all_input;
+            var cbox_all_input_check=le_all_input_check;
+            var cbox_check=le_check;
+            var cbox_text="LE";
+        }
+        if(cbox_e=="Y"){
+            jQuery(cbox_all_input).each(function() {
+                if(jQuery(this).val() == ""){
+                    cbox_all_input_check="N";
+                }
+            });
+            if(cbox_all_input_check=="N"){
+                error_msg+="\n"+cbox_text+": All field is required";
+            }else if(cbox_all_input_check=="Y"){
+                // console.log(flat_k_val);
+                // console.log(steep_k_val);
+                if(flat_k_val>9 && flat_k_val<37){
+                    error_msg+='\n'+cbox_text+': "Flat K" must be in range 7-9(mm) or 37-48(D)';
+                }else {
+                    if((flat_k_val>=37&&flat_k_val<=48)){
+                        jQuery('input[name="flat_k_re"]').val(336/flat_k_val);
+                    }
+                }
+                if(steep_k_val>9 && steep_k_val<37){
+                    error_msg+='\n'+cbox_text+': "Flat K" must be in range 7-9(mm) or 37-48(D)';
+                }else {
+                    if((steep_k_val>=37&&steep_k_val<=48)){
+                        jQuery('input[name="steep_re"]').val(336/steep_k_val);
+                    }
+                    if(flat_k_val >= steep_k_val){
+                        if(cbox=="RE"){
+                            re_check="Y";
+                        }else if(cbox=="LE"){
+                            le_check="Y";
+                        }
+                    }else{
+                        error_msg+='\n'+cbox_text+': "Steep K" must be less than or equal to "Flat K"';
+                    }
+                }
+            }
+        }
+    }
+
     // After Calculate Lens button clicked
     jQuery("#btn_cal").on( "click", function() {
         // console.log("cbox_re="+cbox_re+"||cbox_le="+cbox_le);
-        var error_msg="";
+        error_msg="";
         if(jQuery('input[name="patient_id"]').val() != ""){
             text_patient_id="Y";
         }else{
@@ -260,53 +320,10 @@ function orderFormInit() {
         if(cbox_re=="N"&&cbox_le=="N"){
             error_msg+="\nSelect at least one checkbox(RE/LE)";
         }
-        var flat_k_re_val=parseFloat(jQuery('input[name="flat_k_re"]').val());
-        var steep_k_re_val=parseFloat(jQuery('input[name="steep_k_re"]').val());
-        var flat_k_le_val=parseFloat(jQuery('input[name="flat_k_le"]').val());
-        var steep_k_le_val=parseFloat(jQuery('input[name="steep_k_le"]').val());
         if(cbox_re=="Y"){
-            jQuery(re_all_input).each(function() {
-                if(jQuery(this).val() == ""){
-                    re_all_input_check="N";
-                }
-            });
-            if(re_all_input_check=="N"){
-                error_msg+="\nRE: All field is required";
-            }else if(re_all_input_check=="Y"){
-                // console.log(flat_k_re_val);
-                // console.log(steep_k_re_val);
-                if(flat_k_re_val>9 && flat_k_re_val<37){
-                    error_msg+='\nRE: "Flat K" must be in range 7-9(mm) or 37-48(D)';
-                }else {
-                    if((flat_k_re_val>=37&&flat_k_re_val<=48)){
-                        jQuery('input[name="flat_k_re"]').val(336/flat_k_re_val);
-                    }
-                    if(flat_k_re_val >= steep_k_re_val){
-                        re_check="Y";
-                    }else{
-                        error_msg+='\nRE: "Steep K" must be less than or equal to "Flat K"';
-                    }
-                }
-                
-            }
-        }
-        if(cbox_le=="Y"){
-            jQuery(le_all_input).each(function() {
-                if(jQuery(this).val() == ""){
-                    le_all_input_check="N";
-                }
-            });
-            if(le_all_input_check=="N"){
-                error_msg+="\nLE: All field is required";
-            }else if(le_all_input_check=="Y"){
-                // console.log(flat_k_le_val);
-                // console.log(steep_k_le_val);
-                if(flat_k_le_val>=steep_k_le_val){
-                    le_check="Y";
-                }else{
-                    error_msg+='\nLE: "Steep K" must be less than or equal to "Flat K"';
-                }
-            }
+            orderFormCheck("RE");
+        }if(cbox_le=="Y"){
+            orderFormCheck("LE");
         }
         if(cbox_re=="Y"&&cbox_le=="Y"){
             if(re_check=="Y"&&le_check=="N"){
@@ -388,6 +405,7 @@ function orderFormInit() {
         if(jQuery(this).attr("id") == "checkbox_re_m"){
             var number_name_m=jQuery(re_all_input_m);
             var number_name2_m=jQuery(re_all_input2_m);
+            var eye_name="re";
             if(cbox_re_m=="Y"){
                 cbox_re_m="N";
             }else{
@@ -396,6 +414,7 @@ function orderFormInit() {
         }else{
             var number_name_m=jQuery(le_all_input_m);
             var number_name2_m=jQuery(le_all_input2_m);
+            var eye_name="le";
             if(cbox_le_m=="Y"){
                 cbox_le_m="N";
             }else{
@@ -411,6 +430,21 @@ function orderFormInit() {
                 jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
                 jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-floating-label--float-above");
                 jQuery(this).parent().find(".mdc-notched-outline__notch").removeClass("width-auto");
+                // set default Modification value
+                jQuery('input[name="bc_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="bc_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="ac_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="ac_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="pc_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="pc_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="target_'+eye_name+'"]').val(0);
+                jQuery('input[name="bcw_'+eye_name+'"]').val(6);
+                if(eye_name=="re"){
+                    jQuery('input[name="diameter_'+eye_name+'"]').val(diameter_re);
+                }else if(eye_name=="le"){
+                    jQuery('input[name="diameter_'+eye_name+'"]').val(diameter_le);
+                }
+                jQuery('input[name="'+eye_name+'marks_'+eye_name+'"]').val(0);
             }else{
                 // console.log("cbox_eye unchecked");
                 jQuery(this).attr('disabled', 'disabled').val("");
@@ -418,6 +452,17 @@ function orderFormInit() {
                 jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
                 jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
                 jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+                // set default Modification value
+                jQuery('input[name="bc_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="bc_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="ac_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="ac_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="pc_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="pc_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="target_'+eye_name+'"]').val("");
+                jQuery('input[name="bcw_'+eye_name+'"]').val("");
+                jQuery('input[name="diameter_'+eye_name+'"]').val("");
+                jQuery('input[name="'+eye_name+'marks_'+eye_name+'"]').val("");
             }
         });
         jQuery(number_name2_m).each(function() {
@@ -428,6 +473,21 @@ function orderFormInit() {
                 jQuery(this).parent().find(".mdc-notched-outline--upgraded").addClass("mdc-notched-outline--notched");
                 jQuery(this).parent().find(".mdc-floating-label").addClass("mdc-floating-label--float-above");
                 jQuery(this).parent().find(".mdc-notched-outline__notch").removeClass("width-auto");
+                // set default Modification value
+                jQuery('input[name="bc_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="bc_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="ac_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="ac_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="pc_flat_'+eye_name+'"]').val(0);
+                jQuery('input[name="pc_steep_'+eye_name+'"]').val(0);
+                jQuery('input[name="target_'+eye_name+'"]').val(0);
+                jQuery('input[name="bcw_'+eye_name+'"]').val(6);
+                if(eye_name=="re"){
+                    jQuery('input[name="diameter_'+eye_name+'"]').val(diameter_re);
+                }else if(eye_name=="le"){
+                    jQuery('input[name="diameter_'+eye_name+'"]').val(diameter_le);
+                }
+                jQuery('input[name="'+eye_name+'marks_'+eye_name+'"]').val(0);
             }else{
                 // console.log("cbox_eye unchecked");
                 jQuery(this).attr('disabled', 'disabled').val("");
@@ -435,6 +495,17 @@ function orderFormInit() {
                 jQuery(this).parent().find(".mdc-notched-outline--upgraded").removeClass("mdc-notched-outline--notched");
                 jQuery(this).parent().find(".mdc-floating-label").removeClass("mdc-floating-label--float-above");
                 jQuery(this).parent().find(".mdc-notched-outline__notch").addClass("width-auto");
+                // set default Modification value
+                jQuery('input[name="bc_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="bc_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="ac_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="ac_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="pc_flat_'+eye_name+'"]').val("");
+                jQuery('input[name="pc_steep_'+eye_name+'"]').val("");
+                jQuery('input[name="target_'+eye_name+'"]').val("");
+                jQuery('input[name="bcw_'+eye_name+'"]').val("");
+                jQuery('input[name="diameter_'+eye_name+'"]').val("");
+                jQuery('input[name="'+eye_name+'marks_'+eye_name+'"]').val("");
             }
         });
     });
@@ -549,64 +620,83 @@ function orderFormInit() {
             console.log(page);
             console.log(obj);
 
-            lens_param = obj;
-            var eye_str_lc = eye_str.toLowerCase();
+            lens_param=obj;
+            var eye_str_lc=eye_str.toLowerCase();
 
             if(page=="cal"){
                 // set parameter value
-                var design = lens_param["default"]["Design"];
-                // var bozr_flat = Math.round(lens_param["default"]["flat"]["BOZR"]*100)/100;
-                // var bozr_steep = Math.round(lens_param["default"]["steep"]["BOZR"]*100)/100;
-                // var ac1_flat = Math.round(lens_param["default"]["flat"]["AC1"]*100)/100;
-                // var ac1_steep = Math.round(lens_param["default"]["steep"]["AC1"]*100)/100;
-                // var ac2_flat = Math.round(lens_param["default"]["flat"]["AC2"]*100)/100;
-                // var ac2_steep = Math.round(lens_param["default"]["steep"]["AC2"]*100)/100;
-                // var pc_flat = Math.round(lens_param["default"]["flat"]["PC"]*100)/100;
-                // var pc_steep = Math.round(lens_param["default"]["steep"]["PC"]*100)/100;
-                var sph = jQuery('input[name="sph_'+eye_str_lc+'"]').val();
-                var cyl = jQuery('input[name="cyl_'+eye_str_lc+'"]').val();
-                var axis = jQuery('input[name="axis_'+eye_str_lc+'"]').val();
-                var flat_k = jQuery('input[name="flat_k_'+eye_str_lc+'"]').val();
-                var steep_k = jQuery('input[name="steep_k_'+eye_str_lc+'"]').val();
-                var steep_k_axis = jQuery('input[name="steep_k_axis_'+eye_str_lc+'"]').val();
+                var design=lens_param["default"]["Design"];
+                var bc_design=lens_param["default"]["BC Design"];
+                // var bc_flat=Math.round(lens_param["default"]["flat"]["BOZR"]*100)/100;
+                // var bc_steep=Math.round(lens_param["default"]["steep"]["BOZR"]*100)/100;
+                // var ac1_flat=Math.round(lens_param["default"]["flat"]["AC1"]*100)/100;
+                // var ac1_steep=Math.round(lens_param["default"]["steep"]["AC1"]*100)/100;
+                // var ac2_flat=Math.round(lens_param["default"]["flat"]["AC2"]*100)/100;
+                // var ac2_steep=Math.round(lens_param["default"]["steep"]["AC2"]*100)/100;
+                // var pc_flat=Math.round(lens_param["default"]["flat"]["PC"]*100)/100;
+                // var pc_steep=Math.round(lens_param["default"]["steep"]["PC"]*100)/100;
+                var sph=jQuery('input[name="sph_'+eye_str_lc+'"]').val();
+                var cyl=jQuery('input[name="cyl_'+eye_str_lc+'"]').val();
+                var axis=jQuery('input[name="axis_'+eye_str_lc+'"]').val();
+                var flat_k=jQuery('input[name="flat_k_'+eye_str_lc+'"]').val();
+                var flat_k_d=336/jQuery('input[name="flat_k_'+eye_str_lc+'"]').val();
+                var steep_k=jQuery('input[name="steep_k_'+eye_str_lc+'"]').val();
+                var steep_k_d=336/jQuery('input[name="steep_k_'+eye_str_lc+'"]').val();
+                var steep_k_axis=jQuery('input[name="steep_k_axis_'+eye_str_lc+'"]').val();
                 var steep_k_axis_2=steep_k_axis - 90;
                 if(steep_k_axis_2<=0){
                     steep_k_axis_2=steep_k_axis_2+180;
                     // console.log(steep_k_axis_2);
                 }
-                var flat_e = jQuery('input[name="flat_e_'+eye_str_lc+'"]').val();
-                var steep_e = jQuery('input[name="steep_e_'+eye_str_lc+'"]').val();
-                var hvid = jQuery('input[name="hvid_'+eye_str_lc+'"]').val();
-                var pupil_size = jQuery('input[name="pupil_size_'+eye_str_lc+'"]').val();
+                var flat_e=jQuery('input[name="flat_e_'+eye_str_lc+'"]').val();
+                var steep_e=jQuery('input[name="steep_e_'+eye_str_lc+'"]').val();
+                var hvid=jQuery('input[name="hvid_'+eye_str_lc+'"]').val();
+                var pupil_size=jQuery('input[name="pupil_size_'+eye_str_lc+'"]').val();
                 
                 // show parameter value
                 jQuery("#rx_"+eye_str_lc).html(sph +" / " + cyl + " x " + axis);
-                jQuery("#flat_k_"+eye_str_lc).html(flat_k + " @ " + steep_k_axis_2);
+                jQuery("#flat_k_"+eye_str_lc).html(flat_k+ " mm" + "(" +flat_k_d + " D)" + " @ " + steep_k_axis_2);
                 jQuery("#flat_e_"+eye_str_lc).html(flat_e);
-                jQuery("#steep_k_"+eye_str_lc).html(steep_k + " @ " + steep_k_axis);
+                jQuery("#steep_k_"+eye_str_lc).html(steep_k+ " mm" + "(" +steep_k_d + " D)" + " @ " + steep_k_axis);
                 jQuery("#steep_e_"+eye_str_lc).html(steep_e);
                 jQuery("#hvid_"+eye_str_lc).html(hvid);
                 jQuery("#pupil_size_"+eye_str_lc).html(pupil_size);
                 jQuery("#design_"+eye_str_lc).html(design);
+                jQuery("#bc_design_"+eye_str_lc).html(bc_design);
+
+                if(bc_design=="Toric"){
+                    jQuery('input[name="bc_steep_'+eye_str_lc).parent().parent().hide();
+                }
+                if(design=="Toric"){
+                    jQuery('input[name="ac_steep_'+eye_str_lc).parent().parent().hide();
+                    jQuery('input[name="pc_steep_'+eye_str_lc).parent().parent().hide();
+                }
+                if(eye_str_lc=="re"){
+                    diameter_re=lens_param["default"]["zone_width"]["LD"];
+                }else if(eye_str_lc=="le"){
+                    diameter_le=lens_param["default"]["zone_width"]["LD"];
+                }
+                
+                
             }else if(page=="confirm"){
                 // set parameter value
-                var model = jQuery(".product_title.entry-title").text().split(" ");
-                var design = lens_param["modified"]["Design"];
-                var bozr_flat = Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
-                var bozr_steep = Math.round(lens_param["modified"]["steep"]["BOZR"]*100)/100;
-                var ac1_flat = Math.round(lens_param["modified"]["flat"]["AC1"]*100)/100;
-                var ac1_steep = Math.round(lens_param["modified"]["steep"]["AC1"]*100)/100;
-                var ac2_flat = Math.round(lens_param["modified"]["flat"]["AC2"]*100)/100;
-                var ac2_steep = Math.round(lens_param["modified"]["steep"]["AC2"]*100)/100;
-                var pc_flat = Math.round(lens_param["modified"]["flat"]["PC"]*100)/100;
-                var pc_steep = Math.round(lens_param["modified"]["steep"]["PC"]*100)/100;
+                var model=jQuery(".product_title.entry-title").text().split(" ");
+                var design=lens_param["modified"]["Design"];
+                var bc_flat=Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
+                var bc_steep=Math.round(lens_param["modified"]["steep"]["BOZR"]*100)/100;
+                var ac1_flat=Math.round(lens_param["modified"]["flat"]["AC1"]*100)/100;
+                var ac1_steep=Math.round(lens_param["modified"]["steep"]["AC1"]*100)/100;
+                var ac2_flat=Math.round(lens_param["modified"]["flat"]["AC2"]*100)/100;
+                var ac2_steep=Math.round(lens_param["modified"]["steep"]["AC2"]*100)/100;
+                var pc_flat=Math.round(lens_param["modified"]["flat"]["PC"]*100)/100;
+                var pc_steep=Math.round(lens_param["modified"]["steep"]["PC"]*100)/100;
 
                 // show parameter value
                 jQuery("#model_"+eye_str_lc).html(model[1]);
                 // jQuery("#material_"+eye_str_lc).html("Boston XO2");
                 jQuery("#design2_"+eye_str_lc).html(design);
-                jQuery("#bozr_flat_"+eye_str_lc).html(bozr_flat);
-                jQuery("#bozr_steep_"+eye_str_lc).html(bozr_steep);
+                jQuery("#bc_flat_"+eye_str_lc).html(bc_flat);
+                jQuery("#bc_steep_"+eye_str_lc).html(bc_steep);
                 jQuery("#ac1_flat_"+eye_str_lc).html(ac1_flat);
                 jQuery("#ac1_steep_"+eye_str_lc).html(ac1_steep);
                 jQuery("#ac2_flat_"+eye_str_lc).html(ac2_flat);
@@ -616,8 +706,8 @@ function orderFormInit() {
 
                 // set value to hidden input
                 jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
-                jQuery('input[name="bozr_flat_'+eye_str_lc+'"]').val(bozr_flat);
-                jQuery('input[name="bozr_steep_'+eye_str_lc+'"]').val(bozr_steep);
+                jQuery('input[name="bc_flat_'+eye_str_lc+'"]').val(bc_flat);
+                jQuery('input[name="bc_steep_'+eye_str_lc+'"]').val(bc_steep);
                 jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);
                 jQuery('input[name="ac1_steep_'+eye_str_lc+'"]').val(ac1_steep);
                 jQuery('input[name="ac2_flat_'+eye_str_lc+'"]').val(ac2_flat);
@@ -625,21 +715,6 @@ function orderFormInit() {
                 jQuery('input[name="pc_flat_'+eye_str_lc+'"]').val(pc_flat);
                 jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
             }
-            
-            // if (lens_param["Design"] == "Toric"){
-            // // if the lens design if toric, then display the parameters according to steep K
-            //     jQuery('input[name="bozr_steep_'+eye_str_lc+'"]').val(Math.round(lens_param["steep"]["BOZR"]*100)/100);
-            //     jQuery('input[name="rc_steep_'+eye_str_lc+'""]').val(Math.round(lens_param["steep"]["RC1"]*100)/100);
-            //     jQuery('input[name="ac1_steep_'+eye_str_lc+'""]').val(Math.round(lens_param["steep"]["AC1"]*100)/100);
-            //     jQuery('input[name="ac2_steep_'+eye_str_lc+'""]').val(Math.round(lens_param["steep"]["AC2"]*100)/100);
-            //     jQuery('input[name="pc_steep_'+eye_str_lc+'""]').val(Math.round(lens_param["steep"]["PC"]*100)/100);
-            // } else {
-            //     jQuery('input[name="bozr_steep_'+eye_str_lc+'"]').val("");
-            //     jQuery('input[name="rc_steep_'+eye_str_lc+'"]').val("");
-            //     jQuery('input[name="ac1_steep_'+eye_str_lc+'"]').val("");
-            //     jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val("");
-            //     jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val("");
-            // }
         }
 
         function get_lens_param(eye_obj, eye_str,invalid_list, page){
