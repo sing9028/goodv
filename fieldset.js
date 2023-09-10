@@ -127,6 +127,10 @@ jQuery("#btn_cal").on( "click", function() {
     if(cbox_re=="N"&&cbox_le=="N"){
         error_msg+="\nSelect at least one checkbox(RE/LE)";
     }
+    var flat_k_re_val=parseFloat(jQuery('input[name="flat_k_re"]').val());
+    var steep_k_re_val=parseFloat(jQuery('input[name="steep_k_re"]').val());
+    var flat_k_le_val=parseFloat(jQuery('input[name="flat_k_le"]').val());
+    var steep_k_le_val=parseFloat(jQuery('input[name="steep_k_le"]').val());
     if(cbox_re=="Y"){
         jQuery(re_all_input).each(function() {
             if(jQuery(this).val() == ""){
@@ -134,9 +138,15 @@ jQuery("#btn_cal").on( "click", function() {
             }
         });
         if(re_all_input_check=="N"){
-            error_msg+="\nAll RE field is required";
+            error_msg+="\nRE: All field is required";
         }else if(re_all_input_check=="Y"){
-            re_check="Y";
+            // console.log(flat_k_re_val);
+            // console.log(steep_k_re_val);
+            if(flat_k_re_val>=steep_k_re_val){
+                re_check="Y";
+            }else{
+                error_msg+='\nRE: "Steep K" must be less than or equal to "Flat K"';
+            }
         }
     }
     if(cbox_le=="Y"){
@@ -146,9 +156,15 @@ jQuery("#btn_cal").on( "click", function() {
             }
         });
         if(le_all_input_check=="N"){
-            error_msg+="\nAll LE field is required";
+            error_msg+="\nLE: All field is required";
         }else if(le_all_input_check=="Y"){
-            le_check="Y";
+            // console.log(flat_k_le_val);
+            // console.log(steep_k_le_val);
+            if(flat_k_le_val>=steep_k_le_val){
+                le_check="Y";
+            }else{
+                error_msg+='\nLE: "Steep K" must be less than or equal to "Flat K"';
+            }
         }
     }
     if(cbox_re=="Y"&&cbox_le=="Y"){
