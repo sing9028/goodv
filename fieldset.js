@@ -142,7 +142,7 @@ jQuery("#btn_cal").on( "click", function() {
         }else if(re_all_input_check=="Y"){
             // console.log(flat_k_re_val);
             // console.log(steep_k_re_val);
-            if(flat_k_re_val>=steep_k_re_val){
+            if(flat_k_re_val >= steep_k_re_val){
                 re_check="Y";
             }else{
                 error_msg+='\nRE: "Steep K" must be less than or equal to "Flat K"';
@@ -196,7 +196,7 @@ jQuery("#btn_cal").on( "click", function() {
         jQuery(".thwepo-extra-options.thwepo_simple.modiification").show();
         jQuery(".thwepo-extra-options.thwepo_simple.modiification2").show();
         jQuery([document.documentElement, document.body]).animate({
-            scrollTop: $("#modification").offset().top-150
+            scrollTop: jQuery("#modification").offset().top-150
         }, 500);
         orderClick("cal",cbox_re,cbox_le);
     }
@@ -308,7 +308,7 @@ jQuery("#btn_confirm").on( "click", function() {
     jQuery(".confirm_price").html(jQuery(".price .amount bdi").html());
     jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
     jQuery([document.documentElement, document.body]).animate({
-        scrollTop: $("#confirmation").offset().top-200
+        scrollTop: jQuery("#confirmation").offset().top-200
     }, 500);
     orderClick("confirm",cbox_re,cbox_le);
 });
