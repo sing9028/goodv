@@ -161,7 +161,7 @@ function orderFormInit() {
     jQuery('input[name="pupil_size_le"]').attr("tabindex", "22");
     // set all tab sequence of cal button
     jQuery('#btn_cal').attr("tabindex", "23");
-    // set all tab sequence of all modiification RE field
+    // set all tab sequence of all modification RE field
     jQuery('input[name="bc_flat_re"]').attr("tabindex", "24");
     jQuery('input[name="bc_steep_re"]').attr("tabindex", "25");
     jQuery('input[name="ac_flat_re"]').attr("tabindex", "26");
@@ -172,7 +172,7 @@ function orderFormInit() {
     jQuery('input[name="bc_width_re"]').attr("tabindex", "31");
     jQuery('input[name="ld_re"]').attr("tabindex", "32");
     jQuery('input[name="remarks_re"]').attr("tabindex", "33");
-    // set all tab sequence of all modiification LE field
+    // set all tab sequence of all modification LE field
     jQuery('input[name="bc_flat_le"]').attr("tabindex", "34");
     jQuery('input[name="bc_steep_le"]').attr("tabindex", "35");
     jQuery('input[name="ac_flat_le"]').attr("tabindex", "36");
@@ -201,6 +201,8 @@ function orderFormInit() {
     var le_all_input_check="Y";
     var re_check="N";
     var le_check="N";
+    var re_ajax_check="N";
+    var le_ajax_check="N";
     jQuery(".cbox_eye input").on( "click", function() {
         if(jQuery(this).attr("id") == "checkbox_re"){
             var number_name=jQuery(re_all_input);
@@ -237,6 +239,7 @@ function orderFormInit() {
         });
     });
 
+    // set modification
     var bc_flat_re=0;
     var bc_steep_re=0;
     var ac_flat_re=0;
@@ -266,7 +269,7 @@ function orderFormInit() {
             var cbox_all_input=re_all_input;
             var cbox_all_input_check=re_all_input_check;
             var cbox_check=re_check;
-            var cbox_text="RE";
+            var eye_text = "Right Eye";
         }else if(cbox=="LE"){
             var cbox_e=cbox_le;
             var flat_k_val=parseFloat(jQuery('input[name="flat_k_le"]').val());
@@ -274,7 +277,7 @@ function orderFormInit() {
             var cbox_all_input=le_all_input;
             var cbox_all_input_check=le_all_input_check;
             var cbox_check=le_check;
-            var cbox_text="LE";
+            var eye_text = "Left Eye";
         }
         if(cbox_e=="Y"){
             jQuery(cbox_all_input).each(function() {
@@ -283,21 +286,21 @@ function orderFormInit() {
                 }
             });
             if(cbox_all_input_check=="N"){
-                error_msg+="\n"+cbox_text+": All field is required";
+                error_msg+='\nAll Input of '+eye_text+' is required';
             }else if(cbox_all_input_check=="Y"){
                 // console.log(flat_k_val);
                 // console.log(steep_k_val);
-                if(flat_k_val>9 && flat_k_val<37){
-                    error_msg+='\n'+cbox_text+': "Flat K" must be in range 7-9(mm) or 37-48(D)';
+                if(flat_k_val>9 && flat_k_val<37.33){
+                    error_msg+='\n"Flat K" of '+eye_text+' must be in range 7-9(mm) or 37.33-48(D)';
                 }else {
-                    if((flat_k_val>=37&&flat_k_val<=48)){
+                    if((flat_k_val>=37.33&&flat_k_val<=48)){
                         jQuery('input[name="flat_k_re"]').val(336/flat_k_val);
                     }
                 }
-                if(steep_k_val>9 && steep_k_val<37){
-                    error_msg+='\n'+cbox_text+': "Flat K" must be in range 7-9(mm) or 37-48(D)';
+                if(steep_k_val>9 && steep_k_val<37.33){
+                    error_msg+='\n"Steep K" of '+eye_text+' must be in range 7-9(mm) or 37.33-48(D)';
                 }else {
-                    if((steep_k_val>=37&&steep_k_val<=48)){
+                    if((steep_k_val>=37.33&&steep_k_val<=48)){
                         jQuery('input[name="steep_re"]').val(336/steep_k_val);
                     }
                     if(flat_k_val >= steep_k_val){
@@ -307,7 +310,7 @@ function orderFormInit() {
                             le_check="Y";
                         }
                     }else{
-                        error_msg+='\n'+cbox_text+': "Steep K" must be less than or equal to "Flat K"';
+                        error_msg+='\n"Steep K" of '+eye_text+' must be less than or equal to "Flat K" of '+eye_text;
                     }
                 }
             }
@@ -351,9 +354,6 @@ function orderFormInit() {
                 le_check="N";
             }
         }
-        if(error_msg != ""){
-            jQuery(".error_msg").html(error_msg);
-        }
         // console.log(cbox_re);
         // console.log(re_all_input_check);
         // console.log(re_check);
@@ -361,29 +361,20 @@ function orderFormInit() {
         // console.log(le_all_input_check);
         // console.log(le_check);
         if(text_patient_id=="Y"&&text_patient_name=="Y"&&(re_check=="Y"||le_check=="Y")){
-            jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
-            jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
-            jQuery("#btn_cal").hide();
-            jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
-            jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
-            jQuery("#modification").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modiification0").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modiification").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modiification2").show();
-            jQuery([document.documentElement, document.body]).animate({
-                scrollTop: jQuery("#modification").offset().top-150
-            }, 500);
             orderClick("cal",cbox_re,cbox_le);
+        }
+        if(error_msg != ""){
+            jQuery(".error_msg").html(error_msg);
         }
     });
 
     // After Modiification RE/LE checkbox clicked
     var cbox_re_m="N";
     var cbox_le_m="N";
-    var re_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="_re"]';
-    var le_all_input_m='.thwepo-extra-options.thwepo_simple.modiification input[type="number"][name*="_le"]';
-    var re_all_input2_m='.thwepo-extra-options.thwepo_simple.modiification2 input[name*="_re"]';
-    var le_all_input2_m='.thwepo-extra-options.thwepo_simple.modiification2 input[name*="_le"]';
+    var re_all_input_m='.thwepo-extra-options.thwepo_simple.modification1 input[type="number"][name*="_re"]';
+    var le_all_input_m='.thwepo-extra-options.thwepo_simple.modification1 input[type="number"][name*="_le"]';
+    var re_all_input2_m='.thwepo-extra-options.thwepo_simple.modification2 input[name*="_re"]';
+    var le_all_input2_m='.thwepo-extra-options.thwepo_simple.modification2 input[name*="_le"]';
     var re_all_input_check_m="N";
     var le_all_input_check_m="N";
 
@@ -491,9 +482,9 @@ function orderFormInit() {
     // After Confirm Parameters button clicked
     jQuery("#btn_confirm").on( "click", function() {
         jQuery(".lens_val").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modiification0").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modiification").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modiification2").hide();
+        jQuery(".thwepo-extra-options.thwepo_simple.modification0").hide();
+        jQuery(".thwepo-extra-options.thwepo_simple.modification1").hide();
+        jQuery(".thwepo-extra-options.thwepo_simple.modification2").hide();
         jQuery("#confirmation").show();
         jQuery(".confirm_price").html(jQuery(".price .amount bdi").html());
         jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
@@ -729,15 +720,34 @@ function orderFormInit() {
                 dataType: "json",
                 success: function (response) {
                     // Handle success response
-                    // document.getElementById("result_"+eye_str).innerHTML = "Response: " + JSON.stringify(response);
-                    console.log("result_"+eye_str+"="+response);
-                    // To display the returned Parameters
-                    call_back_display(response, eye_str, page);                        
+                    console.log(page+":result_"+eye_str+"="+response);
+                    if(eye_str=="RE"){
+                        re_ajax_check="Y";
+                    }
+                    if(eye_str=="LE"){
+                        le_ajax_check="Y";
+                    }
+                    if(re_ajax_check=="Y"&&le_ajax_check=="Y"){
+                        // show Modifiction Page
+                        jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
+                        jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
+                        jQuery("#btn_cal").hide();
+                        jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
+                        jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
+                        jQuery("#modification").show();
+                        jQuery(".thwepo-extra-options.thwepo_simple.modification0").show();
+                        jQuery(".thwepo-extra-options.thwepo_simple.modification1").show();
+                        jQuery(".thwepo-extra-options.thwepo_simple.modification2").show();
+                        jQuery([document.documentElement, document.body]).animate({
+                            scrollTop: jQuery("#modification").offset().top-150
+                        }, 500);
+                        // To display the returned Parameters
+                        call_back_display(response, eye_str, page);
+                    }
                 },
                 error: function (xhr, status, error) {
                     // Handle error response
                     console.log("error="+xhr.responseText);
-                    // document.getElementById("result_"+eye_str).innerHTML = "Error: " + xhr.responseText;
                 }
             })
             } else {
@@ -746,8 +756,8 @@ function orderFormInit() {
                 } else{
                     eye_text = "Left Eye";
                 }
-                console.log("Invalid Input of "+ eye_text +": " + invalid_list);
-                // document.getElementById("result_"+eye_str).innerHTML = "Invalid Input of "+ eye_text +": " + invalid_list;
+                // console.log("Invalid Input of "+ eye_text +": " + invalid_list);
+                error_msg+="\nInvalid Input of "+ eye_text +": " + invalid_list;
             };
         }
 
