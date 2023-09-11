@@ -701,7 +701,23 @@ function orderFormInit() {
                 jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
             }
         }
-
+        function show_next_page(page){
+            if(page=="cal"){
+                // show Modifiction Page
+                jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
+                jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
+                jQuery("#btn_cal").hide();
+                jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
+                jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
+                jQuery("#modification").show();
+                jQuery(".thwepo-extra-options.thwepo_simple.modification0").show();
+                jQuery(".thwepo-extra-options.thwepo_simple.modification1").show();
+                jQuery(".thwepo-extra-options.thwepo_simple.modification2").show();
+                jQuery([document.documentElement, document.body]).animate({
+                    scrollTop: jQuery("#modification").offset().top-150
+                }, 500);
+            }
+        }
         function get_lens_param(eye_obj, eye_str,invalid_list, page){
             // console.log(eye_str);
             // console.log(eye_obj);
@@ -721,6 +737,8 @@ function orderFormInit() {
                 success: function (response) {
                     // Handle success response
                     console.log(page+":result_"+eye_str+"="+response);
+                    // To display the returned Parameters
+                    call_back_display(response, eye_str, page);
                     if(eye_str=="RE"){
                         re_ajax_check="Y";
                     }
@@ -728,21 +746,7 @@ function orderFormInit() {
                         le_ajax_check="Y";
                     }
                     if(re_ajax_check=="Y"&&le_ajax_check=="Y"){
-                        // show Modifiction Page
-                        jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
-                        jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
-                        jQuery("#btn_cal").hide();
-                        jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
-                        jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
-                        jQuery("#modification").show();
-                        jQuery(".thwepo-extra-options.thwepo_simple.modification0").show();
-                        jQuery(".thwepo-extra-options.thwepo_simple.modification1").show();
-                        jQuery(".thwepo-extra-options.thwepo_simple.modification2").show();
-                        jQuery([document.documentElement, document.body]).animate({
-                            scrollTop: jQuery("#modification").offset().top-150
-                        }, 500);
-                        // To display the returned Parameters
-                        call_back_display(response, eye_str, page);
+                        show_next_page(page);
                     }
                 },
                 error: function (xhr, status, error) {
