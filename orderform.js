@@ -291,6 +291,8 @@ function orderFormInit() {
     
     // set hidden RE field to store value if user skip modification page
     var ld_re=0;
+    var lp_re=0;
+    var thickness_re=0;
     var bc_width_re=0;
     var bc_flat_re=0;
     var bc_steep_re=0;
@@ -303,6 +305,8 @@ function orderFormInit() {
     var delta_target_re=0;
     // set hidden LE field to store value if user skip modification page
     var ld_le=0;
+    var lp_le=0;
+    var thickness_le=0;
     var bc_width_le=0;
     var bc_flat_le=0;
     var bc_steep_le=0;
@@ -313,6 +317,7 @@ function orderFormInit() {
     var pc_flat_le=0;
     var pc_steep_le=0;
     var delta_target_le=0;
+    
     
     var error_msg="";
     function orderFormCheck(cbox){
@@ -982,6 +987,8 @@ function orderFormInit() {
 
                 // set hidden value
                 var ld=lens_param["default"]["zone_width"]["LD"];
+                var lp=lens_param["default"]["lens_power"];
+                var thickness=lens_param["default"]["central_thickness"];
                 var bc_width=Math.round(lens_param["default"]["zone_width"]["BOZR"]*2);
                 var bc_flat=Math.round(lens_param["default"]["flat"]["BOZR"]*100)/100;
                 var bc_steep=Math.round(lens_param["default"]["steep"]["BOZR"]*100)/100;
@@ -995,6 +1002,8 @@ function orderFormInit() {
                 // store hidden value if skip modification page
                 if(eye_str_lc=="re"){
                     ld_re=ld;
+                    lp_re=lp;
+                    thickness_re=thickness;
                     bc_width_re=bc_width;
                     bc_flat_re=bc_flat;
                     bc_steep_re=bc_steep;
@@ -1005,6 +1014,8 @@ function orderFormInit() {
                     
                 }else if(eye_str_lc=="le"){
                     ld_le=ld;
+                    lp_le=lp;
+                    thickness_le=thickness;
                     bc_width_le=bc_width;
                     bc_flat_le=bc_flat;
                     bc_steep_le=bc_steep;
@@ -1019,6 +1030,8 @@ function orderFormInit() {
                 jQuery("#material_"+eye_str_lc).html(material);
                 jQuery("#design2_"+eye_str_lc).html(design);
                 jQuery("#ld_"+eye_str_lc).html(ld);
+                jQuery("#lp_"+eye_str_lc).html(lp);
+                jQuery("#thickness_"+eye_str_lc).html(thickness);
                 jQuery("#bc_width_"+eye_str_lc).html(bc_width);
                 jQuery("#bc_flat_"+eye_str_lc).html(bc_flat);
                 jQuery("#bc_steep_"+eye_str_lc).html(bc_steep);
