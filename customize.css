@@ -14,6 +14,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     color: #B3261E;
     white-space: break-spaces;
     margin-top: -16px;
+    text-align: center;
 }
 .ast-stock-detail,
 .woocommerce-ordering,
@@ -62,6 +63,11 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     color: #fff !important;
     border-radius: 20px;
 }
+.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_reset{
+    background-color: transparent !important;
+    color: #6750A4 !important;
+    border: 1px solid rgba(0,0,0,0.5);
+}
 .single-product.woocommerce button.button[name="add-to-cart"],
 .mdc-button{
 	/* display:block; */
@@ -72,6 +78,9 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .woocommerce div.product form.cart .button.single_add_to_cart_button:hover{
     background-color: rgba(103,80,164,0.95) !important;
     box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
+}
+.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_reset:hover{
+    background-color: rgba(103,80,164,0.08) !important;
 }
 .mdc-button__label{
     font-family: 'Inter';
@@ -165,13 +174,18 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .mdc-text-field--outlined .mdc-floating-label{
     left: 2px;
 }
-label.mdc-text-field,
-.btn_cal{
+label.mdc-text-field{
     width: 100% !important;
 }
-.btn_cal p[name="btn_cal"]{
+.btm_container{
+    width: 540px;
     display: flex;
     flex-direction: column;
+}
+.btn_container{
+    width: 540px;
+    display: flex;
+    justify-content: space-evenly;
 }
 .thwepo-extra-options.thwepo_simple.modification0 tbody tr,
 .thwepo-extra-options.thwepo_simple.modification2 tbody tr,
