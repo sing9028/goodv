@@ -63,7 +63,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     color: #fff !important;
     border-radius: 20px;
 }
-.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_reset{
+.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_outline{
     background-color: transparent !important;
     color: #6750A4 !important;
     border: 1px solid rgba(0,0,0,0.5);
@@ -79,7 +79,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     background-color: rgba(103,80,164,0.95) !important;
     box-shadow: 0 2px 4px -1px #0003, 0 4px 5px 0 #00000024, 0 1px 10px 0 #0000001f;
 }
-.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_reset:hover{
+.woocommerce div.product form.cart .button.single_add_to_cart_button.btn_outline:hover{
     background-color: rgba(103,80,164,0.08) !important;
 }
 .mdc-button__label{
@@ -177,6 +177,9 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 label.mdc-text-field{
     width: 100% !important;
 }
+.btn_cal{
+    width: 540px;
+}
 .btm_container{
     width: 540px;
     display: flex;
@@ -201,14 +204,17 @@ label.mdc-text-field{
     width: 95px;
 }
 .confirm_val_le tbody tr td:nth-child(1),
-.confirm_val_le tbody tr td:nth-child(3),
 .confirm_val_le tbody tr td:nth-child(5n+8),
 .confirm_val_le tbody tr td:nth-child(5n+6),
 .confirm_val_re tbody tr td:nth-child(1),
-.confirm_val_re tbody tr td:nth-child(3),
 .confirm_val_re tbody tr td:nth-child(5n+8),
 .confirm_val_re tbody tr td:nth-child(5n+6){
     width: 125px;
+}
+.confirm_val_le tbody tr td:nth-child(3),
+.confirm_val_re tbody tr td:nth-child(3){
+    /* width: 150px; */
+    width: 135px;
 }
 #confirmation,
 .single-product.woocommerce button.button[name="add-to-cart"],
@@ -238,6 +244,7 @@ label.mdc-text-field{
     font-size: 1.5rem;
     font-weight: 700;
     color: #7e868c;
+    margin-bottom: 0;
 }
 .thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m,
 .thwepo-extra-options.thwepo_simple.order .cbox_eye{
@@ -249,6 +256,19 @@ label.mdc-text-field{
     color: #6A4DA8;
 }
 @media (max-width: 580px) {
+    .btn_cal,
+    .btm_container,
+    .btn_container{
+        width: 88vw !important;
+    }
+    .woocommerce div.product form.cart .variations .table_result tr td:nth-child(1),
+    .woocommerce div.product form.cart .variations .table_result th:nth-child(1){
+        /* width: 20vw; */
+        width: 28vw;
+    }
+    .thwepo-extra-options.thwepo_simple.modification0 tbody{
+        flex-wrap: inherit;
+    }
     .thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(3n+4),
     .thwepo-extra-options.thwepo_simple.modification2 tbody tr:nth-child(1),
@@ -263,35 +283,52 @@ label.mdc-text-field{
     .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
         /* width: 33vw; */
-        width: 26vw;
+        /* width: 26vw; */
+        width: 20vw;
     }
     .thwepo-extra-options.thwepo_simple.modification0 tbody tr,
-    .thwepo-extra-options.thwepo_simple.modification2 tbody tr,
+    .thwepo-extra-options.thwepo_simple.modification2 tbody tr{
+        /* width: 26vw; */
+        /* width: 32vw; */
+        width: 33vw;
+    }
     .lens_val tr th,
     .lens_val tr td,
     .patient_val tr td,
     .thwepo-extra-options.thwepo_simple.order tbody tr{
-        width: 26vw;
+        /* width: 26vw; */
+        width: 34vw;
     }
     .thwepo-extra-options.thwepo_simple.modification1 tbody tr,
     .confirm_val_le tbody tr td,
     .confirm_val_re tbody tr td{
-        width: 13.1vw;
+        /* width: 13.1vw; */
+        width: 15vw;
     }
     .confirm_val_le tbody tr td:nth-child(1),
-    .confirm_val_le tbody tr td:nth-child(3),
     .confirm_val_le tbody tr td:nth-child(5n+8),
     .confirm_val_le tbody tr td:nth-child(5n+6),
     .confirm_val_re tbody tr td:nth-child(1),
-    .confirm_val_re tbody tr td:nth-child(3),
     .confirm_val_re tbody tr td:nth-child(5n+8),
     .confirm_val_re tbody tr td:nth-child(5n+6){
-        width: 26vw;
+        /* width: 26vw; */
+        width: 23vw;
     }
+    .confirm_val_le tbody tr td:nth-child(3),
+    .confirm_val_re tbody tr td:nth-child(3)
+    {
+        /* width: 26vw; */
+        width: 20vw;
+    }
+    .mdc-checkbox__native-control{
+        margin-right: 0 !important;
+    }
+    .table_result tr th,
+    .table_result tr td,
     .thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m label,
-    .thwepo-extra-options.thwepo_simple.order .cbox_eye label,
-    .confirm_title{
+    .thwepo-extra-options.thwepo_simple.order .cbox_eye label{
         font-size: 11px;
         line-height: 19px;
+        padding-left: 0;
     }
 }
