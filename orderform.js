@@ -1053,6 +1053,8 @@ function orderFormInit() {
                 // set parameter value
                 var design=lens_param["modified"]["Design"];
                 var ld=lens_param["modified"]["zone_width"]["LD"];
+                var lp=lens_param["modified"]["lens_power"];
+                var thickness=lens_param["modified"]["central_thickness"];
                 var bc_width=Math.round(lens_param["modified"]["zone_width"]["BOZR"]*2);
                 var bc_flat=Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
                 var bc_steep=Math.round(lens_param["modified"]["steep"]["BOZR"]*100)/100;
@@ -1068,6 +1070,8 @@ function orderFormInit() {
                 jQuery("#material_"+eye_str_lc).html(material);
                 jQuery("#design2_"+eye_str_lc).html(design);
                 jQuery("#ld_"+eye_str_lc).html(ld);
+                jQuery("#lp_"+eye_str_lc).html(lp);
+                jQuery("#thickness_"+eye_str_lc).html(thickness);
                 jQuery("#bc_width_"+eye_str_lc).html(bc_width);
                 jQuery("#bc_flat_"+eye_str_lc).html(bc_flat);
                 jQuery("#bc_steep_"+eye_str_lc).html(bc_steep);
@@ -1082,6 +1086,8 @@ function orderFormInit() {
                 jQuery('input[name="model_'+eye_str_lc+'"]').val(model[1]);
                 jQuery('input[name="material_'+eye_str_lc+'"]').val(material);
                 jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
+                jQuery('input[name="lp_'+eye_str_lc+'"]').val(lp);
+                jQuery('input[name="thickness_'+eye_str_lc+'"]').val(thickness);
                 jQuery('input[name="bc_flat_'+eye_str_lc+'"]').val(bc_flat);
                 jQuery('input[name="bc_steep_'+eye_str_lc+'"]').val(bc_steep);
                 jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);

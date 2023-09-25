@@ -107,8 +107,11 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     padding-left: 10px;
 }
 .woocommerce div.product form.cart{
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 .woocommerce div.product form.cart,
 .woocommerce div.product form.cart input{
@@ -119,6 +122,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .thwepo-extra-options.thwepo_simple p{
     margin-bottom: 0;
 }
+.woocommerce div.product form.cart,
 #confirmation,
 #modification,
 .thwepo-extra-options.thwepo_simple{
@@ -177,16 +181,16 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 label.mdc-text-field{
     width: 100% !important;
 }
+.btn_container,
+.btm_container,
 .btn_cal{
     width: 540px;
 }
 .btm_container{
-    width: 540px;
     display: flex;
     flex-direction: column;
 }
 .btn_container{
-    width: 540px;
     display: flex;
     justify-content: space-evenly;
 }
