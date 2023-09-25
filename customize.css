@@ -16,6 +16,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     margin-top: -16px;
     text-align: center;
 }
+.single-product .product_meta,
 .ast-stock-detail,
 .woocommerce-ordering,
 .woocommerce-result-count,
@@ -68,6 +69,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     color: #6750A4 !important;
     border: 1px solid rgba(0,0,0,0.5);
 }
+.single-product button[type="submit"],
 .single-product.woocommerce button.button[name="add-to-cart"],
 .mdc-button{
 	/* display:block; */
@@ -106,6 +108,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     overflow: auto;
     padding-left: 10px;
 }
+.woocommerce div.product form.cart .single_variation_wrap .woocommerce-variation-add-to-cart,
 .woocommerce div.product form.cart{
     width: 100%;
     display: flex;
@@ -119,29 +122,29 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     line-height: 20px;
     color: #000;
 }
-.thwepo-extra-options.thwepo_simple p{
+.thwepo-extra-options.thwepo_variable p{
     margin-bottom: 0;
 }
 .woocommerce div.product form.cart,
 #confirmation,
 #modification,
-.thwepo-extra-options.thwepo_simple{
+.thwepo-extra-options.thwepo_variable{
     max-width: 540px;
     /* max-width: 450px; */
 }
-.thwepo-extra-options.thwepo_simple.patient{
+.thwepo-extra-options.thwepo_variable.patient{
     order: -3;
 }
-.thwepo-extra-options.thwepo_simple.order{
+.thwepo-extra-options.thwepo_variable.order{
     order: -2;
 }
 .single-product .variations.wck-layout-two-col{
     order: -1; 
 }
-.thwepo-extra-options.thwepo_simple.modification0 tbody,
-.thwepo-extra-options.thwepo_simple.modification2 tbody,
-.thwepo-extra-options.thwepo_simple.modification1 tbody,
-.thwepo-extra-options.thwepo_simple.order tbody{
+.thwepo-extra-options.thwepo_variable.modification0 tbody,
+.thwepo-extra-options.thwepo_variable.modification2 tbody,
+.thwepo-extra-options.thwepo_variable.modification1 tbody,
+.thwepo-extra-options.thwepo_variable.order tbody{
     display: flex;
     flex-flow: wrap;
     /* align-items: end; */
@@ -149,27 +152,27 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     justify-content: space-between;
     /* justify-content: left; */
 }
-.thwepo-extra-options.thwepo_simple.modification0 tbody tr .value,
-.thwepo-extra-options.thwepo_simple.modification2 tbody tr .value,
-.thwepo-extra-options.thwepo_simple.modification1 tbody tr .value,
-.thwepo-extra-options.thwepo_simple.order tbody tr .value{
+.thwepo-extra-options.thwepo_variable.modification0 tbody tr .value,
+.thwepo-extra-options.thwepo_variable.modification2 tbody tr .value,
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr .value,
+.thwepo-extra-options.thwepo_variable.order tbody tr .value{
     width: 100%;
     display: block;
     width: inherit;
 }
-.thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(1),
-.thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(3n+4),
-.thwepo-extra-options.thwepo_simple.modification2 tbody tr:nth-child(1),
-.thwepo-extra-options.thwepo_simple.modification2 tbody tr:nth-child(3n+4),
-.thwepo-extra-options.thwepo_simple.modification1 tbody tr:nth-child(1),
-.thwepo-extra-options.thwepo_simple.modification1 tbody tr:nth-child(5n+6),
+.thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
+.thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(3n+4),
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
 .lens_val tr th:nth-child(1),
 .lens_val tr td:nth-child(1),
 .patient_val tr td:nth-child(1),
-.thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(1),
-.thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(3),
-.thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(1),
-.thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
+.thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(1),
+.thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(3),
+.thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(1),
+.thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(3n+4){
     width: 160px;
 }
 .mdc-notched-outline--notched .mdc-notched-outline__notch{
@@ -194,15 +197,15 @@ label.mdc-text-field{
     display: flex;
     justify-content: space-evenly;
 }
-.thwepo-extra-options.thwepo_simple.modification0 tbody tr,
-.thwepo-extra-options.thwepo_simple.modification2 tbody tr,
+.thwepo-extra-options.thwepo_variable.modification0 tbody tr,
+.thwepo-extra-options.thwepo_variable.modification2 tbody tr,
 .lens_val tr th,
 .lens_val tr td,
 .patient_val tr td,
-.thwepo-extra-options.thwepo_simple.order tbody tr{
+.thwepo-extra-options.thwepo_variable.order tbody tr{
     width: 190px;
 }
-.thwepo-extra-options.thwepo_simple.modification1 tbody tr,
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr,
 .confirm_val_le tbody tr td,
 .confirm_val_re tbody tr td{
     width: 95px;
@@ -220,25 +223,30 @@ label.mdc-text-field{
     /* width: 150px; */
     width: 135px;
 }
+.single-product .variations_form > .variations:nth-child(1),
+.single-product .price,
+.single-product .quantity{
+    display: none !important;
+}
+.wckalkulator-price,
 #confirmation,
+.single-product button[type="submit"],
 .single-product.woocommerce button.button[name="add-to-cart"],
-.thwepo-extra-options.thwepo_simple.modification0,
-.thwepo-extra-options.thwepo_simple.modification0 tbody tr .label,
-.thwepo-extra-options.thwepo_simple.modification2,
-.thwepo-extra-options.thwepo_simple.modification2 tbody tr .label,
-.thwepo-extra-options.thwepo_simple.modification1,
-.thwepo-extra-options.thwepo_simple.modification1 tbody tr .label,
-.thwepo-extra-options.thwepo_simple.order tbody tr .label,
-.single-product .summary .price,
-.single-product .summary .quantity,
+.thwepo-extra-options.thwepo_variable.modification0,
+.thwepo-extra-options.thwepo_variable.modification0 tbody tr .label,
+.thwepo-extra-options.thwepo_variable.modification2,
+.thwepo-extra-options.thwepo_variable.modification2 tbody tr .label,
+.thwepo-extra-options.thwepo_variable.modification1,
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr .label,
+.thwepo-extra-options.thwepo_variable.order tbody tr .label,
 #modification{
     display: none;
 }
 .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
     background-color: #6A4DA8;
 }
-.thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m label,
-.thwepo-extra-options.thwepo_simple.order .cbox_eye label,
+.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
+.thwepo-extra-options.thwepo_variable.order .cbox_eye label,
 .confirm_title{
     font-size: 16px;
     line-height: 24px;
@@ -250,12 +258,12 @@ label.mdc-text-field{
     color: #7e868c;
     margin-bottom: 0;
 }
-.thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m,
-.thwepo-extra-options.thwepo_simple.order .cbox_eye{
+.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m,
+.thwepo-extra-options.thwepo_variable.order .cbox_eye{
     display: flex;
 }
-.thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m label,
-.thwepo-extra-options.thwepo_simple.order .cbox_eye label{
+.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
+.thwepo-extra-options.thwepo_variable.order .cbox_eye label{
     margin-right: 0 !important;
     color: #6A4DA8;
 }
@@ -270,28 +278,28 @@ label.mdc-text-field{
         /* width: 20vw; */
         width: 28vw;
     }
-    .thwepo-extra-options.thwepo_simple.modification0 tbody{
+    .thwepo-extra-options.thwepo_variable.modification0 tbody{
         flex-wrap: inherit;
     }
-    .thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.modification0 tbody tr:nth-child(3n+4),
-    .thwepo-extra-options.thwepo_simple.modification2 tbody tr:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.modification2 tbody tr:nth-child(3n+4),
-    .thwepo-extra-options.thwepo_simple.modification1 tbody tr:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.modification1 tbody tr:nth-child(5n+6),
+    .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
+    .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(3n+4),
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
     .lens_val tr th:nth-child(1),
     .lens_val tr td:nth-child(1),
     .patient_val tr td:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.patient tbody tr td:nth-child(3),
-    .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(1),
-    .thwepo-extra-options.thwepo_simple.order tbody tr:nth-child(3n+4){
+    .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(3),
+    .thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(3n+4){
         /* width: 33vw; */
         /* width: 26vw; */
         width: 20vw;
     }
-    .thwepo-extra-options.thwepo_simple.modification0 tbody tr,
-    .thwepo-extra-options.thwepo_simple.modification2 tbody tr{
+    .thwepo-extra-options.thwepo_variable.modification0 tbody tr,
+    .thwepo-extra-options.thwepo_variable.modification2 tbody tr{
         /* width: 26vw; */
         /* width: 32vw; */
         width: 33vw;
@@ -299,11 +307,11 @@ label.mdc-text-field{
     .lens_val tr th,
     .lens_val tr td,
     .patient_val tr td,
-    .thwepo-extra-options.thwepo_simple.order tbody tr{
+    .thwepo-extra-options.thwepo_variable.order tbody tr{
         /* width: 26vw; */
         width: 34vw;
     }
-    .thwepo-extra-options.thwepo_simple.modification1 tbody tr,
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr,
     .confirm_val_le tbody tr td,
     .confirm_val_re tbody tr td{
         /* width: 13.1vw; */
@@ -329,8 +337,8 @@ label.mdc-text-field{
     }
     .table_result tr th,
     .table_result tr td,
-    .thwepo-extra-options.thwepo_simple.modification0 .cbox_eye_m label,
-    .thwepo-extra-options.thwepo_simple.order .cbox_eye label{
+    .thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
+    .thwepo-extra-options.thwepo_variable.order .cbox_eye label{
         font-size: 11px;
         line-height: 19px;
         padding-left: 0;

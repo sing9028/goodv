@@ -31,7 +31,7 @@ function orderFormInit() {
     jQuery('input[name="pupil_size_le"]').val(5);
 
     // set all input
-    jQuery(".thwepo-extra-options.thwepo_simple .value input").each(function() {
+    jQuery(".thwepo-extra-options.thwepo_variable .value input").each(function() {
         var input_id = jQuery(this).attr("id");
         var input_placeholder = jQuery(this).attr("placeholder");
         jQuery(this).addClass("mdc-text-field__input").attr("autocorrect","off").attr("autocomplete","off").attr("spellcheck","false").attr("aria-labelledby",input_id);
@@ -39,7 +39,7 @@ function orderFormInit() {
         jQuery(this).after('<div class="mdc-notched-outline mdc-notched-outline--upgraded"><div class="mdc-notched-outline__leading"></div><div class="mdc-notched-outline__notch"><span id="'+input_id+'-label" class="mdc-floating-label">'+input_placeholder+'</span></div><div class="mdc-notched-outline__trailing"></div></div>');
         
     });
-    jQuery(".thwepo-extra-options.thwepo_simple .value input").each(function() {
+    jQuery(".thwepo-extra-options.thwepo_variable .value input").each(function() {
         var input_name = 'input[name="'+jQuery(this).attr("name")+'"]';
         // console.log(input_name);
         // console.log(jQuery(input_name).val());
@@ -132,7 +132,8 @@ function orderFormInit() {
     jQuery("#cbox_le_m").html(cbox_le_m);
 
     // set order text
-    jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').html("Order Lens");
+    // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').html("Order Lens");
+    jQuery('.single-product.woocommerce button.button[type="submit"]').html("Order Lens");
 
     // set all tab sequence of all Patient field
     jQuery('input[name="patient_id"]').attr("tabindex", "1");
@@ -186,7 +187,8 @@ function orderFormInit() {
     // set all tab sequence of confirm button
     jQuery('#btn_confirm').attr("tabindex", "44");
     // set all tab sequence of order button
-    jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').attr("tabindex", "45");
+    // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').attr("tabindex", "45");
+    jQuery('.single-product.woocommerce button.button[type="submit"]').attr("tabindex", "45");
 
     // set required textbox checking
     var text_patient_id="N";
@@ -195,8 +197,8 @@ function orderFormInit() {
     // After RE/LE checkbox clicked
     var cbox_re="Y";
     var cbox_le="Y";
-    var re_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="_re"]';
-    var le_all_input='.thwepo-extra-options.thwepo_simple.order input[type="number"][name*="_le"]';
+    var re_all_input='.thwepo-extra-options.thwepo_variable.order input[type="number"][name*="_re"]';
+    var le_all_input='.thwepo-extra-options.thwepo_variable.order input[type="number"][name*="_le"]';
     var re_all_input_check="Y";
     var le_all_input_check="Y";
     var re_check="N";
@@ -426,10 +428,10 @@ function orderFormInit() {
     // After Modiification RE/LE checkbox clicked
     var cbox_re_m="N";
     var cbox_le_m="N";
-    var re_all_input_m='.thwepo-extra-options.thwepo_simple.modification1 input[type="number"][name*="_re"]';
-    var le_all_input_m='.thwepo-extra-options.thwepo_simple.modification1 input[type="number"][name*="_le"]';
-    var re_all_input2_m='.thwepo-extra-options.thwepo_simple.modification2 input[name*="_re"]';
-    var le_all_input2_m='.thwepo-extra-options.thwepo_simple.modification2 input[name*="_le"]';
+    var re_all_input_m='.thwepo-extra-options.thwepo_variable.modification1 input[type="number"][name*="_re"]';
+    var le_all_input_m='.thwepo-extra-options.thwepo_variable.modification1 input[type="number"][name*="_le"]';
+    var re_all_input2_m='.thwepo-extra-options.thwepo_variable.modification2 input[name*="_re"]';
+    var le_all_input2_m='.thwepo-extra-options.thwepo_variable.modification2 input[name*="_le"]';
     var re_all_input_check_m="N";
     var le_all_input_check_m="N";
     var re_check_m="N";
@@ -566,15 +568,15 @@ function orderFormInit() {
     });
 
     jQuery("#btn_confirm_back").on( "click", function() {
-        jQuery(".thwepo-extra-options.thwepo_simple.patient").show();
-        jQuery(".thwepo-extra-options.thwepo_simple.order").show();
+        jQuery(".thwepo-extra-options.thwepo_variable.patient").show();
+        jQuery(".thwepo-extra-options.thwepo_variable.order").show();
         jQuery("#btn_cal").show();
         jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
         jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
         jQuery("#modification").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modification0").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modification1").hide();
-        jQuery(".thwepo-extra-options.thwepo_simple.modification2").hide();
+        jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
+        jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
+        jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
         jQuery([document.documentElement, document.body]).animate({
             scrollTop: jQuery(".single-product-category").offset().top-150
         }, 500);
@@ -667,42 +669,46 @@ function orderFormInit() {
                 jQuery(".confirm_val_le").show();
             }
             // show Modifiction Page
-            jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
-            jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.patient").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.order").hide();
             jQuery("#btn_cal").hide();
             jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
             jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
             jQuery("#modification").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification0").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification1").show();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification2").show();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
             jQuery([document.documentElement, document.body]).animate({
                 scrollTop: jQuery("#modification").offset().top-150
             }, 500);
+            // jQuery(".single-product .woocommerce-variation-add-to-cart .variations").css("display","block !important");
         }else if(page=="confirm"){
             // show Confirmation Page
             jQuery(".lens_val").hide();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification0").hide();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification1").hide();
-            jQuery(".thwepo-extra-options.thwepo_simple.modification2").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
             jQuery("#confirmation").show();
             jQuery(".confirm_price").html(jQuery(".price .amount bdi").html());
-            jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
+            // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
+            jQuery('.single-product.woocommerce button.button[type="submit"]').show();
             jQuery([document.documentElement, document.body]).animate({
                 scrollTop: jQuery("#confirmation").offset().top-200
             }, 500);
 
             // add back button after order button
-            jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
+            // jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
+            jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
             setTimeout(function() { 
                 jQuery("#btn_submit_back").on( "click", function() {
                     console.log("btn_submit_back");
                     jQuery(".lens_val").show();
-                    jQuery(".thwepo-extra-options.thwepo_simple.modification0").show();
-                    jQuery(".thwepo-extra-options.thwepo_simple.modification1").show();
-                    jQuery(".thwepo-extra-options.thwepo_simple.modification2").show();
+                    jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
+                    jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
+                    jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
                     jQuery("#confirmation").hide();
-                    jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').hide();
+                    // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').hide();
+                    jQuery('.single-product.woocommerce button.button[type="submit"]').hide();
                     jQuery([document.documentElement, document.body]).animate({
                         scrollTop: jQuery("#modification").offset().top-200
                     }, 500);
@@ -845,7 +851,7 @@ function orderFormInit() {
                     axis: {min: 1, max:180},
                     e: {min: 0.01, max:1},
                     k: {min: 7, max: 9},
-                    hvid: {min: 8, max: 14},
+                    hvid: {min: 10.5, max: 14},
                     pupil_size: {min: 4, max: 7}
                 };
                 var data_range = {
