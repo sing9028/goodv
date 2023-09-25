@@ -240,7 +240,7 @@ function orderFormInit() {
     });
 
     // set default RE modification field
-    var default_ld_re=0;
+    // var default_ld_re=0;
     var default_bc_width_re=6;
     var default_bc_flat_re=0;
     var default_bc_steep_re=0;
@@ -251,7 +251,7 @@ function orderFormInit() {
     var default_delta_target_re=0;
     
     // set default LE modification field
-    var default_ld_le=0;
+    // var default_ld_le=0;
     var default_bc_width_le=6;
     var default_bc_flat_le=0;
     var default_bc_steep_le=0;
@@ -266,8 +266,10 @@ function orderFormInit() {
     var bc_width_re=0;
     var bc_flat_re=0;
     var bc_steep_re=0;
-    var ac_flat_re=0;
-    var ac_steep_re=0;
+    var ac1_flat_re=0;
+    var ac1_steep_re=0;
+    var ac2_flat_re=0;
+    var ac2_steep_re=0;
     var pc_flat_re=0;
     var pc_steep_re=0;
     var delta_target_re=0;
@@ -276,8 +278,10 @@ function orderFormInit() {
     var bc_width_le=0;
     var bc_flat_le=0;
     var bc_steep_le=0;
-    var ac_flat_le=0;
-    var ac_steep_le=0;
+    var ac1_flat_le=0;
+    var ac1_steep_le=0;
+    var ac2_flat_le=0;
+    var ac2_steep_le=0;
     var pc_flat_le=0;
     var pc_steep_le=0;
     var delta_target_le=0;
@@ -364,7 +368,8 @@ function orderFormInit() {
         }
         if(cbox_re=="Y"){
             orderFormCheck("RE");
-        }if(cbox_le=="Y"){
+        }
+        if(cbox_le=="Y"){
             orderFormCheck("LE");
         }
         if(cbox_re=="Y"&&cbox_le=="Y"){
@@ -376,12 +381,7 @@ function orderFormInit() {
                 le_check="N";
             }
         }
-        // console.log(cbox_re);
-        // console.log(re_all_input_check);
-        // console.log(re_check);
-        // console.log(cbox_le);
-        // console.log(le_all_input_check);
-        // console.log(le_check);
+        // console.log("re_check="+re_check+"||le_check="+le_check);
         if(text_patient_id=="Y"&&text_patient_name=="Y"&&(re_check=="Y"||le_check=="Y")){
             orderClick("cal",cbox_re,cbox_le);
         }
@@ -438,7 +438,8 @@ function orderFormInit() {
                     var pc_steep_val=default_pc_steep_re;
                     var delta_target_val=default_delta_target_re;
                     var bc_width_val=default_bc_width_re;
-                    var ld_val=default_ld_re;
+
+                    var ld_val=ld_re;
                 }else if(eye_name=="le"){
                     var bc_flat_val=default_bc_flat_le;
                     var bc_steep_val=default_bc_steep_le;
@@ -448,7 +449,8 @@ function orderFormInit() {
                     var pc_steep_val=default_pc_steep_le;
                     var delta_target_val=default_delta_target_le;
                     var bc_width_val=default_bc_width_le;
-                    var ld_val=default_ld_le;
+                    
+                    var ld_val=ld_le;
                 }
                 jQuery('input[name="bc_flat_'+eye_name+'"]').val(bc_flat_val);
                 jQuery('input[name="bc_steep_'+eye_name+'"]').val(bc_steep_val);
@@ -507,11 +509,47 @@ function orderFormInit() {
 
     // After Confirm Parameters button clicked
     jQuery("#btn_confirm").on( "click", function() {
+        error_msg="";
         // if skip Modification
         if(cbox_re_m=="N"&&cbox_le_m=="N"){
             show_next_page("confirm");
+            // console.log(re_check);
+            // console.log(le_check);
+            if(re_check){
+                jQuery('input[name="bc_flat_re"]').removeAttr('disabled').val(bc_flat_re);
+                jQuery('input[name="bc_steep_re"]').removeAttr('disabled').val(bc_steep_re);
+                jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
+                jQuery('input[name="ac1_steep_re"]').removeAttr('disabled').val(ac1_steep_re);
+                jQuery('input[name="ac2_flat_re"]').removeAttr('disabled').val(ac2_flat_re);
+                jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
+                jQuery('input[name="pc_flat_re"]').removeAttr('disabled').val(pc_flat_re);
+                jQuery('input[name="pc_steep_re"]').removeAttr('disabled').val(pc_steep_re);
+                jQuery('input[name="delta_target_re"]').removeAttr('disabled').val(delta_target_re);
+                jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
+                jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
+                // jQuery('input[name="ld_re"]').val(ld_re);
+            }
+            if(le_check){
+                jQuery('input[name="bc_flat_le"]').removeAttr('disabled').val(bc_flat_le);
+                jQuery('input[name="bc_steep_le"]').removeAttr('disabled').val(bc_steep_le);
+                jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
+                jQuery('input[name="ac1_steep_le"]').removeAttr('disabled').val(ac1_steep_le);
+                jQuery('input[name="ac2_flat_le"]').removeAttr('disabled').val(ac2_flat_le);
+                jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
+                jQuery('input[name="pc_flat_le"]').removeAttr('disabled').val(pc_flat_le);
+                jQuery('input[name="pc_steep_le"]').removeAttr('disabled').val(pc_steep_le);
+                jQuery('input[name="delta_target_le"]').removeAttr('disabled').val(delta_target_le);
+                jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
+                jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
+                // jQuery('input[name="ld_le"]').val(ld_le);
+            }
         }else{
+            // console.log("have Modification 1");
             orderClick("confirm",cbox_re_m,cbox_le_m);
+            // console.log("have Modification 2");
+        }
+        if(error_msg != ""){
+            jQuery(".error_msg").html(error_msg);
         }
     });
 
@@ -521,6 +559,30 @@ function orderFormInit() {
 
     function show_next_page(page){
         if(page=="cal"){
+            // console.log(re_ajax_check);
+            if(re_ajax_check=="N"){
+                jQuery("#cbox_re_m").hide();
+                jQuery(re_all_input_m).each(function() {
+                    jQuery(this).parent().parent().hide();
+                });
+                jQuery(re_all_input2_m).each(function() {
+                    jQuery(this).parent().parent().hide();
+                });
+                jQuery(".confirm_title_re").hide();
+                jQuery(".confirm_val_re").hide();
+            }
+            // console.log(le_ajax_check);
+            if(le_ajax_check=="N"){
+                jQuery("#cbox_le_m").hide();
+                jQuery(le_all_input_m).each(function() {
+                    jQuery(this).parent().parent().hide();
+                });
+                jQuery(le_all_input2_m).each(function() {
+                    jQuery(this).parent().parent().hide();
+                });
+                jQuery(".confirm_title_le").hide();
+                jQuery(".confirm_val_le").hide();
+            }
             // show Modifiction Page
             jQuery(".thwepo-extra-options.thwepo_simple.patient").hide();
             jQuery(".thwepo-extra-options.thwepo_simple.order").hide();
@@ -646,33 +708,79 @@ function orderFormInit() {
 
         
 
-        function check_range(data_name, check_value){
+        function check_range(data_name, check_value, page){
             // checking if input data is in a reasonable range or not
-            var data_type = {
-                // declaring data_type & defining exact range to be checked
-                sph: {min: -8, max:0},
-                cyl: {min: -6, max:0},
-                axis: {min: 1, max:180},
-                e: {min: 0.01, max:1},
-                k: {min: 7, max: 9},
-                hvid: {min: 8, max: 14},
-                pupil_size: {min: 4, max: 7}
-            };
-            var data_range = {
-                // defining range of each type of variable / parameters
-                // under definition on @data_type
-                sph: data_type["sph"],
-                cyl: data_type["cyl"],
-                axis: data_type["axis"],
-                flat_k: data_type["k"],
-                steep_k: data_type["k"],
-                steep_k_axis: data_type["axis"],
-                flat_e: data_type["e"],
-                steep_e: data_type["e"],
-                hvid: data_type["hvid"],
-                pupil_size: data_type["pupil_size"]
-            };
-
+            if(page=="cal"){
+                var data_type = {
+                    // declaring data_type & defining exact range to be checked
+                    sph: {min: -8, max:0},
+                    cyl: {min: -6, max:0},
+                    axis: {min: 1, max:180},
+                    e: {min: 0.01, max:1},
+                    k: {min: 7, max: 9},
+                    hvid: {min: 8, max: 14},
+                    pupil_size: {min: 4, max: 7}
+                };
+                var data_range = {
+                    // defining range of each type of variable / parameters
+                    // under definition on @data_type
+                    sph: data_type["sph"],
+                    cyl: data_type["cyl"],
+                    axis: data_type["axis"],
+                    flat_k: data_type["k"],
+                    steep_k: data_type["k"],
+                    steep_k_axis: data_type["axis"],
+                    flat_e: data_type["e"],
+                    steep_e: data_type["e"],
+                    hvid: data_type["hvid"],
+                    pupil_size: data_type["pupil_size"]
+                };
+            }else if(page=="confirm"){
+                var data_type = {
+                    // declaring data_type & defining exact range to be checked
+                    sph: {min: -8, max:0},
+                    cyl: {min: -6, max:0},
+                    axis: {min: 1, max:180},
+                    e: {min: 0.01, max:1},
+                    k: {min: 7, max: 9},
+                    hvid: {min: 8, max: 14},
+                    pupil_size: {min: 4, max: 7},
+                    bc: {min: -20, max: 20},
+                    ac: {min: -30, max: 30},
+                    // ld: {min: 9.5, max: 12},
+                    ld: {min: 7, max: 12},
+                    delta_target: {min: -4, max: 4}
+                };
+                var data_range = {
+                    // defining range of each type of variable / parameters
+                    // under definition on @data_type
+                    sph: data_type["sph"],
+                    cyl: data_type["cyl"],
+                    axis: data_type["axis"],
+                    flat_k: data_type["k"],
+                    steep_k: data_type["k"],
+                    steep_k_axis: data_type["axis"],
+                    flat_e: data_type["e"],
+                    steep_e: data_type["e"],
+                    hvid: data_type["hvid"],
+                    pupil_size: data_type["pupil_size"],
+                    modify: {
+                        flat: {
+                            BOZR: data_type["bc"],
+                            AC: data_type["ac"],
+                            PC: data_type["ac"],
+                        },
+                        steep: {
+                            BOZR: data_type["bc"],
+                            AC: data_type["ac"],
+                            PC: data_type["ac"],
+                        },
+                        BC_width: data_type["pupil_size"],
+                        LD: data_type["ld"],
+                        delta_target: data_type["delta_target"]
+                    }
+                };
+            }
             if (check_value >= data_range[data_name]["min"] && check_value <= data_range[data_name]["max"] && check_value !=""){
                 return true;
             } else {
@@ -680,19 +788,20 @@ function orderFormInit() {
             }
         }
 
-        function check_invalid_input(eye_param_obj){
+        function check_invalid_input(eye_param_obj, page){
             // using function check_range
             // RETURN a list of invalid inputs
                 // if all valid, it would return an empty list
             var param_check = {};
             invalid_list = [];
             for (let [key, value] of Object.entries(eye_param_obj)){
-                param_check[key] = check_range(key, value);
+                param_check[key] = check_range(key, value, page);
                 if (param_check[key] == false) {
                     invalid_list.push(key);
                 }
             };
-            // console.log(param_check);
+            console.log("check_invalid_input:");
+            console.log(param_check);
             return invalid_list;
         }
         
@@ -705,6 +814,8 @@ function orderFormInit() {
             lens_param=obj;
             var eye_str_lc=eye_str.toLowerCase();
 
+            var model=jQuery(".product_title.entry-title").text().split(" ");
+            var material="Boston XO2";
             if(page=="cal"){
                 // set parameter value
                 var sph=jQuery('input[name="sph_'+eye_str_lc+'"]').val();
@@ -748,9 +859,7 @@ function orderFormInit() {
                 }
 
                 // set hidden value
-                var model=jQuery(".product_title.entry-title").text().split(" ");
-                var material="Boston XO2";
-                var ld=Math.round(lens_param["default"]["zone_width"]["LD"]);
+                var ld=lens_param["default"]["zone_width"]["LD"];
                 var bc_width=Math.round(lens_param["default"]["zone_width"]["BOZR"]*2);
                 var bc_flat=Math.round(lens_param["default"]["flat"]["BOZR"]*100)/100;
                 var bc_steep=Math.round(lens_param["default"]["steep"]["BOZR"]*100)/100;
@@ -850,6 +959,8 @@ function orderFormInit() {
                 jQuery("#remarks_"+eye_str_lc).html(remarks);
                 
                 // set value to hidden input
+                jQuery('input[name="model_'+eye_str_lc+'"]').val(model[1]);
+                jQuery('input[name="material_'+eye_str_lc+'"]').val(material);
                 jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
                 jQuery('input[name="bc_flat_'+eye_str_lc+'"]').val(bc_flat);
                 jQuery('input[name="bc_steep_'+eye_str_lc+'"]').val(bc_steep);
@@ -859,11 +970,12 @@ function orderFormInit() {
                 jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val(ac2_steep);
                 jQuery('input[name="pc_flat_'+eye_str_lc+'"]').val(pc_flat);
                 jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
+                jQuery('input[name="remarks_'+eye_str_lc+'"]').val(remarks);
             }
         }
         function get_lens_param(eye_obj, eye_str,invalid_list, page){
-            // console.log(eye_str);
-            // console.log(eye_obj);
+            console.log("JSON to Azure="+eye_str+":");
+            console.log(eye_obj);
             // Validation of the input data
             if (invalid_list.length == 0){
                 // if all data are valid
@@ -883,24 +995,48 @@ function orderFormInit() {
                     // To display the returned Parameters
                     call_back_display(response, eye_str, page);
                     if(page=="cal"){
-                        if(eye_str=="RE"){
-                            re_ajax_check="Y";
-                        }
-                        if(eye_str=="LE"){
-                            le_ajax_check="Y";
-                        }
-                        if(re_ajax_check=="Y"&&le_ajax_check=="Y"){
-                            show_next_page(page);
+                        if(re_check=="Y"&&le_check=="Y"){
+                            if(eye_str=="LE"){
+                                le_ajax_check="Y";
+                            }
+                            if(eye_str=="RE"){
+                                re_ajax_check="Y";
+                            }
+                            if(re_ajax_check=="Y"&&le_ajax_check=="Y"){
+                                show_next_page(page);
+                            }
+                        }else if(re_check=="Y"&&le_check=="N"){
+                            if(eye_str=="RE"){
+                                re_ajax_check="Y";
+                                show_next_page(page);
+                            }
+                        }else if(re_check=="N"&&le_check=="Y"){
+                            if(eye_str=="LE"){
+                                le_ajax_check="Y";
+                                show_next_page(page);
+                            }
                         }
                     }else if(page=="confirm"){
-                        if(eye_str=="RE"){
-                            re_ajax_check_m="Y";
-                        }
-                        if(eye_str=="LE"){
-                            le_ajax_check_m="Y";
-                        }
-                        if(re_ajax_check_m=="Y"&&le_ajax_check_m=="Y"){
-                            show_next_page(page);
+                        if(re_check_m=="Y"&&le_check_m=="Y"){
+                            if(eye_str=="LE"){
+                                le_ajax_check_m="Y";
+                            }
+                            if(eye_str=="RE"){
+                                re_ajax_check_m="Y";
+                            }
+                            if(re_ajax_check_m=="Y"&&le_ajax_check_m=="Y"){
+                                show_next_page(page);
+                            }
+                        }else if(re_check_m=="Y"&&le_check_m=="N"){
+                            if(eye_str=="RE"){
+                                re_ajax_check_m="Y";
+                                show_next_page(page);
+                            }
+                        }else if(re_check_m=="N"&&le_check_m=="Y"){
+                            if(eye_str=="LE"){
+                                le_ajax_check_m="Y";
+                                show_next_page(page);
+                            }
                         }
                     }
                     
@@ -916,22 +1052,28 @@ function orderFormInit() {
                 } else{
                     eye_text = "Left Eye";
                 }
-                // console.log("Invalid Input of "+ eye_text +": " + invalid_list);
+                console.log("Invalid Input of "+ eye_text +": " + invalid_list);
                 error_msg+="\nInvalid Input of "+ eye_text +": " + invalid_list;
             };
         }
-
-        if(cbox_re=="Y"){
+        // console.log("cbox_re="+cbox_re+"||cbox_re_m="+cbox_re_m);
+        if(cbox_re=="Y"||cbox_re_m=="Y"){
+            console.log("cbox_re="+cbox_re+"||cbox_re_m="+cbox_re_m);
             //Running the lens calculation for RE
-            invalid_input_list_re = check_invalid_input(RE);
+            if(page=="cal"){
+                invalid_input_list_re = check_invalid_input(RE, page);
+            }
             //console.log("invalid_input_list_re : ", invalid_input_list_re);
             RE_lens_param = get_lens_param(RE, "RE", invalid_input_list_re, page);
             // console.log("RE Lens Param : ", RE_lens_param);
         }
-        
-        if(cbox_le=="Y"){
+        // console.log("cbox_le="+cbox_le+"||cbox_le_m="+cbox_le_m);
+        if(cbox_le=="Y"||cbox_le_m=="Y"){
+            console.log("cbox_le="+cbox_le+"||cbox_le_m="+cbox_le_m);
             //Running the lens calculation for LE
-            invalid_input_list_le = check_invalid_input(LE);
+            if(page=="cal"){
+                invalid_input_list_le = check_invalid_input(LE, page);
+            }
             LE_lens_param = get_lens_param(LE, "LE", invalid_input_list_le, page);
             // console.log(LE_lens_param);
         }
