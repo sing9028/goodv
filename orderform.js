@@ -319,6 +319,20 @@ function orderFormInit() {
     var pc_flat_le=0;
     var pc_steep_le=0;
     var delta_target_le=0;
+    // set default modification RE field
+    var modify_bc_flat_re=0;
+    var modify_ac_flat_re=0;
+    var modify_pc_flat_re=0;
+    var modify_bc_steep_re=0;
+    var modify_ac_steep_re=0;
+    var modify_pc_steep_re=0;
+    // set default modification LE field
+    var modify_bc_flat_le=0;
+    var modify_ac_flat_le=0;
+    var modify_pc_flat_le=0;
+    var modify_bc_steep_le=0;
+    var modify_ac_steep_le=0;
+    var modify_pc_steep_le=0;
     
     
     var error_msg="";
@@ -719,30 +733,26 @@ function orderFormInit() {
                         scrollTop: jQuery("#modification").offset().top-200
                     }, 500);
                     
-                    // // reset Modification RE field
-                    // jQuery('input[name="bc_flat_re"]').val("");
-                    // jQuery('input[name="bc_steep_re"]').val("");
-                    // jQuery('input[name="ac1_flat_re"]').val("");
-                    // jQuery('input[name="ac1_steep_re"]').val("");
-                    // jQuery('input[name="ac2_flat_re"]').val("");
-                    // jQuery('input[name="ac2_steep_re"]').val("");
-                    // jQuery('input[name="pc_flat_re"]').val("");
-                    // jQuery('input[name="pc_steep_re"]').val("");
-                    // jQuery('input[name="delta_target_re"]').val("");
-                    // jQuery('input[name="bc_width_re"]').val("");
-                    // jQuery('input[name="ld_re"]').val("");
-                    // // reset Modification LE field
-                    // jQuery('input[name="bc_flat_le"]').val("");
-                    // jQuery('input[name="bc_steep_le"]').val("");
-                    // jQuery('input[name="ac1_flat_le"]').val("");
-                    // jQuery('input[name="ac1_steep_le"]').val("");
-                    // jQuery('input[name="ac2_flat_le"]').val("");
-                    // jQuery('input[name="ac2_steep_le"]').val("");
-                    // jQuery('input[name="pc_flat_le"]').val("");
-                    // jQuery('input[name="pc_steep_le"]').val("");
-                    // jQuery('input[name="delta_target_le"]').val("");
-                    // jQuery('input[name="bc_width_le"]').val("");
-                    // jQuery('input[name="ld_le"]').val("");
+                    // reset Modification RE field
+                    jQuery('input[name="bc_flat_re"]').val(modify_bc_flat_re);
+                    jQuery('input[name="bc_steep_re"]').val(modify_bc_steep_re);
+                    jQuery('input[name="ac_flat_re"]').val(modify_ac_flat_re);
+                    jQuery('input[name="ac_steep_re"]').val(modify_ac_steep_re);
+                    jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
+                    jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
+                    jQuery('input[name="delta_target_re"]').val(delta_target_re);
+                    jQuery('input[name="bc_width_re"]').val(bc_width_re);
+                    jQuery('input[name="ld_re"]').val(ld_re);
+                    // reset Modification LE field
+                    jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
+                    jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
+                    jQuery('input[name="ac_flat_le"]').val(modify_ac_flat_le);
+                    jQuery('input[name="ac_steep_le"]').val(modify_ac_steep_le);
+                    jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
+                    jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
+                    jQuery('input[name="delta_target_le"]').val(delta_target_le);
+                    jQuery('input[name="bc_width_le"]').val(bc_width_le);
+                    jQuery('input[name="ld_le"]').val(ld_le);
 
                     jQuery(this).hide();
                 });
@@ -1081,38 +1091,68 @@ function orderFormInit() {
                 var lp=lens_param["modified"]["lens_power"];
                 var thickness=lens_param["modified"]["central_thickness"];
 
-                var m_bc_flat="";
-                var m_ac_flat="";
-                var m_pc_flat="";
-                var m_bc_steep="";
-                var m_ac_steep="";
-                var m_pc_steep="";
+                var made_bc_flat="";
+                var made_ac_flat="";
+                var made_pc_flat="";
+                var made_bc_steep="";
+                var made_ac_steep="";
+                var made_pc_steep="";
                 if(lens_param["modified"]["modification"] != null){
                     if(lens_param["modified"]["modification"]["flat"] != null){
-                        if(lens_param["modified"]["modification"]["flat"]["BOZR"]==true){
-                            m_bc_flat="BC(flat):"+lens_param["modified"]["modification"]["flat"]["BOZR"];
+                        if(lens_param["modified"]["modification"]["flat"]["BOZR"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_bc_flat_re=lens_param["modified"]["modification"]["flat"]["BOZR"];
+                            }else{
+                                modify_bc_flat_le=lens_param["modified"]["modification"]["flat"]["BOZR"];
+                            }
+                            made_bc_flat="BC(flat):"+lens_param["modified"]["modification"]["flat"]["BOZR"];
                         }
-                        if(lens_param["modified"]["modification"]["flat"]["AC"]==true){
-                            m_ac_flat=" AC(flat):"+lens_param["modified"]["modification"]["flat"]["AC"];
+                        if(lens_param["modified"]["modification"]["flat"]["AC"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_ac_flat_re=lens_param["modified"]["modification"]["flat"]["AC"];
+                            }else{
+                                modify_ac_flat_le=lens_param["modified"]["modification"]["flat"]["AC"];
+                            }
+                            made_ac_flat=" AC(flat):"+lens_param["modified"]["modification"]["flat"]["AC"];
                         }
-                        if(lens_param["modified"]["modification"]["flat"]["PC"]==true){
-                            m_pc_flat=" PC(flat):"+lens_param["modified"]["modification"]["flat"]["PC"];
+                        if(lens_param["modified"]["modification"]["flat"]["PC"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_pc_flat_re=lens_param["modified"]["modification"]["flat"]["PC"];
+                            }else{
+                                modify_pc_flat_le=lens_param["modified"]["modification"]["flat"]["PC"];
+                            }
+                            made_pc_flat=" PC(flat):"+lens_param["modified"]["modification"]["flat"]["PC"];
                         }
                     }
                     if(lens_param["modified"]["modification"]["steep"] != null){
-                        if(lens_param["modified"]["modification"]["steep"]["BOZR"]==true){
-                            m_bc_steep=" BC(steep):"+lens_param["modified"]["modification"]["steep"]["BOZR"];
+                        if(lens_param["modified"]["modification"]["steep"]["BOZR"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_bc_steep_re=lens_param["modified"]["modification"]["steep"]["BOZR"];
+                            }else{
+                                modify_bc_steep_le=lens_param["modified"]["modification"]["steep"]["BOZR"];
+                            }
+                            made_bc_steep=" BC(steep):"+lens_param["modified"]["modification"]["steep"]["BOZR"];
                         }
-                        if(lens_param["modified"]["modification"]["steep"]["AC"]==true){
-                            m_ac_steep=" AC(steep):"+lens_param["modified"]["modification"]["steep"]["AC"];
+                        if(lens_param["modified"]["modification"]["steep"]["AC"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_ac_steep_re=lens_param["modified"]["modification"]["steep"]["AC"];
+                            }else{
+                                modify_ac_steep_le=lens_param["modified"]["modification"]["steep"]["AC"];
+                            }
+                            made_ac_steep=" AC(steep):"+lens_param["modified"]["modification"]["steep"]["AC"];
                         }
-                        if(lens_param["modified"]["modification"]["steep"]["PC"]==true){
-                            m_pc_steep=" PC(steep):"+lens_param["modified"]["modification"]["steep"]["PC"];
+                        if(lens_param["modified"]["modification"]["steep"]["PC"] != null){
+                            if(eye_str_lc=="re"){
+                                modify_pc_steep_re=lens_param["modified"]["modification"]["steep"]["PC"];
+                            }else{
+                                modify_pc_steep_le=lens_param["modified"]["modification"]["steep"]["PC"];
+                            }
+                            made_pc_steep=" PC(steep):"+lens_param["modified"]["modification"]["steep"]["PC"];
                         }
                     }
                     
                 }
-                var made=m_bc_flat+m_ac_flat+m_pc_flat+m_bc_steep+m_ac_steep+m_pc_steep;
+                var made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep;
 
                 var bc_width=Math.round(lens_param["modified"]["zone_width"]["BOZR"]*2);
                 var bc_flat=Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
