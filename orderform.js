@@ -9,7 +9,7 @@ function orderFormInit() {
     jQuery('input[name="patient_name"]').val("test2");
     // RE set testing data
     jQuery('input[name="sph_re"]').val(-8);
-    jQuery('input[name="cyl_re"]').val(-6);
+    jQuery('input[name="cyl_re"]').val(0);
     jQuery('input[name="axis_re"]').val(1);
     jQuery('input[name="flat_k_re"]').val(7);
     jQuery('input[name="steep_k_re"]').val(7);
@@ -22,11 +22,11 @@ function orderFormInit() {
     jQuery('input[name="sph_le"]').val(-7);
     jQuery('input[name="cyl_le"]').val(-5);
     jQuery('input[name="axis_le"]').val(2);
-    jQuery('input[name="flat_k_le"]').val(8);
-    jQuery('input[name="steep_k_le"]').val(8);
+    jQuery('input[name="flat_k_le"]').val(7.8);
+    jQuery('input[name="steep_k_le"]').val(7.5);
     jQuery('input[name="steep_k_axis_le"]').val(90);
-    jQuery('input[name="flat_e_le"]').val(0.02);
-    jQuery('input[name="steep_e_le"]').val(0.02);
+    jQuery('input[name="flat_e_le"]').val(0.6);
+    jQuery('input[name="steep_e_le"]').val(0.6);
     jQuery('input[name="hvid_le"]').val(11.5);
     jQuery('input[name="pupil_size_le"]').val(5);
 
@@ -1001,10 +1001,13 @@ function orderFormInit() {
                 // hide parameter field
                 if(bc_design=="Spherical"){
                     jQuery('input[name="bc_steep_'+eye_str_lc).parent().parent().hide();
+                    jQuery('input[name="bc_flat_'+eye_str_lc).parent().find(".mdc-floating-label").html("BC");
                 }
                 if(design=="Spherical"){
                     jQuery('input[name="ac_steep_'+eye_str_lc).parent().parent().hide();
+                    jQuery('input[name="ac_flat_'+eye_str_lc).parent().find(".mdc-floating-label").html("AC");
                     jQuery('input[name="pc_steep_'+eye_str_lc).parent().parent().hide();
+                    jQuery('input[name="pc_flat_'+eye_str_lc).parent().find(".mdc-floating-label").html("PC");
                 }
 
                 // set hidden value
