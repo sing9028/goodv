@@ -9,7 +9,7 @@ function orderFormInit() {
     jQuery('input[name="patient_name"]').val("test2");
     // RE set testing data
     jQuery('input[name="sph_re"]').val(-8);
-    jQuery('input[name="cyl_re"]').val(0);
+    jQuery('input[name="cyl_re"]').val(-0.25);
     jQuery('input[name="axis_re"]').val(1);
     jQuery('input[name="flat_k_re"]').val(7);
     jQuery('input[name="steep_k_re"]').val(7);
@@ -605,27 +605,27 @@ function orderFormInit() {
             // console.log(re_check);
             // console.log(le_check);
             if(re_check){
-                jQuery('input[name="bc_flat_re"]').removeAttr('disabled').val(bc_flat_re);
-                jQuery('input[name="bc_steep_re"]').removeAttr('disabled').val(bc_steep_re);
+                jQuery('input[name="bc_flat_re2"]').removeAttr('disabled').val(bc_flat_re);
+                jQuery('input[name="bc_steep_re2"]').removeAttr('disabled').val(bc_steep_re);
                 jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
                 jQuery('input[name="ac1_steep_re"]').removeAttr('disabled').val(ac1_steep_re);
                 jQuery('input[name="ac2_flat_re"]').removeAttr('disabled').val(ac2_flat_re);
                 jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
-                jQuery('input[name="pc_flat_re"]').removeAttr('disabled').val(pc_flat_re);
-                jQuery('input[name="pc_steep_re"]').removeAttr('disabled').val(pc_steep_re);
+                jQuery('input[name="pc_flat_re2"]').removeAttr('disabled').val(pc_flat_re);
+                jQuery('input[name="pc_steep_re2"]').removeAttr('disabled').val(pc_steep_re);
                 jQuery('input[name="delta_target_re"]').removeAttr('disabled').val(delta_target_re);
                 jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
                 jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
             }
             if(le_check){
-                jQuery('input[name="bc_flat_le"]').removeAttr('disabled').val(bc_flat_le);
-                jQuery('input[name="bc_steep_le"]').removeAttr('disabled').val(bc_steep_le);
+                jQuery('input[name="bc_flat_le2"]').removeAttr('disabled').val(bc_flat_le);
+                jQuery('input[name="bc_steep_le2"]').removeAttr('disabled').val(bc_steep_le);
                 jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
                 jQuery('input[name="ac1_steep_le"]').removeAttr('disabled').val(ac1_steep_le);
                 jQuery('input[name="ac2_flat_le"]').removeAttr('disabled').val(ac2_flat_le);
                 jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
-                jQuery('input[name="pc_flat_le"]').removeAttr('disabled').val(pc_flat_le);
-                jQuery('input[name="pc_steep_le"]').removeAttr('disabled').val(pc_steep_le);
+                jQuery('input[name="pc_flat_le2"]').removeAttr('disabled').val(pc_flat_le);
+                jQuery('input[name="pc_steep_le2"]').removeAttr('disabled').val(pc_steep_le);
                 jQuery('input[name="delta_target_le"]').removeAttr('disabled').val(delta_target_le);
                 jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
                 jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
@@ -1032,8 +1032,10 @@ function orderFormInit() {
                     bc_width_re=bc_width;
                     bc_flat_re=bc_flat;
                     bc_steep_re=bc_steep;
-                    ac_flat_re=ac1_flat;
-                    ac_steep_re=ac1_flat;
+                    ac1_flat_re=ac1_flat;
+                    ac1_steep_re=ac1_flat;
+                    ac2_flat_re=ac1_flat;
+                    ac2_steep_re=ac1_flat;
                     pc_flat_re=pc_flat;
                     pc_steep_re=pc_steep;
                     
@@ -1044,8 +1046,10 @@ function orderFormInit() {
                     bc_width_le=bc_width;
                     bc_flat_le=bc_flat;
                     bc_steep_le=bc_steep;
-                    ac_flat_le=ac1_flat;
-                    ac_steep_le=ac1_flat;
+                    ac1_flat_le=ac1_flat;
+                    ac1_steep_le=ac1_flat;
+                    ac2_flat_le=ac1_flat;
+                    ac2_steep_le=ac1_flat;
                     pc_flat_le=pc_flat;
                     pc_steep_le=pc_steep;
                 }
