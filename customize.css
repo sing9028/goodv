@@ -224,12 +224,17 @@ label.mdc-text-field{
     /* width: 150px; */
     width: 135px;
 }
-.single-product .variations_form > .variations:nth-child(1),
+.single-product .variations_form > .variations:nth-child(1){
+    display: none !important;
+}
+.woocommerce.post-type-archive-product .astra-shop-summary-wrap .price,
+.wckalkulator-price,
 .single-product .price,
+.single-product .woocommerce-variation-price .price,
 .single-product .quantity{
     display: none !important;
 }
-.wckalkulator-price,
+#btn_submit_back,
 #confirmation,
 .single-product button[type="submit"],
 .single-product.woocommerce button.button[name="add-to-cart"],

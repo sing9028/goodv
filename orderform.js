@@ -3,6 +3,10 @@ if(jQuery("body").hasClass("single-product")){
     orderFormInit();
 }
 
+// add back button after order button
+// jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
+jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
+
 function orderFormInit() {
     // patient set testing data
     jQuery('input[name="patient_id"]').val("test1");
@@ -611,6 +615,19 @@ function orderFormInit() {
         error_msg="";
         // if skip Modification
         if(cbox_re_m=="N"&&cbox_le_m=="N"){
+
+            console.log("design_re="+design_re+"//design_le="+design_le);
+            if(design_re=="Spherical"){
+                jQuery("#pa_re").val("spherical").change();
+            }else if(design_re=="Toric"){
+                jQuery("#pa_re").val("toric").change();
+            }
+            if(design_le=="Spherical"){
+                jQuery("#pa_le").val("spherical").change();
+            }else if(design_le=="Toric"){
+                jQuery("#pa_le").val("toric").change();
+            }
+
             show_next_page("confirm");
             // console.log(re_check);
             // console.log(le_check);
@@ -729,17 +746,15 @@ function orderFormInit() {
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
             jQuery("#confirmation").show();
-            jQuery(".confirm_price").html(jQuery(".price .amount bdi").html());
+            jQuery(".confirm_price").html(jQuery(".single-product .woocommerce-variation-price .price bdi").html());
             // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
             jQuery('.single-product.woocommerce button.button[type="submit"]').show();
             jQuery([document.documentElement, document.body]).animate({
                 scrollTop: jQuery("#confirmation").offset().top-200
             }, 500);
+            jQuery("#btn_submit_back").show();
 
-            // add back button after order button
-            // jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
-            jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
-            setTimeout(function() { 
+            // setTimeout(function() { 
                 jQuery("#btn_submit_back").on( "click", function() {
                     // console.log("btn_submit_back");
                     jQuery(".lens_val").show();
@@ -754,29 +769,29 @@ function orderFormInit() {
                     }, 500);
                     
                     // reset Modification RE field
-                    jQuery('input[name="bc_flat_re"]').val(modify_bc_flat_re);
-                    jQuery('input[name="bc_steep_re"]').val(modify_bc_steep_re);
-                    jQuery('input[name="ac_flat_re"]').val(modify_ac_flat_re);
-                    jQuery('input[name="ac_steep_re"]').val(modify_ac_steep_re);
-                    jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
-                    jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
-                    jQuery('input[name="delta_target_re"]').val(delta_target_re);
-                    jQuery('input[name="bc_width_re"]').val(bc_width_re);
-                    jQuery('input[name="ld_re"]').val(ld_re);
+                    // jQuery('input[name="bc_flat_re"]').val(modify_bc_flat_re);
+                    // jQuery('input[name="bc_steep_re"]').val(modify_bc_steep_re);
+                    // jQuery('input[name="ac_flat_re"]').val(modify_ac_flat_re);
+                    // jQuery('input[name="ac_steep_re"]').val(modify_ac_steep_re);
+                    // jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
+                    // jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
+                    // jQuery('input[name="delta_target_re"]').val(delta_target_re);
+                    jQuery('input[name="bc_width_re"]').val("");
+                    jQuery('input[name="ld_re"]').val("");
                     // reset Modification LE field
-                    jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
-                    jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
-                    jQuery('input[name="ac_flat_le"]').val(modify_ac_flat_le);
-                    jQuery('input[name="ac_steep_le"]').val(modify_ac_steep_le);
-                    jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
-                    jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
-                    jQuery('input[name="delta_target_le"]').val(delta_target_le);
-                    jQuery('input[name="bc_width_le"]').val(bc_width_le);
-                    jQuery('input[name="ld_le"]').val(ld_le);
+                    // jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
+                    // jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
+                    // jQuery('input[name="ac_flat_le"]').val(modify_ac_flat_le);
+                    // jQuery('input[name="ac_steep_le"]').val(modify_ac_steep_le);
+                    // jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
+                    // jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
+                    // jQuery('input[name="delta_target_le"]').val(delta_target_le);
+                    jQuery('input[name="bc_width_le"]').val("");
+                    jQuery('input[name="ld_le"]').val("");
 
                     jQuery(this).hide();
                 });
-            }, 500);
+            // }, 500);
         }
     }
 
@@ -1120,7 +1135,24 @@ function orderFormInit() {
                 // }
             }else if(page=="confirm"){
                 // set parameter value
+
                 var design=lens_param["modified"]["Design"];
+                if(eye_str_lc=="re"){
+                    design_re=design;
+                }else if(eye_str_lc=="le"){
+                    design_le=design;
+                }
+                if(design_re=="Spherical"){
+                    jQuery("#pa_re").val("spherical").change();
+                }else if(design_re=="Toric"){
+                    jQuery("#pa_re").val("toric").change();
+                }
+                if(design_le=="Spherical"){
+                    jQuery("#pa_le").val("spherical").change();
+                }else if(design_le=="Toric"){
+                    jQuery("#pa_le").val("toric").change();
+                }
+
                 var ld=lens_param["modified"]["zone_width"]["LD"];
                 var lp=lens_param["modified"]["lens_power"];
                 var thickness=lens_param["modified"]["central_thickness"];
