@@ -292,6 +292,10 @@ function orderFormInit() {
     var default_delta_target_le=0;
     
     // set hidden RE field to store value if user skip modification page
+    var model_re="";
+    var material_re="";
+    var design_re="";
+    var bc_design_re="";
     var ld_re=0;
     var lp_re=0;
     var thickness_re=0;
@@ -305,7 +309,12 @@ function orderFormInit() {
     var pc_flat_re=0;
     var pc_steep_re=0;
     var delta_target_re=0;
+    var made_re="";
     // set hidden LE field to store value if user skip modification page
+    var model_le="";
+    var material_le="";
+    var design_le="";
+    var bc_design_le="";
     var ld_le=0;
     var lp_le=0;
     var thickness_le=0;
@@ -319,6 +328,7 @@ function orderFormInit() {
     var pc_flat_le=0;
     var pc_steep_le=0;
     var delta_target_le=0;
+    var made_le="";
     // set default modification RE field
     var modify_bc_flat_re=0;
     var modify_ac_flat_re=0;
@@ -605,6 +615,14 @@ function orderFormInit() {
             // console.log(re_check);
             // console.log(le_check);
             if(re_check){
+                jQuery('input[name="model_re"]').removeAttr('disabled').val(model_re);
+                jQuery('input[name="material_re"]').removeAttr('disabled').val(material_re);
+                jQuery('input[name="design_re"]').removeAttr('disabled').val(design_re);
+                jQuery('input[name="bc_design_re"]').removeAttr('disabled').val(bc_design_re);
+                jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
+                jQuery('input[name="lp_re"]').removeAttr('disabled').val(lp_re);
+                jQuery('input[name="thickness_re"]').removeAttr('disabled').val(thickness_re);
+                jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
                 jQuery('input[name="bc_flat_re2"]').removeAttr('disabled').val(bc_flat_re);
                 jQuery('input[name="bc_steep_re2"]').removeAttr('disabled').val(bc_steep_re);
                 jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
@@ -613,11 +631,16 @@ function orderFormInit() {
                 jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
                 jQuery('input[name="pc_flat_re2"]').removeAttr('disabled').val(pc_flat_re);
                 jQuery('input[name="pc_steep_re2"]').removeAttr('disabled').val(pc_steep_re);
-                jQuery('input[name="delta_target_re"]').removeAttr('disabled').val(delta_target_re);
-                jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
-                jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
             }
             if(le_check){
+                jQuery('input[name="model_le"]').removeAttr('disabled').val(model_le);
+                jQuery('input[name="material_le"]').removeAttr('disabled').val(material_le);
+                jQuery('input[name="design_le"]').removeAttr('disabled').val(design_le);
+                jQuery('input[name="bc_design_le"]').removeAttr('disabled').val(bc_design_le);
+                jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
+                jQuery('input[name="lp_le"]').removeAttr('disabled').val(lp_le);
+                jQuery('input[name="thickness_le"]').removeAttr('disabled').val(thickness_le);
+                jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
                 jQuery('input[name="bc_flat_le2"]').removeAttr('disabled').val(bc_flat_le);
                 jQuery('input[name="bc_steep_le2"]').removeAttr('disabled').val(bc_steep_le);
                 jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
@@ -626,9 +649,6 @@ function orderFormInit() {
                 jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
                 jQuery('input[name="pc_flat_le2"]').removeAttr('disabled').val(pc_flat_le);
                 jQuery('input[name="pc_steep_le2"]').removeAttr('disabled').val(pc_steep_le);
-                jQuery('input[name="delta_target_le"]').removeAttr('disabled').val(delta_target_le);
-                jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
-                jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
             }
         }else if(cbox_re_m=="Y"&&cbox_le_m=="N"){
             re_check_m="Y";
@@ -1026,6 +1046,10 @@ function orderFormInit() {
 
                 // store hidden value if skip modification page
                 if(eye_str_lc=="re"){
+                    model_re=model[1];
+                    material_re=material;
+                    design_re=design;
+                    bc_design_re=bc_design;
                     ld_re=ld;
                     lp_re=lp;
                     thickness_re=thickness;
@@ -1038,8 +1062,11 @@ function orderFormInit() {
                     ac2_steep_re=ac1_flat;
                     pc_flat_re=pc_flat;
                     pc_steep_re=pc_steep;
-                    
                 }else if(eye_str_lc=="le"){
+                    model_le=model[1];
+                    material_le=material;
+                    design_le=design;
+                    bc_design_le=bc_design;
                     ld_le=ld;
                     lp_le=lp;
                     thickness_le=thickness;
@@ -1196,14 +1223,14 @@ function orderFormInit() {
                 jQuery('input[name="lp_'+eye_str_lc+'"]').val(lp);
                 jQuery('input[name="thickness_'+eye_str_lc+'"]').val(thickness);
                 jQuery('input[name="made_'+eye_str_lc+'"]').val(made);
-                jQuery('input[name="bc_flat_'+eye_str_lc+'"]').val(bc_flat);
-                jQuery('input[name="bc_steep_'+eye_str_lc+'"]').val(bc_steep);
+                jQuery('input[name="bc_flat_'+eye_str_lc+'2"]').val(bc_flat);
+                jQuery('input[name="bc_steep_'+eye_str_lc+'2"]').val(bc_steep);
                 jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);
                 jQuery('input[name="ac1_steep_'+eye_str_lc+'"]').val(ac1_steep);
                 jQuery('input[name="ac2_flat_'+eye_str_lc+'"]').val(ac2_flat);
                 jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val(ac2_steep);
-                jQuery('input[name="pc_flat_'+eye_str_lc+'"]').val(pc_flat);
-                jQuery('input[name="pc_steep_'+eye_str_lc+'"]').val(pc_steep);
+                jQuery('input[name="pc_flat_'+eye_str_lc+'2"]').val(pc_flat);
+                jQuery('input[name="pc_steep_'+eye_str_lc+'2"]').val(pc_steep);
             }
         }
         function get_lens_param(eye_obj, eye_str,invalid_list, page){

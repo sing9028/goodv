@@ -16,6 +16,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     margin-top: -16px;
     text-align: center;
 }
+.woocommerce.post-type-archive-product a.button.product_type_variable,
 .single-product .product_meta,
 .ast-stock-detail,
 .woocommerce-ordering,
