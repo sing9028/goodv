@@ -133,6 +133,9 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     max-width: 540px;
     /* max-width: 450px; */
 }
+.thwepo-extra-options.thwepo_variable.company{
+    order: -4;
+}
 .thwepo-extra-options.thwepo_variable.patient{
     order: -3;
 }
@@ -141,6 +144,13 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 }
 .single-product .variations.wck-layout-two-col{
     order: -1; 
+}
+.woocommerce div.product form.cart .single_variation_wrap .thwepo-extra-options.thwepo_variable.company p{
+    margin-bottom: 0;
+}
+.thwepo-extra-options.thwepo_variable.company tbody{
+    display: flex;
+    flex-flow: wrap;
 }
 .thwepo-extra-options.thwepo_variable.modification0 tbody,
 .thwepo-extra-options.thwepo_variable.modification2 tbody,
@@ -161,6 +171,7 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     display: block;
     width: inherit;
 }
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd),
 .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
 .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
 .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
@@ -175,6 +186,9 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(1),
 .thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(3n+4){
     width: 160px;
+}
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(even){
+    width: 380px;
 }
 .mdc-notched-outline--notched .mdc-notched-outline__notch{
     padding-right: 0;
@@ -287,6 +301,7 @@ label.mdc-text-field{
     .thwepo-extra-options.thwepo_variable.modification0 tbody{
         flex-wrap: inherit;
     }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
     .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
@@ -303,6 +318,9 @@ label.mdc-text-field{
         /* width: 33vw; */
         /* width: 26vw; */
         width: 20vw;
+    }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(even){
+        width: 80vw;
     }
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr,
     .thwepo-extra-options.thwepo_variable.modification2 tbody tr{

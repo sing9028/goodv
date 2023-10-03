@@ -1,11 +1,12 @@
 if(jQuery("body").hasClass("single-product")){
     // console.log("single-product");
+
+    // add back button after order button
+    // jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
+    jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
+
     orderFormInit();
 }
-
-// add back button after order button
-// jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
-jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
 
 function orderFormInit() {
     // patient set testing data
