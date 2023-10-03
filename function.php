@@ -181,10 +181,14 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
-// 20230829 skip checkout page
-// add_action( 'woocommerce_add_to_cart', 'skip_checkout_redirect' );
-// function skip_checkout_redirect() {
-// wp_redirect( home_url() . '/your-product-page' );
-// exit;
-// }
-?>
+function hook_javascript() {
+
+    if(is_user_logged_in()) {
+        $output="<script> var curUserObj = ".json_encode(wp_get_current_user())."; //console.log(JSON.stringify(curUserObj)); </script>";
+        echo $output;
+    } else {
+        $output="<script> var curUserObj; </script>";
+        echo $output;
+    }
+}
+add_action('wp_head','hook_javascript');
