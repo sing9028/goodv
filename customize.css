@@ -38,9 +38,10 @@ table.sfwc_table tr img.avatar,
 .woocommerce table.shop_table td.woocommerce-orders-table__cell-order-actions a,
 .woocommerce-page table.shop_table td.woocommerce-orders-table__cell-order-actions a{
     margin-left: 5px;
+    color:#fff;
 }
-.wp-elements-3b43521750f8a17315409c07eff19067 a{
-    color: #257cff !important;
+.wp-elements-3b43521750f8a17315409c07eff19067 .woocommerce-MyAccount-content a{
+    color: #257cff;
 }
 .single-product .entry-summary{
 	float:left !important;
