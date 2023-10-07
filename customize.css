@@ -16,6 +16,10 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     margin-top: -16px;
     text-align: center;
 }
+table.sfwc_table tr img.avatar,
+#sfwc-session-expired.sfwc-reload-page-text,
+.woocommerce-MyAccount-navigation-link--downloads,
+.woocommerce-MyAccount-navigation-link--invoices,
 .woocommerce.post-type-archive-product a.button.product_type_variable,
 .single-product .product_meta,
 .ast-stock-detail,
@@ -24,6 +28,19 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
 .ajax_add_to_cart,
 .single-product .woocommerce-product-gallery{
 	display:none;
+}
+.woocommerce table.shop_table td.woocommerce-orders-table__cell-order-actions,
+.woocommerce-page table.shop_table td.woocommerce-orders-table__cell-order-actions{
+    /* display: flex;
+    flex-wrap: wrap;
+    justify-content: center; */
+}
+.woocommerce table.shop_table td.woocommerce-orders-table__cell-order-actions a,
+.woocommerce-page table.shop_table td.woocommerce-orders-table__cell-order-actions a{
+    margin-left: 5px;
+}
+.wp-elements-3b43521750f8a17315409c07eff19067 a{
+    color: #257cff !important;
 }
 .single-product .entry-summary{
 	float:left !important;
