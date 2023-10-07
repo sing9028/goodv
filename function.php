@@ -181,14 +181,30 @@ require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-filters.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-hooks.php';
 require_once ASTRA_THEME_DIR . 'inc/core/deprecated/deprecated-functions.php';
 
+// START show user into from PHP to JS
 function hook_javascript() {
 
     if(is_user_logged_in()) {
-        $output="<script> var curUserObj = ".json_encode(wp_get_current_user())."; //console.log(JSON.stringify(curUserObj)); </script>";
-        echo $output;
+        // $output="<script> var curUserObj = ".json_encode(wp_get_current_user())."; //console.log(JSON.stringify(curUserObj)); </script>";
+        // echo $output;
     } else {
-        $output="<script> var curUserObj; </script>";
-        echo $output;
+        // $output="<script> var curUserObj; </script>";
+        // echo $output;
     }
 }
 add_action('wp_head','hook_javascript');
+// END show user into from PHP to JS
+
+// START Update User field label
+add_filter( 'gettext', 'wpse6096_gettext', 10, 2 );
+function wpse6096_gettext( $translation, $original )
+{
+    if ( 'First name' == $original ) {
+        return 'Company ID ';
+    }
+    if ( 'Last name' == $original ) {
+        return 'Company Name';
+    }
+    return $translation;
+}
+// END Update User field label
