@@ -5,6 +5,12 @@ if(jQuery("body").hasClass("single-product")){
     // jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[name="add-to-cart"]');
     jQuery('<button id="btn_submit_back" type="button" class="single_add_to_cart_button button alt btn_outline btn_back">Back</button>').insertAfter('.single-product.woocommerce button.button[type="submit"]');
 
+    // set user info
+    jQuery('.com_id td p[name="com_id"]').html(curBillingObj["first_name"]);
+    jQuery('.com_name td p[name="com_name"]').html(curBillingObj["last_name"]);
+    jQuery('.com_addr td p[name="com_addr"]').html(curBillingObj["address"]);
+    jQuery('.contact_num td p[name="contact_num"]').html(curBillingObj["phone"]);
+
     orderFormInit();
 }
 
@@ -777,8 +783,8 @@ function orderFormInit() {
                     // jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
                     // jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
                     // jQuery('input[name="delta_target_re"]').val(delta_target_re);
-                    jQuery('input[name="bc_width_re"]').val("");
-                    jQuery('input[name="ld_re"]').val("");
+                    // jQuery('input[name="bc_width_re"]').val("");
+                    // jQuery('input[name="ld_re"]').val("");
                     // reset Modification LE field
                     // jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
                     // jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
@@ -787,8 +793,8 @@ function orderFormInit() {
                     // jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
                     // jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
                     // jQuery('input[name="delta_target_le"]').val(delta_target_le);
-                    jQuery('input[name="bc_width_le"]').val("");
-                    jQuery('input[name="ld_le"]').val("");
+                    // jQuery('input[name="bc_width_le"]').val("");
+                    // jQuery('input[name="ld_le"]').val("");
 
                     jQuery(this).hide();
                 });

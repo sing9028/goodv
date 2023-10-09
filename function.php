@@ -186,10 +186,12 @@ function hook_javascript() {
 
     if(is_user_logged_in()) {
         // $output="<script> var curUserObj = ".json_encode(wp_get_current_user())."; //console.log(JSON.stringify(curUserObj)); </script>";
-        // echo $output;
+        $output="<script> var curBillingObj = ".json_encode(WC()->session->get('customer'))."; //console.log(JSON.stringify(curBillingObj)); </script>";
+        echo $output;
     } else {
         // $output="<script> var curUserObj; </script>";
-        // echo $output;
+        $output="<script> var curBillingObj; </script>";
+        echo $output;
     }
 }
 add_action('wp_head','hook_javascript');
