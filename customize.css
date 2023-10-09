@@ -30,6 +30,12 @@ table.sfwc_table tr img.avatar,
 .single-product .woocommerce-product-gallery{
 	display:none;
 }
+.single-product #primary{
+    margin-top: 1em;
+}
+.single-product .woocommerce div.product .product_title{
+    margin-bottom: 1em;
+}
 #frontend_manage_subaccounts tr td:first-child{
     display: table-cell;
 }
