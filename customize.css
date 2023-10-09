@@ -199,6 +199,8 @@ table.sfwc_table tr img.avatar,
     display: block;
     width: inherit;
 }
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(1),
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(1),
 .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd),
 .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
 .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
@@ -215,8 +217,14 @@ table.sfwc_table tr img.avatar,
 .thwepo-extra-options.thwepo_variable.order tbody tr:nth-child(3n+4){
     width: 160px;
 }
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(2),
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(2),
 .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(even){
     width: 380px;
+}
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10),
+.thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9){
+    width: 540px;
 }
 .mdc-notched-outline--notched .mdc-notched-outline__notch{
     padding-right: 0;
@@ -329,6 +337,8 @@ label.mdc-text-field{
     .thwepo-extra-options.thwepo_variable.modification0 tbody{
         flex-wrap: inherit;
     }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(1),
     .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
@@ -347,6 +357,8 @@ label.mdc-text-field{
         /* width: 26vw; */
         width: 20vw;
     }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(2),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(2),
     .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(even){
         width: 80vw;
     }
