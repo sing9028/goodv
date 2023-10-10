@@ -88,6 +88,9 @@ table.sfwc_table tr img.avatar,
 .table_result td#design_LE_r{
 	/* border-left:0; */
 }
+.woocommerce div.product form.cart .button{
+    margin-bottom: 0;
+}
 .woocommerce div.product form.cart .button.single_add_to_cart_button{
     /* width: fit-content; */
     width: max-content;
@@ -95,6 +98,8 @@ table.sfwc_table tr img.avatar,
     background-color: #6750A4 !important;
     color: #fff !important;
     border-radius: 20px;
+    height: 38.19px;
+    order: 1;
 }
 .woocommerce div.product form.cart .button.single_add_to_cart_button.btn_outline{
     background-color: transparent !important;
@@ -129,7 +134,7 @@ table.sfwc_table tr img.avatar,
 .woocommerce div.product form.cart table.wck-inner-table{
 	border-bottom: 0;
 }
-.woocommerce div.product form.cart .variations{
+.woocommerce div.product form.cart table.variations{
 	border-bottom: 0;
 }
 .wck-cart{
@@ -157,18 +162,22 @@ table.sfwc_table tr img.avatar,
     margin-bottom: 0;
 }
 .single-product form.cart .variations,
-#confirmation,
+#company_info,
+#confirmation_re,
+#confirmation_le,
 #modification,
 .thwepo-extra-options.thwepo_variable{
     /* max-width: 450px; */
     max-width: 540px;
 }
-.thwepo-extra-options.thwepo_variable.modification1{
-    margin-top: -65px;
+.woocommerce div.product form.cart table.thwepo-extra-options.thwepo_variable.modification1{
+    /* margin-top: -65px; */
+    margin-top: -90px;
 }
-.thwepo-extra-options.thwepo_variable.modification2{
+.woocommerce div.product form.cart table.thwepo-extra-options.thwepo_variable.modification2{
     order: 1;
-    margin-top: -292px;
+    /* margin-top: -292px; */
+    margin-top: -330px;
 }
 .thwepo-extra-options.thwepo_variable.modification0,
 .thwepo-extra-options.thwepo_variable.company{
@@ -220,6 +229,7 @@ table.sfwc_table tr img.avatar,
 .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
 .lens_val tr th:nth-child(1),
 .lens_val tr td:nth-child(1),
+.company_val tr td:nth-child(odd),
 .patient_val tr td:nth-child(1),
 .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(1),
 .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(3),
@@ -262,6 +272,7 @@ label.mdc-text-field{
 .thwepo-extra-options.thwepo_variable.modification2 tbody tr,
 .lens_val tr th,
 .lens_val tr td,
+.company_val tr td,
 .patient_val tr td,
 .thwepo-extra-options.thwepo_variable.order tbody tr{
     width: 190px;
@@ -294,8 +305,10 @@ label.mdc-text-field{
 .single-product .quantity{
     display: none !important;
 }
+#company_info,
 #btn_submit_back,
-#confirmation,
+#confirmation_re,
+#confirmation_le,
 .single-product button[type="submit"],
 .single-product.woocommerce button.button[name="add-to-cart"],
 .thwepo-extra-options.thwepo_variable.modification0,
@@ -373,6 +386,7 @@ min-height: 30px;
     .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
     .lens_val tr th:nth-child(1),
     .lens_val tr td:nth-child(1),
+    .company_val tr td:nth-child(odd),
     .patient_val tr td:nth-child(1),
     .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(1),
     .thwepo-extra-options.thwepo_variable.patient tbody tr td:nth-child(3),
@@ -395,6 +409,7 @@ min-height: 30px;
     }
     .lens_val tr th,
     .lens_val tr td,
+    .company_val tr td,
     .patient_val tr td,
     .thwepo-extra-options.thwepo_variable.order tbody tr{
         /* width: 26vw; */

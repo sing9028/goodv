@@ -10,6 +10,10 @@ if(jQuery("body").hasClass("single-product")){
     jQuery('.com_name td p[name="com_name"]').html(curBillingObj["last_name"]);
     jQuery('.com_addr td p[name="com_addr"]').html(curBillingObj["address"]);
     jQuery('.contact_num td p[name="contact_num"]').html(curBillingObj["phone"]);
+    jQuery('#com_id').html(curBillingObj["first_name"]);
+    jQuery('#com_name').html(curBillingObj["last_name"]);
+    jQuery('#com_addr').html(curBillingObj["address"]);
+    jQuery('#contact_num').html(curBillingObj["phone"]);
 
     orderFormInit();
 }
@@ -610,6 +614,7 @@ function orderFormInit() {
         jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
         jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
         jQuery("#modification").hide();
+        jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
@@ -751,15 +756,18 @@ function orderFormInit() {
         }else if(page=="confirm"){
             // show Confirmation Page
             jQuery(".lens_val").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
-            jQuery("#confirmation").show();
+            jQuery("#company_info").show();
+            jQuery("#confirmation_re").show();
+            jQuery("#confirmation_le").show();
             jQuery(".confirm_price").html(jQuery(".single-product .woocommerce-variation-price .price bdi").html());
             // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
             jQuery('.single-product.woocommerce button.button[type="submit"]').show();
             jQuery([document.documentElement, document.body]).animate({
-                scrollTop: jQuery("#confirmation").offset().top-200
+                scrollTop: jQuery("#confirmation_re").offset().top-200
             }, 500);
             jQuery("#btn_submit_back").show();
 
@@ -767,10 +775,13 @@ function orderFormInit() {
                 jQuery("#btn_submit_back").on( "click", function() {
                     // console.log("btn_submit_back");
                     jQuery(".lens_val").show();
+                    jQuery(".thwepo-extra-options.thwepo_variable.company").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
-                    jQuery("#confirmation").hide();
+                    jQuery("#company_info").hide();
+                    jQuery("#confirmation_re").hide();
+                    jQuery("#confirmation_le").hide();
                     // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').hide();
                     jQuery('.single-product.woocommerce button.button[type="submit"]').hide();
                     jQuery([document.documentElement, document.body]).animate({
