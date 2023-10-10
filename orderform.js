@@ -603,7 +603,8 @@ function orderFormInit() {
     });
 
     jQuery("#btn_confirm_back").on( "click", function() {
-        jQuery(".thwepo-extra-options.thwepo_variable.patient").show();
+        jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10)").show();
+        jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9)").show();
         jQuery(".thwepo-extra-options.thwepo_variable.order").show();
         jQuery("#btn_cal").show();
         jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
@@ -733,7 +734,8 @@ function orderFormInit() {
                 jQuery(".confirm_val_le").show();
             }
             // show Modifiction Page
-            jQuery(".thwepo-extra-options.thwepo_variable.patient").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10)").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9)").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.order").hide();
             jQuery("#btn_cal").hide();
             jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
