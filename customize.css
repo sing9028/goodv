@@ -16,6 +16,11 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     margin-top: -16px;
     text-align: center;
 }
+.woocommerce-MyAccount-content .woocommerce-address-fields__field-wrapper #billing_first_name_field,
+.woocommerce-MyAccount-content .woocommerce-address-fields__field-wrapper #billing_last_name_field,
+.woocommerce-EditAccountForm.edit-account p.form-row-first,
+.woocommerce-EditAccountForm.edit-account p.form-row-last,
+.woocommerce-EditAccountForm.edit-account p.form-row-wide:has(#account_display_name),
 .button.product_type_variable.add_to_cart_button,
 table.sfwc_table tr img.avatar,
 #sfwc-session-expired.sfwc-reload-page-text,
