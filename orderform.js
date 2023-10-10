@@ -607,6 +607,7 @@ function orderFormInit() {
     });
 
     jQuery("#btn_confirm_back").on( "click", function() {
+        jQuery(".thwepo-extra-options.thwepo_variable.company").show();
         jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10)").show();
         jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9)").show();
         jQuery(".thwepo-extra-options.thwepo_variable.order").show();
@@ -614,7 +615,6 @@ function orderFormInit() {
         jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
         jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
         jQuery("#modification").hide();
-        jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
@@ -760,6 +760,7 @@ function orderFormInit() {
             jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
+            jQuery(".thwepo-extra-options.thwepo_variable.confirmation").hide();
             jQuery("#company_info").show();
             jQuery("#confirmation_re").show();
             jQuery("#confirmation_le").show();
@@ -779,6 +780,7 @@ function orderFormInit() {
                     jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
+                    jQuery(".thwepo-extra-options.thwepo_variable.confirmation").show();
                     jQuery("#company_info").hide();
                     jQuery("#confirmation_re").hide();
                     jQuery("#confirmation_le").hide();
@@ -788,26 +790,30 @@ function orderFormInit() {
                         scrollTop: jQuery("#modification").offset().top-200
                     }, 500);
                     
-                    // reset Modification RE field
-                    // jQuery('input[name="bc_flat_re"]').val(modify_bc_flat_re);
-                    // jQuery('input[name="bc_steep_re"]').val(modify_bc_steep_re);
-                    // jQuery('input[name="ac_flat_re"]').val(modify_ac_flat_re);
-                    // jQuery('input[name="ac_steep_re"]').val(modify_ac_steep_re);
-                    // jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
-                    // jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
-                    // jQuery('input[name="delta_target_re"]').val(delta_target_re);
-                    // jQuery('input[name="bc_width_re"]').val("");
-                    // jQuery('input[name="ld_re"]').val("");
-                    // reset Modification LE field
-                    // jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
-                    // jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
-                    // jQuery('input[name="ac_flat_le"]').val(modify_ac_flat_le);
-                    // jQuery('input[name="ac_steep_le"]').val(modify_ac_steep_le);
-                    // jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
-                    // jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
-                    // jQuery('input[name="delta_target_le"]').val(delta_target_le);
-                    // jQuery('input[name="bc_width_le"]').val("");
-                    // jQuery('input[name="ld_le"]').val("");
+                    if(cbox_re_m!="Y"){
+                        // reset Modification RE field
+                        // jQuery('input[name="bc_flat_re"]').val(modify_bc_flat_re);
+                        // jQuery('input[name="bc_steep_re"]').val(modify_bc_steep_re);
+                        // jQuery('input[name="ac_flat_re"]').val(modify_ac_flat_re);
+                        // jQuery('input[name="ac_steep_re"]').val(modify_ac_steep_re);
+                        // jQuery('input[name="pc_flat_re"]').val(modify_pc_flat_re);
+                        // jQuery('input[name="pc_steep_re"]').val(modify_pc_steep_re);
+                        // jQuery('input[name="delta_target_re"]').val(delta_target_re);
+                        jQuery('input[name="bc_width_re"]').val("");
+                        jQuery('input[name="ld_re"]').val("");
+                    }
+                    if(cbox_le_m!="Y"){
+                        // reset Modification LE field
+                        // jQuery('input[name="bc_flat_le"]').val(modify_bc_flat_le);
+                        // jQuery('input[name="bc_steep_le"]').val(modify_bc_steep_le);
+                        // jQuery('input[name="ac_flat_le"]').val(modify_ac_flat_le);
+                        // jQuery('input[name="ac_steep_le"]').val(modify_ac_steep_le);
+                        // jQuery('input[name="pc_flat_le"]').val(modify_pc_flat_le);
+                        // jQuery('input[name="pc_steep_le"]').val(modify_pc_steep_le);
+                        // jQuery('input[name="delta_target_le"]').val(delta_target_le);
+                        jQuery('input[name="bc_width_le"]').val("");
+                        jQuery('input[name="ld_le"]').val("");
+                    }
 
                     jQuery(this).hide();
                 });

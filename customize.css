@@ -99,7 +99,7 @@ table.sfwc_table tr img.avatar,
     color: #fff !important;
     border-radius: 20px;
     height: 38.19px;
-    order: 1;
+    /* order: 1; */
 }
 .woocommerce div.product form.cart .button.single_add_to_cart_button.btn_outline{
     background-color: transparent !important;
@@ -151,6 +151,7 @@ table.sfwc_table tr img.avatar,
     display: flex;
     /* justify-content: space-evenly; */
     flex-wrap: wrap;
+    max-width: 1080px;
 }
 .woocommerce div.product form.cart,
 .woocommerce div.product form.cart input{
@@ -160,6 +161,9 @@ table.sfwc_table tr img.avatar,
 }
 .woocommerce div.product form.cart .single_variation_wrap .thwepo-extra-options.thwepo_variable p{
     margin-bottom: 0;
+}
+.confirmation_info{
+    display: flex;
 }
 .single-product form.cart .variations,
 #company_info,
@@ -320,6 +324,9 @@ label.mdc-text-field{
 .thwepo-extra-options.thwepo_variable.order tbody tr .label,
 #modification{
     display: none;
+}
+#btn_submit_back{
+    margin-left: 2rem;
 }
 .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
     background-color: #6A4DA8;
