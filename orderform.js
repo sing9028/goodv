@@ -618,9 +618,9 @@ function orderFormInit() {
         jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
-        jQuery([document.documentElement, document.body]).animate({
-            scrollTop: jQuery(".single-product-category").offset().top-150
-        }, 500);
+        // jQuery([document.documentElement, document.body]).animate({
+        //     scrollTop: jQuery(".single-product-category").offset().top-150
+        // }, 500);
     });
 
     // After Confirm Parameters button clicked
@@ -749,9 +749,9 @@ function orderFormInit() {
             jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
             jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
-            jQuery([document.documentElement, document.body]).animate({
-                scrollTop: jQuery("#modification").offset().top-150
-            }, 500);
+            // jQuery([document.documentElement, document.body]).animate({
+            //     scrollTop: jQuery("#modification").offset().top-150
+            // }, 500);
             // jQuery(".single-product .woocommerce-variation-add-to-cart .variations").css("display","block !important");
         }else if(page=="confirm"){
             // show Confirmation Page
@@ -767,9 +767,9 @@ function orderFormInit() {
             jQuery(".confirm_price").html(jQuery(".single-product .woocommerce-variation-price .price bdi").html());
             // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
             jQuery('.single-product.woocommerce button.button[type="submit"]').show();
-            jQuery([document.documentElement, document.body]).animate({
-                scrollTop: jQuery("#confirmation_re").offset().top-200
-            }, 500);
+            // jQuery([document.documentElement, document.body]).animate({
+            //     scrollTop: jQuery("#confirmation_re").offset().top-200
+            // }, 500);
             jQuery("#btn_submit_back").show();
 
             // setTimeout(function() { 
@@ -786,9 +786,9 @@ function orderFormInit() {
                     jQuery("#confirmation_le").hide();
                     // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').hide();
                     jQuery('.single-product.woocommerce button.button[type="submit"]').hide();
-                    jQuery([document.documentElement, document.body]).animate({
-                        scrollTop: jQuery("#modification").offset().top-200
-                    }, 500);
+                    // jQuery([document.documentElement, document.body]).animate({
+                    //     scrollTop: jQuery("#modification").offset().top-200
+                    // }, 500);
                     
                     if(cbox_re_m!="Y"){
                         // reset Modification RE field
