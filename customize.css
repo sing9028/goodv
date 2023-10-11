@@ -181,12 +181,13 @@ table.sfwc_table tr img.avatar,
 }
 .woocommerce div.product form.cart table.thwepo-extra-options.thwepo_variable.modification1{
     /* margin-top: -65px; */
-    margin-top: -90px;
+    /* margin-top: -90px; */
 }
 .woocommerce div.product form.cart table.thwepo-extra-options.thwepo_variable.modification2{
     order: 1;
     /* margin-top: -292px; */
-    margin-top: -330px;
+    /* margin-top: -330px; */
+    margin-top: -106px;
 }
 .thwepo-extra-options.thwepo_variable.company{
     order: -4;
@@ -204,7 +205,8 @@ table.sfwc_table tr img.avatar,
     order: 0;
 }
 .thwepo-extra-options.thwepo_variable.modification1{
-    order: 1;
+    /* order: 1; */
+    order: 0;
 }
 .woocommerce div.product form.cart .single_variation_wrap .thwepo-extra-options.thwepo_variable.company p{
     margin-bottom: 0;
@@ -240,7 +242,7 @@ table.sfwc_table tr img.avatar,
 .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
 .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(3n+4),
 .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(1),
-.thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr.label_m,
 .lens_val tr th:nth-child(1),
 .lens_val tr td:nth-child(1),
 .company_val tr td:nth-child(odd),
@@ -282,6 +284,8 @@ label.mdc-text-field{
     display: flex;
     justify-content: space-evenly;
 }
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(3),
+.thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(2),
 .thwepo-extra-options.thwepo_variable.modification0 tbody tr,
 .thwepo-extra-options.thwepo_variable.modification2 tbody tr,
 .lens_val tr th,
@@ -341,8 +345,8 @@ label.mdc-text-field{
 .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background{
     background-color: #6A4DA8;
 }
-.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
-.thwepo-extra-options.thwepo_variable.order .cbox_eye label,
+.cbox_eye_m label,
+.cbox_eye label,
 .confirm_title{
     font-size: 16px;
     line-height: 24px;
@@ -354,12 +358,12 @@ label.mdc-text-field{
     color: #7e868c;
     margin-bottom: 0;
 }
-.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m,
-.thwepo-extra-options.thwepo_variable.order .cbox_eye{
+.cbox_eye_m,
+.cbox_eye{
     display: flex;
 }
-.thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
-.thwepo-extra-options.thwepo_variable.order .cbox_eye label{
+.cbox_eye_m label,
+.cbox_eye label{
     margin-right: 0 !important;
     color: #6A4DA8;
 }
@@ -458,8 +462,8 @@ min-height: 30px;
     }
     .table_result tr th,
     .table_result tr td,
-    .thwepo-extra-options.thwepo_variable.modification0 .cbox_eye_m label,
-    .thwepo-extra-options.thwepo_variable.order .cbox_eye label{
+    .cbox_eye_m label,
+    .cbox_eye label{
         font-size: 11px;
         line-height: 19px;
         padding-left: 0;

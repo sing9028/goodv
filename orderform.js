@@ -15,6 +15,16 @@ if(jQuery("body").hasClass("single-product")){
     jQuery('#com_addr').html(curBillingObj["address"]);
     jQuery('#contact_num').html(curBillingObj["phone"]);
 
+    // add class to modify checkbox
+    // jQuery(".thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(1)").addClass("tr_cbox_m");
+    // jQuery(".thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(2)").addClass("tr_cbox_m");
+    // jQuery(".thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(3)").addClass("tr_cbox_m");
+    // jQuery('.thwepo-extra-options.thwepo_variable.modification1 tbody tr').each(function (i, value) {
+    //     if (i >= 4 && !jQuery(this).hasClass("d-none")) {
+    //         jQuery(this).addClass("inputbox_m");
+    //     }
+    // });
+
     orderFormInit();
 }
 
@@ -143,6 +153,8 @@ function orderFormInit() {
     </div>`;
     jQuery("#cbox_re").html(cbox_re);
     jQuery("#cbox_le").html(cbox_le);
+    // jQuery("#cbox_re_m_org").html(cbox_re_m);
+    // jQuery("#cbox_le_m_org").html(cbox_le_m);
     jQuery("#cbox_re_m").html(cbox_re_m);
     jQuery("#cbox_le_m").html(cbox_le_m);
 
@@ -746,6 +758,7 @@ function orderFormInit() {
             jQuery("#btn_cal").hide();
             jQuery("#patient_id_val").html(jQuery('input[name="patient_id"]').val());
             jQuery("#patient_name_val").html(jQuery('input[name="patient_name"]').val());
+            jQuery(".patient_val").hide();
             jQuery("#modification").show();
             jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
@@ -762,7 +775,8 @@ function orderFormInit() {
             jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.confirmation").hide();
-            jQuery("#company_info").show();
+            jQuery("#modification").hide();
+            // jQuery("#company_info").show();
             jQuery("#confirmation_re").show();
             jQuery("#confirmation_le").show();
             jQuery(".confirm_price").html(jQuery(".single-product .woocommerce-variation-price .price bdi").html());
@@ -775,6 +789,7 @@ function orderFormInit() {
 
             // setTimeout(function() { 
                 jQuery("#btn_submit_back").on( "click", function() {
+                    jQuery("#modification").show();
                     jQuery(".lens_val").show();
                     // jQuery(".thwepo-extra-options.thwepo_variable.company").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
