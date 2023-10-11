@@ -188,7 +188,6 @@ table.sfwc_table tr img.avatar,
     /* margin-top: -292px; */
     margin-top: -330px;
 }
-.thwepo-extra-options.thwepo_variable.modification0,
 .thwepo-extra-options.thwepo_variable.company{
     order: -4;
 }
@@ -200,6 +199,12 @@ table.sfwc_table tr img.avatar,
 }
 .single-product .variations.wck-layout-two-col{
     order: -1; 
+}
+.thwepo-extra-options.thwepo_variable.modification0{
+    order: 0;
+}
+.thwepo-extra-options.thwepo_variable.modification1{
+    order: 1;
 }
 .woocommerce div.product form.cart .single_variation_wrap .thwepo-extra-options.thwepo_variable.company p{
     margin-bottom: 0;

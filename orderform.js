@@ -739,6 +739,7 @@ function orderFormInit() {
                 jQuery(".confirm_val_le").show();
             }
             // show Modifiction Page
+            jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10)").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9)").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.order").hide();
@@ -774,9 +775,8 @@ function orderFormInit() {
 
             // setTimeout(function() { 
                 jQuery("#btn_submit_back").on( "click", function() {
-                    // console.log("btn_submit_back");
                     jQuery(".lens_val").show();
-                    jQuery(".thwepo-extra-options.thwepo_variable.company").show();
+                    // jQuery(".thwepo-extra-options.thwepo_variable.company").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification0").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification1").show();
                     jQuery(".thwepo-extra-options.thwepo_variable.modification2").show();
@@ -1189,6 +1189,7 @@ function orderFormInit() {
                 var made_bc_steep="";
                 var made_ac_steep="";
                 var made_pc_steep="";
+                var made="-";
                 if(lens_param["modified"]["modification"] != null){
                     if(lens_param["modified"]["modification"]["flat"] != null){
                         if(lens_param["modified"]["modification"]["flat"]["BOZR"] != null){
@@ -1242,9 +1243,9 @@ function orderFormInit() {
                             made_pc_steep=" PC(steep):"+lens_param["modified"]["modification"]["steep"]["PC"];
                         }
                     }
-                    
+                    made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep;
                 }
-                var made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep;
+                
 
                 var bc_width=Math.round(lens_param["modified"]["zone_width"]["BOZR"]*2);
                 var bc_flat=Math.round(lens_param["modified"]["flat"]["BOZR"]*100)/100;
