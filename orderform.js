@@ -323,10 +323,10 @@ function orderFormInit() {
     var material_re="";
     var design_re="";
     var bc_design_re="";
-    var ld_re=0;
+    var ld_re="";
     var lp_re=0;
     var thickness_re=0;
-    var bc_width_re=0;
+    var bc_width_re="";
     var bc_flat_re=0;
     var bc_steep_re=0;
     var ac1_flat_re=0;
@@ -342,10 +342,10 @@ function orderFormInit() {
     var material_le="";
     var design_le="";
     var bc_design_le="";
-    var ld_le=0;
+    var ld_le="";
     var lp_le=0;
     var thickness_le=0;
-    var bc_width_le=0;
+    var bc_width_le="";
     var bc_flat_le=0;
     var bc_steep_le=0;
     var ac1_flat_le=0;
