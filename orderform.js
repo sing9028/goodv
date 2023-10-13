@@ -321,7 +321,7 @@ function orderFormInit() {
     // set hidden RE field to store value if user skip modification page
     var model_re="";
     var material_re="";
-    var design_re="";
+    var design_re="none";
     var bc_design_re="";
     var ld_re="";
     var lp_re=0;
@@ -340,7 +340,7 @@ function orderFormInit() {
     // set hidden LE field to store value if user skip modification page
     var model_le="";
     var material_le="";
-    var design_le="";
+    var design_le="none";
     var bc_design_le="";
     var ld_le="";
     var lp_le=0;
@@ -646,11 +646,15 @@ function orderFormInit() {
                 jQuery("#pa_re").val("spherical").change();
             }else if(design_re=="Toric"){
                 jQuery("#pa_re").val("toric").change();
+            }else{
+                jQuery("#pa_re").val("none").change();
             }
             if(design_le=="Spherical"){
                 jQuery("#pa_le").val("spherical").change();
             }else if(design_le=="Toric"){
                 jQuery("#pa_le").val("toric").change();
+            }else{
+                jQuery("#pa_le").val("none").change();
             }
 
             show_next_page("confirm");
@@ -1187,11 +1191,15 @@ function orderFormInit() {
                     jQuery("#pa_re").val("spherical").change();
                 }else if(design_re=="Toric"){
                     jQuery("#pa_re").val("toric").change();
+                }else{
+                    jQuery("#pa_re").val("none").change();
                 }
                 if(design_le=="Spherical"){
                     jQuery("#pa_le").val("spherical").change();
                 }else if(design_le=="Toric"){
                     jQuery("#pa_le").val("toric").change();
+                }else{
+                    jQuery("#pa_re").val("none").change();
                 }
 
                 var ld=lens_param["modified"]["zone_width"]["LD"];

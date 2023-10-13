@@ -210,3 +210,31 @@ function wpse6096_gettext( $translation, $original )
     return $translation;
 }
 // END Update User field label
+
+// START add exchange button
+add_filter( 'woocommerce_my_account_my_orders_actions', 'my_account_my_orders_order_again_action', 9999, 2 );
+function my_account_my_orders_order_again_action( $actions, $order ) {
+
+    // less than today 1 month：$order->get_date_created() 
+    
+
+    if ( $order->has_status( 'processing' ) ) {
+
+        foreach ( $order->get_items() as $item_id => $item ) {
+            $product_id = $item->get_product_id();
+            $allmeta = $item->get_meta_data();
+            // $somemeta = $item->get_meta( '_whatever', true );
+            $product_url = get_permalink($product_id);
+        }
+        $output="<script> var curOrderObj = ".json_encode($allmeta)."; console.log(JSON.stringify(curOrderObj)); </script>";
+        echo $output;
+
+        $actions['order-again'] = array(
+            'url' => $product_url,
+            // 'url'  => wp_nonce_url( add_query_arg( 'order_again', $order->id ) , 'woocommerce-order_again' ),
+            'name' => __( 'Exchange Order', 'woocommerce' ),
+        );
+    }
+    return $actions;
+}
+// END add exchange button
