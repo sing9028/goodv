@@ -220,17 +220,101 @@ function my_account_my_orders_order_again_action( $actions, $order ) {
 
     if ( $order->has_status( 'processing' ) ) {
 
+        // $sph_re = "";
+        // $sph_le = "";
+        // $cyl_re = "";
+        // $cyl_le = "";
+        // $axis_re = "";
+        // $axis_le = "";
+        // $flat_k_re = "";
+        // $flat_k_le = "";
+        // $flat_e_re = "";
+        // $flat_e_le = "";
+        // $steep_k_re = "";
+        // $steep_k_le = "";
+        // $steep_e_re = "";
+        // $steep_e_le = "";
+        // $steep_k_axis_re = "";
+        // $steep_k_axis_le = "";
+        // $hvid_re = "";
+        // $hvid_le = "";
+        // $pupil_size_re = "";
+        // $pupil_size_le = "";
+
         foreach ( $order->get_items() as $item_id => $item ) {
             $product_id = $item->get_product_id();
             $allmeta = $item->get_meta_data();
-            // $somemeta = $item->get_meta( '_whatever', true );
             $product_url = get_permalink($product_id);
+            
+            $patient_id = $item->get_meta('patient_id');
+            $patient_name = $item->get_meta('patient_name');
+            if(!empty($item->get_meta('sph_re'))){
+                $sph_re = "&sph_re=".$item->get_meta('sph_re');
+            }
+            if(!empty($item->get_meta('sph_le'))){
+                $sph_le = "&sph_le=".$item->get_meta('sph_le');
+            }
+            if(!empty($item->get_meta('cyl_re'))){
+                $cyl_re = "&cyl_re=".$item->get_meta('cyl_re');
+            }
+            if(!empty($item->get_meta('cyl_le'))){
+                $cyl_le = "&cyl_le=".$item->get_meta('cyl_le');
+            }
+            if(!empty($item->get_meta('axis_re'))){
+                $axis_re = "&axis_re=".$item->get_meta('axis_re');
+            }
+            if(!empty($item->get_meta('axis_le'))){
+                $axis_le = "&axis_le=".$item->get_meta('axis_le');
+            }
+            if(!empty($item->get_meta('flat_k_re'))){
+                $flat_k_re = "&flat_k_re=".$item->get_meta('flat_k_re');
+            }
+            if(!empty($item->get_meta('flat_k_le'))){
+                $flat_k_le = "&flat_k_le=".$item->get_meta('flat_k_le');
+            }
+            if(!empty($item->get_meta('flat_e_re'))){
+                $flat_e_re = "&flat_e_re=".$item->get_meta('flat_e_re');
+            }
+            if(!empty($item->get_meta('flat_e_le'))){
+                $flat_e_le = "&flat_e_le=".$item->get_meta('flat_e_le');
+            }
+            if(!empty($item->get_meta('steep_k_re'))){
+                $steep_k_re = "&steep_k_re=".$item->get_meta('steep_k_re');
+            }
+            if(!empty($item->get_meta('steep_k_le'))){
+                $steep_k_le = "&steep_k_le=".$item->get_meta('steep_k_le');
+            }
+            if(!empty($item->get_meta('steep_e_re'))){
+                $steep_e_re = "&steep_e_re=".$item->get_meta('steep_e_re');
+            }
+            if(!empty($item->get_meta('steep_e_le'))){
+                $steep_e_le = "&steep_e_le=".$item->get_meta('steep_e_le');
+            }
+            if(!empty($item->get_meta('steep_k_axis_re'))){
+                $steep_k_axis_re = "&steep_k_axis_re=".$item->get_meta('steep_k_axis_re');
+            }
+            if(!empty($item->get_meta('steep_k_axis_le'))){
+                $steep_k_axis_le = "&steep_k_axis_le=".$item->get_meta('steep_k_axis_le');
+            }
+            if(!empty($item->get_meta('hvid_re'))){
+                $hvid_re = "&hvid_re=".$item->get_meta('hvid_re');
+            }
+            if(!empty($item->get_meta('hvid_le'))){
+                $hvid_le = "&hvid_le=".$item->get_meta('hvid_le');
+            }
+            if(!empty($item->get_meta('pupil_size_re'))){
+                $pupil_size_re = "&pupil_size_re=".$item->get_meta('pupil_size_re');
+            }
+            if(!empty($item->get_meta('pupil_size_le'))){
+                $pupil_size_le = "&pupil_size_le=".$item->get_meta('pupil_size_le');
+            }
         }
-        $output="<script> var curOrderObj = ".json_encode($allmeta)."; console.log(JSON.stringify(curOrderObj)); </script>";
-        echo $output;
+        // $output="<script> var curOrderObj = ".json_encode($patient_id)."; console.log(JSON.stringify(curOrderObj)); </script>";
+        // echo $output;
+        $product_url_new = $product_url."?patient_id=".$patient_id."&patient_name=".$patient_name.$sph_re.$sph_le.$cyl_re.$cyl_le.$axis_re.$axis_le.$flat_k_re.$flat_k_le.$flat_e_re.$flat_e_le.$steep_k_re.$steep_k_le.$steep_e_re.$steep_e_le.$steep_k_axis_le.$hvid_re.$hvid_le.$pupil_size_re.$pupil_size_le;
 
         $actions['order-again'] = array(
-            'url' => $product_url,
+            'url' => $product_url_new,
             // 'url'  => wp_nonce_url( add_query_arg( 'order_again', $order->id ) , 'woocommerce-order_again' ),
             'name' => __( 'Exchange Order', 'woocommerce' ),
         );
