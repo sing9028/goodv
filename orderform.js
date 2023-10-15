@@ -29,10 +29,10 @@ if(jQuery("body").hasClass("single-product")){
 }
 
 function orderFormInit() {
-    // patient set testing data
+
+    // set testing data
     jQuery('input[name="patient_id"]').val("test1");
     jQuery('input[name="patient_name"]').val("test2");
-    // RE set testing data
     jQuery('input[name="sph_re"]').val(-8);
     jQuery('input[name="cyl_re"]').val(-0.25);
     jQuery('input[name="axis_re"]').val(1);
@@ -43,7 +43,6 @@ function orderFormInit() {
     jQuery('input[name="steep_e_re"]').val(0.01);
     jQuery('input[name="hvid_re"]').val(10.5);
     jQuery('input[name="pupil_size_re"]').val(4);
-    // LE set testing data
     jQuery('input[name="sph_le"]').val(-7);
     jQuery('input[name="cyl_le"]').val(-5);
     jQuery('input[name="axis_le"]').val(2);
@@ -54,6 +53,75 @@ function orderFormInit() {
     jQuery('input[name="steep_e_le"]').val(0.6);
     jQuery('input[name="hvid_le"]').val(11.5);
     jQuery('input[name="pupil_size_le"]').val(5);
+
+    // get if parameter has value
+    var urlParams = new URLSearchParams(window.location.search);
+    if(urlParams.get('patient_id')){
+        jQuery('input[name="patient_id"]').val(urlParams.get('patient_id'));
+    }
+    if(urlParams.get('patient_name')){
+        jQuery('input[name="patient_name"]').val(urlParams.get('patient_name'));
+    }
+    if(urlParams.get('sph_re')){
+        jQuery('input[name="sph_re"]').val(urlParams.get('sph_re'));
+    }
+    if(urlParams.get('cyl_re')){
+        jQuery('input[name="cyl_re"]').val(urlParams.get('cyl_re'));
+    }
+    if(urlParams.get('axis_re')){
+        jQuery('input[name="axis_re"]').val(urlParams.get('axis_re'));
+    }
+    if(urlParams.get('flat_k_re')){
+        jQuery('input[name="flat_k_re"]').val(urlParams.get('flat_k_re'));
+    }
+    if(urlParams.get('steep_k_re')){
+        jQuery('input[name="steep_k_re"]').val(urlParams.get('steep_k_re'));
+    }
+    if(urlParams.get('steep_k_axis_re')){
+        jQuery('input[name="steep_k_axis_re"]').val(urlParams.get('steep_k_axis_re'));
+    }
+    if(urlParams.get('flat_e_re')){
+        jQuery('input[name="flat_e_re"]').val(urlParams.get('flat_e_re'));
+    }
+    if(urlParams.get('steep_e_re')){
+        jQuery('input[name="steep_e_re"]').val(urlParams.get('steep_e_re'));
+    }
+    if(urlParams.get('hvid_re')){
+        jQuery('input[name="hvid_re"]').val(urlParams.get('hvid_re'));
+    }
+    if(urlParams.get('pupil_size_re')){
+        jQuery('input[name="pupil_size_re"]').val(urlParams.get('pupil_size_re'));
+    }
+    if(urlParams.get('sph_le')){
+        jQuery('input[name="sph_le"]').val(urlParams.get('sph_le'));
+    }
+    if(urlParams.get('cyl_le')){
+        jQuery('input[name="cyl_le"]').val(urlParams.get('cyl_le'));
+    }
+    if(urlParams.get('axis_le')){
+        jQuery('input[name="axis_le"]').val(urlParams.get('axis_le'));
+    }
+    if(urlParams.get('flat_k_le')){
+        jQuery('input[name="flat_k_le"]').val(urlParams.get('flat_k_le'));
+    }
+    if(urlParams.get('steep_k_le')){
+        jQuery('input[name="steep_k_le"]').val(urlParams.get('steep_k_le'));
+    }
+    if(urlParams.get('steep_k_axis_le')){
+        jQuery('input[name="steep_k_axis_le"]').val(urlParams.get('steep_k_axis_le'));
+    }
+    if(urlParams.get('flat_e_le')){
+        jQuery('input[name="flat_e_le"]').val(urlParams.get('flat_e_le'));
+    }
+    if(urlParams.get('steep_e_le')){
+        jQuery('input[name="steep_e_le"]').val(urlParams.get('steep_e_le'));
+    }
+    if(urlParams.get('hvid_le')){
+        jQuery('input[name="hvid_le"]').val(urlParams.get('hvid_le'));
+    }
+    if(urlParams.get('pupil_size_le')){
+        jQuery('input[name="pupil_size_le"]').val(urlParams.get('pupil_size_le'));
+    }
 
     // set all input
     jQuery(".thwepo-extra-options.thwepo_variable .value input").each(function() {
