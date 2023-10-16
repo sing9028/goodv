@@ -150,6 +150,9 @@ table.sfwc_table tr img.avatar,
     overflow: auto;
     padding-left: 10px;
 }
+#confirmation_price{
+    width: 1080px;
+}
 .woocommerce div.product form.cart .single_variation_wrap .woocommerce-variation-add-to-cart,
 .woocommerce div.product form.cart{
     width: 100%;
@@ -169,6 +172,7 @@ table.sfwc_table tr img.avatar,
 }
 .confirmation_info{
     display: flex;
+    flex-wrap: wrap;
 }
 .single-product form.cart .variations,
 #company_info,
@@ -323,6 +327,7 @@ label.mdc-text-field{
 .single-product .quantity{
     display: none !important;
 }
+#confirmation_price,
 #company_info,
 #btn_submit_back,
 #confirmation_re,

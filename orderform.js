@@ -499,7 +499,7 @@ function orderFormInit() {
 
     // After Calculate Lens button clicked
     jQuery("#btn_cal").on( "click", function() {
-        // console.log("cbox_re="+cbox_re+"||cbox_le="+cbox_le);
+        console.log("cbox_re="+cbox_re+"||cbox_le="+cbox_le);
         error_msg="";
         if(jQuery('input[name="patient_id"]').val() != ""){
             text_patient_id="Y";
@@ -522,9 +522,13 @@ function orderFormInit() {
         }
         if(cbox_re=="Y"){
             orderFormCheck("RE");
+        }else{
+            re_check="N";
         }
         if(cbox_le=="Y"){
             orderFormCheck("LE");
+        }else{
+            le_check="N";
         }
         if(cbox_re=="Y"&&cbox_le=="Y"){
             if(re_check=="Y"&&le_check=="N"){
@@ -698,6 +702,8 @@ function orderFormInit() {
         jQuery(".thwepo-extra-options.thwepo_variable.modification0").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification1").hide();
         jQuery(".thwepo-extra-options.thwepo_variable.modification2").hide();
+        design_re="none";
+        design_le="none";
         // jQuery([document.documentElement, document.body]).animate({
         //     scrollTop: jQuery(".single-product-category").offset().top-150
         // }, 500);
@@ -792,7 +798,7 @@ function orderFormInit() {
 
     function show_next_page(page){
         if(page=="cal"){
-            // console.log(re_ajax_check);
+            console.log("re_ajax_check="+re_ajax_check+"||le_ajax_check="+le_ajax_check);
             if(re_ajax_check=="N"){
                 jQuery("#cbox_re_m").hide();
                 jQuery(re_all_input_m).each(function() {
@@ -803,11 +809,19 @@ function orderFormInit() {
                 });
                 jQuery(".confirm_title_re").hide();
                 jQuery(".confirm_val_re").hide();
+                jQuery(".lens_val_re").css("visibility","hidden");
             }else{
+                jQuery("#cbox_re_m").show();
+                jQuery(re_all_input_m).each(function() {
+                    jQuery(this).parent().parent().show();
+                });
+                jQuery(re_all_input2_m).each(function() {
+                    jQuery(this).parent().parent().show();
+                });
                 jQuery(".confirm_title_re").show();
                 jQuery(".confirm_val_re").show();
+                jQuery(".lens_val_re").css("visibility","visible");
             }
-            // console.log(le_ajax_check);
             if(le_ajax_check=="N"){
                 jQuery("#cbox_le_m").hide();
                 jQuery(le_all_input_m).each(function() {
@@ -818,9 +832,18 @@ function orderFormInit() {
                 });
                 jQuery(".confirm_title_le").hide();
                 jQuery(".confirm_val_le").hide();
+                jQuery(".lens_val_le").css("visibility","hidden");
             }else{
+                jQuery("#cbox_le_m").show();
+                jQuery(le_all_input_m).each(function() {
+                    jQuery(this).parent().parent().show();
+                });
+                jQuery(le_all_input2_m).each(function() {
+                    jQuery(this).parent().parent().show();
+                });
                 jQuery(".confirm_title_le").show();
                 jQuery(".confirm_val_le").show();
+                jQuery(".lens_val_le").css("visibility","visible");
             }
             // show Modifiction Page
             jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
@@ -851,6 +874,7 @@ function orderFormInit() {
             // jQuery("#company_info").show();
             jQuery("#confirmation_re").show();
             jQuery("#confirmation_le").show();
+            jQuery("#confirmation_price").show();
             jQuery(".confirm_price").html(jQuery(".single-product .woocommerce-variation-price .price bdi").html());
             // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').show();
             jQuery('.single-product.woocommerce button.button[type="submit"]').show();
@@ -871,6 +895,7 @@ function orderFormInit() {
                     jQuery("#company_info").hide();
                     jQuery("#confirmation_re").hide();
                     jQuery("#confirmation_le").hide();
+                    jQuery("#confirmation_price").hide();
                     // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').hide();
                     jQuery('.single-product.woocommerce button.button[type="submit"]').hide();
                     // jQuery([document.documentElement, document.body]).animate({
@@ -1097,16 +1122,16 @@ function orderFormInit() {
                     invalid_list.push(key);
                 }
             };
-            console.log("check_invalid_input:");
-            console.log(param_check);
+            // console.log("check_invalid_input:");
+            // console.log(param_check);
             return invalid_list;
         }
         
         function call_back_display(obj, eye_str, page){
             // console.log("Call Back Function:");
             // console.log(eye_str);
-            console.log(page);
-            console.log(obj);
+            // console.log("call_back_display="+page);
+            // console.log(obj);
 
             lens_param=obj;
             var eye_str_lc=eye_str.toLowerCase();
@@ -1401,10 +1426,12 @@ function orderFormInit() {
                 dataType: "json",
                 success: function (response) {
                     // Handle success response
-                    console.log(page+":result_"+eye_str+"="+response);
+                    console.log("page="+page+"||eye_str="+eye_str+"||response:");
+                    console.log(response);
                     // To display the returned Parameters
                     call_back_display(response, eye_str, page);
                     if(page=="cal"){
+                        console.log("re_check="+re_check+"||le_check="+le_check);
                         if(re_check=="Y"&&le_check=="Y"){
                             if(eye_str=="LE"){
                                 le_ajax_check="Y";
@@ -1418,10 +1445,12 @@ function orderFormInit() {
                         }else if(re_check=="Y"&&le_check=="N"){
                             if(eye_str=="RE"){
                                 re_ajax_check="Y";
+                                le_ajax_check="N";
                                 show_next_page(page);
                             }
                         }else if(re_check=="N"&&le_check=="Y"){
                             if(eye_str=="LE"){
+                                re_ajax_check="N";
                                 le_ajax_check="Y";
                                 show_next_page(page);
                             }
