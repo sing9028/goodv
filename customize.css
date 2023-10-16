@@ -387,6 +387,14 @@ min-height: 30px;
 .mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above, .mdc-text-field--outlined.mdc-notched-outline--upgraded .mdc-floating-label--float-above{
     transform: translateY(-27.75px) scale(.75);
 }
+.wc-item-meta,
+.product-name .variation{
+    /* display: grid; */
+}
+.product-name .variation dt[class$="LE"],
+.product-name .variation dd[class$="LE"]{
+    /* order: 1; */
+}
 @media (max-width: 580px) {
     .btn_cal,
     .btm_container,
