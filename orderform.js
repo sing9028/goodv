@@ -31,30 +31,30 @@ if(jQuery("body").hasClass("single-product")){
 function orderFormInit() {
 
     // set testing data
-    jQuery('input[name="patient_id"]').val("test1");
-    jQuery('input[name="patient_name"]').val("test2");
-    jQuery('input[name="sph_re"]').val(-8);
-    jQuery('input[name="cyl_re"]').val(-0.25);
-    jQuery('input[name="axis_re"]').val(1);
-    jQuery('input[name="flat_k_re"]').val(7);
-    jQuery('input[name="steep_k_re"]').val(7);
-    jQuery('input[name="steep_k_axis_re"]').val(1);
-    jQuery('input[name="flat_e_re"]').val(0.01);
-    jQuery('input[name="steep_e_re"]').val(0.01);
-    jQuery('input[name="hvid_re"]').val(10.5);
-    jQuery('input[name="pupil_size_re"]').val(4);
-    jQuery('input[name="sph_le"]').val(-7);
-    jQuery('input[name="cyl_le"]').val(-5);
-    jQuery('input[name="axis_le"]').val(2);
-    jQuery('input[name="flat_k_le"]').val(7.8);
-    jQuery('input[name="steep_k_le"]').val(7.5);
-    jQuery('input[name="steep_k_axis_le"]').val(90);
-    jQuery('input[name="flat_e_le"]').val(0.6);
-    jQuery('input[name="steep_e_le"]').val(0.6);
-    jQuery('input[name="hvid_le"]').val(11.5);
-    jQuery('input[name="pupil_size_le"]').val(5);
+    // jQuery('input[name="patient_id"]').val("test1");
+    // jQuery('input[name="patient_name"]').val("test2");
+    // jQuery('input[name="sph_re"]').val(-8);
+    // jQuery('input[name="cyl_re"]').val(-0.25);
+    // jQuery('input[name="axis_re"]').val(1);
+    // jQuery('input[name="flat_k_re"]').val(7);
+    // jQuery('input[name="steep_k_re"]').val(7);
+    // jQuery('input[name="steep_k_axis_re"]').val(1);
+    // jQuery('input[name="flat_e_re"]').val(0.01);
+    // jQuery('input[name="steep_e_re"]').val(0.01);
+    // jQuery('input[name="hvid_re"]').val(10.5);
+    // jQuery('input[name="pupil_size_re"]').val(4);
+    // jQuery('input[name="sph_le"]').val(-7);
+    // jQuery('input[name="cyl_le"]').val(-5);
+    // jQuery('input[name="axis_le"]').val(2);
+    // jQuery('input[name="flat_k_le"]').val(7.8);
+    // jQuery('input[name="steep_k_le"]').val(7.5);
+    // jQuery('input[name="steep_k_axis_le"]').val(90);
+    // jQuery('input[name="flat_e_le"]').val(0.6);
+    // jQuery('input[name="steep_e_le"]').val(0.6);
+    // jQuery('input[name="hvid_le"]').val(11.5);
+    // jQuery('input[name="pupil_size_le"]').val(5);
 
-    // get if parameter has value
+    // get if exchange parameter has value
     var urlParams = new URLSearchParams(window.location.search);
     if(urlParams.get('patient_id')){
         jQuery('input[name="patient_id"]').val(urlParams.get('patient_id'));
@@ -121,6 +121,32 @@ function orderFormInit() {
     }
     if(urlParams.get('pupil_size_le')){
         jQuery('input[name="pupil_size_le"]').val(urlParams.get('pupil_size_le'));
+    }
+
+    // get if exchange disable some field
+    if(urlParams.get('exchange')=="Y"){
+        jQuery('input[name="patient_id"]').attr('disabled', 'disabled');
+        jQuery('input[name="patient_name"]').attr('disabled', 'disabled');
+        jQuery('input[name="sph_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="cyl_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="axis_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="flat_k_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_k_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_k_axis_re"]').attr('disabled', 'disabled')
+        jQuery('input[name="flat_e_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_e_re"]').attr('disabled', 'disabled');
+        // jQuery('input[name="hvid_re"]').attr('disabled', 'disabled');
+        // jQuery('input[name="pupil_size_re"]').attr('disabled', 'disabled');
+        jQuery('input[name="sph_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="cyl_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="axis_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="flat_k_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_k_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_k_axis_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="flat_e_le"]').attr('disabled', 'disabled');
+        jQuery('input[name="steep_e_le"]').attr('disabled', 'disabled');
+        // jQuery('input[name="hvid_le"]').attr('disabled', 'disabled');
+        // jQuery('input[name="pupil_size_le"]').attr('disabled', 'disabled');
     }
 
     // set all input
