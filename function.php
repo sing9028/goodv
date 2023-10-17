@@ -224,7 +224,7 @@ function my_account_my_orders_order_again_action( $actions, $order ) {
     // echo " ".$today;
 
     // if ( $order->has_status( 'processing' ) ) {
-    if ( $add_month_orderdate >= $today ) {
+    // if ( $add_month_orderdate >= $today ) {
 
         // $sph_re = "";
         // $sph_le = "";
@@ -325,7 +325,7 @@ function my_account_my_orders_order_again_action( $actions, $order ) {
             // 'url'  => wp_nonce_url( add_query_arg( 'order_again', $order->id ) , 'woocommerce-order_again' ),
             'name' => __( 'Exchange Order', 'woocommerce' ),
         );
-    }
+    // }
     return $actions;
 }
 // END add exchange button

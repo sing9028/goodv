@@ -219,6 +219,15 @@ table.sfwc_table tr img.avatar,
     display: flex;
     flex-flow: wrap;
 }
+/* .thwepo-extra-options.thwepo_variable.order.order1 tbody{
+    max-width: 540px;
+    column-count: 3;
+    column-fill: balance;
+    display: block;
+}
+.thwepo-extra-options.thwepo_variable.order.order1 tbody > *{
+    flex: 1 100%;
+} */
 .thwepo-extra-options.thwepo_variable.modification0 tbody,
 .thwepo-extra-options.thwepo_variable.modification2 tbody,
 .thwepo-extra-options.thwepo_variable.modification1 tbody,
