@@ -16,6 +16,9 @@ body, button, input, select, textarea, .ast-button, .ast-custom-button {
     margin-top: -16px;
     text-align: center;
 }
+#sfwc_form_add_subaccount_frontend .first_name,
+#sfwc_form_add_subaccount_frontend .last_name,
+#sfwc_form_add_subaccount_frontend .company,
 .single-product .woocommerce-product-details__short-description,
 .single-product .ast-woocommerce-container .woocommerce-notices-wrapper,
 .woocommerce-MyAccount-content .woocommerce-address-fields__field-wrapper #billing_first_name_field,
