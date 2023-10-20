@@ -314,11 +314,17 @@ function my_account_my_orders_order_again_action( $actions, $order ) {
             if(!empty($item->get_meta('pupil_size_le'))){
                 $pupil_size_le = "&pupil_size_le=".$item->get_meta('pupil_size_le');
             }
+            if(!empty($item->get_meta('design_re'))){
+                $design_re = "&design_re=".$item->get_meta('design_re');
+            }
+            if(!empty($item->get_meta('design_le'))){
+                $design_le = "&design_le=".$item->get_meta('design_le');
+            }
         }
         // $output="<script> var curOrderObj = ".json_encode($order->get_date_created())."; console.log(JSON.stringify(curOrderObj)); </script>";
         // $output="<script> var curOrderObj = ".json_encode(date( 'Y-m-d', strtotime( $order->get_date_created() )))."; console.log(JSON.stringify(curOrderObj)); </script>";
         // echo $output;
-        $product_url_new = $product_url."?patient_id=".$patient_id."&patient_name=".$patient_name.$sph_re.$sph_le.$cyl_re.$cyl_le.$axis_re.$axis_le.$flat_k_re.$flat_k_le.$flat_e_re.$flat_e_le.$steep_k_re.$steep_k_le.$steep_e_re.$steep_e_le.$steep_k_axis_re.$steep_k_axis_le.$hvid_re.$hvid_le.$pupil_size_re.$pupil_size_le."&exchange=Y";
+        $product_url_new = $product_url."?patient_id=".$patient_id."&patient_name=".$patient_name.$sph_re.$sph_le.$cyl_re.$cyl_le.$axis_re.$axis_le.$flat_k_re.$flat_k_le.$flat_e_re.$flat_e_le.$steep_k_re.$steep_k_le.$steep_e_re.$steep_e_le.$steep_k_axis_re.$steep_k_axis_le.$hvid_re.$hvid_le.$pupil_size_re.$pupil_size_le.$design_re.$design_le."&exchange=Y";
 
         $actions['order-again'] = array(
             'url' => $product_url_new,

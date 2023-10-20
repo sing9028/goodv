@@ -260,6 +260,7 @@ function orderFormInit() {
     jQuery('input[name="patient_id"]').attr("tabindex", "1");
     jQuery('input[name="patient_name"]').attr("tabindex", "2");
     // set all tab sequence of all order RE field
+    jQuery('#checkbox_re').attr("tabindex", "3");
     jQuery('input[name="sph_re"]').attr("tabindex", "3");
     jQuery('input[name="cyl_re"]').attr("tabindex", "4");
     jQuery('input[name="axis_re"]').attr("tabindex", "5");
@@ -271,6 +272,7 @@ function orderFormInit() {
     jQuery('input[name="hvid_re"]').attr("tabindex", "11");
     jQuery('input[name="pupil_size_re"]').attr("tabindex", "12");
     // set all tab sequence of all order LE field
+    jQuery('#checkbox_le').attr("tabindex", "13");
     jQuery('input[name="sph_le"]').attr("tabindex", "13");
     jQuery('input[name="cyl_le"]').attr("tabindex", "14");
     jQuery('input[name="axis_le"]').attr("tabindex", "15");
@@ -284,6 +286,7 @@ function orderFormInit() {
     // set all tab sequence of cal button
     jQuery('#btn_cal').attr("tabindex", "23");
     // set all tab sequence of all modification RE field
+    jQuery('#checkbox_re_m').attr("tabindex", "24");
     jQuery('input[name="bc_flat_re"]').attr("tabindex", "24");
     jQuery('input[name="bc_steep_re"]').attr("tabindex", "25");
     jQuery('input[name="ac_flat_re"]').attr("tabindex", "26");
@@ -295,6 +298,7 @@ function orderFormInit() {
     jQuery('input[name="ld_re"]').attr("tabindex", "32");
     jQuery('input[name="remarks_re"]').attr("tabindex", "33");
     // set all tab sequence of all modification LE field
+    jQuery('#checkbox_le_m').attr("tabindex", "34");
     jQuery('input[name="bc_flat_le"]').attr("tabindex", "34");
     jQuery('input[name="bc_steep_le"]').attr("tabindex", "35");
     jQuery('input[name="ac_flat_le"]').attr("tabindex", "36");
@@ -311,6 +315,30 @@ function orderFormInit() {
     // jQuery('.single-product.woocommerce button.button[name="add-to-cart"]').attr("tabindex", "45");
     jQuery('.single-product.woocommerce button.button[type="submit"]').attr("tabindex", "45");
 
+    // if click enter key will not submit first
+    jQuery(document).ready(function() {
+        jQuery(window).keypress(function(event){
+            if(event.keyCode == 13) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    });
+
+    // if tab checkbox to trigger click
+    jQuery('input:checkbox').keypress(function(e){
+        if((e.keyCode ? e.keyCode : e.which) == 13){
+            jQuery(this).trigger('click');
+        }
+    });
+
+    // if tab button to trigger click
+    jQuery('button').keypress(function(e){
+        if((e.keyCode ? e.keyCode : e.which) == 13){
+            jQuery(this).trigger('click');
+        }
+    });
+
     // set required textbox checking
     var text_patient_id="N";
     var text_patient_name="N";
@@ -318,6 +346,20 @@ function orderFormInit() {
     // After RE/LE checkbox clicked
     var cbox_re="Y";
     var cbox_le="Y";
+    // console.log("design_re="+urlParams.get('design_re')+"||design_le="+urlParams.get('design_le'));
+    if(urlParams.get('design_re')){
+        if(urlParams.get('design_re')=="none"){
+            jQuery("#checkbox_re").click();
+            cbox_re="N";
+        }
+    }
+    if(urlParams.get('design_le')){
+        if(urlParams.get('design_le')=="none"){
+            jQuery("#checkbox_le").click();
+            cbox_le="N";
+        }
+    }
+
     var re_all_input='.thwepo-extra-options.thwepo_variable.order input[type="number"][name*="_re"]';
     var le_all_input='.thwepo-extra-options.thwepo_variable.order input[type="number"][name*="_le"]';
     var re_all_input_check="Y";
@@ -737,8 +779,10 @@ function orderFormInit() {
 
     // After Confirm Parameters button clicked
     jQuery("#btn_confirm").on( "click", function() {
+        jQuery(".woocommerce div.product form.cart .single_variation_wrap .woocommerce-variation-add-to-cart").css("display","block");
         error_msg="";
         // if skip Modification
+        console.log("cbox_re_m="+cbox_re_m+"||cbox_le_m="+cbox_le_m);
         if(cbox_re_m=="N"&&cbox_le_m=="N"){
 
             console.log("design_re="+design_re+"//design_le="+design_le);
@@ -760,42 +804,70 @@ function orderFormInit() {
             show_next_page("confirm");
             // console.log(re_check);
             // console.log(le_check);
-            if(re_check){
-                jQuery('input[name="model_re"]').removeAttr('disabled').val(model_re);
-                jQuery('input[name="material_re"]').removeAttr('disabled').val(material_re);
-                jQuery('input[name="design_re"]').removeAttr('disabled').val(design_re);
-                jQuery('input[name="bc_design_re"]').removeAttr('disabled').val(bc_design_re);
-                jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
-                jQuery('input[name="lp_re"]').removeAttr('disabled').val(lp_re);
-                jQuery('input[name="thickness_re"]').removeAttr('disabled').val(thickness_re);
-                jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
-                jQuery('input[name="bc_flat_re2"]').removeAttr('disabled').val(bc_flat_re);
-                jQuery('input[name="bc_steep_re2"]').removeAttr('disabled').val(bc_steep_re);
-                jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
-                jQuery('input[name="ac1_steep_re"]').removeAttr('disabled').val(ac1_steep_re);
-                jQuery('input[name="ac2_flat_re"]').removeAttr('disabled').val(ac2_flat_re);
-                jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
-                jQuery('input[name="pc_flat_re2"]').removeAttr('disabled').val(pc_flat_re);
-                jQuery('input[name="pc_steep_re2"]').removeAttr('disabled').val(pc_steep_re);
-            }
-            if(le_check){
-                jQuery('input[name="model_le"]').removeAttr('disabled').val(model_le);
-                jQuery('input[name="material_le"]').removeAttr('disabled').val(material_le);
-                jQuery('input[name="design_le"]').removeAttr('disabled').val(design_le);
-                jQuery('input[name="bc_design_le"]').removeAttr('disabled').val(bc_design_le);
-                jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
-                jQuery('input[name="lp_le"]').removeAttr('disabled').val(lp_le);
-                jQuery('input[name="thickness_le"]').removeAttr('disabled').val(thickness_le);
-                jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
-                jQuery('input[name="bc_flat_le2"]').removeAttr('disabled').val(bc_flat_le);
-                jQuery('input[name="bc_steep_le2"]').removeAttr('disabled').val(bc_steep_le);
-                jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
-                jQuery('input[name="ac1_steep_le"]').removeAttr('disabled').val(ac1_steep_le);
-                jQuery('input[name="ac2_flat_le"]').removeAttr('disabled').val(ac2_flat_le);
-                jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
-                jQuery('input[name="pc_flat_le2"]').removeAttr('disabled').val(pc_flat_le);
-                jQuery('input[name="pc_steep_le2"]').removeAttr('disabled').val(pc_steep_le);
-            }
+            // if(re_check){
+            //     jQuery('input[name="model_re"]').removeAttr('disabled').val(model_re);
+            //     jQuery('input[name="material_re"]').removeAttr('disabled').val(material_re);
+            //     jQuery('input[name="design_re"]').removeAttr('disabled').val(design_re);
+            //     jQuery('input[name="bc_design_re"]').removeAttr('disabled').val(bc_design_re);
+            //     jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
+            //     jQuery('input[name="lp_re"]').removeAttr('disabled').val(lp_re);
+            //     jQuery('input[name="thickness_re"]').removeAttr('disabled').val(thickness_re);
+            //     jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
+            //     jQuery('input[name="bc_flat_re2"]').removeAttr('disabled').val(bc_flat_re);
+            //     jQuery('input[name="bc_steep_re2"]').removeAttr('disabled').val(bc_steep_re);
+            //     jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
+            //     jQuery('input[name="ac1_steep_re"]').removeAttr('disabled').val(ac1_steep_re);
+            //     jQuery('input[name="ac2_flat_re"]').removeAttr('disabled').val(ac2_flat_re);
+            //     jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
+            //     jQuery('input[name="pc_flat_re2"]').removeAttr('disabled').val(pc_flat_re);
+            //     jQuery('input[name="pc_steep_re2"]').removeAttr('disabled').val(pc_steep_re);
+            //     if(urlParams.get('exchange')=="Y"){
+            //         jQuery('input[name="patient_id"]').removeAttr('disabled');
+            //         jQuery('input[name="patient_name"]').removeAttr('disabled');
+            //         jQuery('input[name="sph_re"]').removeAttr('disabled');
+            //         jQuery('input[name="cyl_re"]').removeAttr('disabled');
+            //         jQuery('input[name="axis_re"]').removeAttr('disabled');
+            //         jQuery('input[name="flat_k_re"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_k_re"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_k_axis_re"]').removeAttr('disabled')
+            //         jQuery('input[name="flat_e_re"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_e_re"]').removeAttr('disabled');
+            //         // jQuery('input[name="hvid_re"]').removeAttr('disabled');
+            //         // jQuery('input[name="pupil_size_re"]').removeAttr('disabled');
+            //     }
+            // }
+            // if(le_check){
+            //     jQuery('input[name="model_le"]').removeAttr('disabled').val(model_le);
+            //     jQuery('input[name="material_le"]').removeAttr('disabled').val(material_le);
+            //     jQuery('input[name="design_le"]').removeAttr('disabled').val(design_le);
+            //     jQuery('input[name="bc_design_le"]').removeAttr('disabled').val(bc_design_le);
+            //     jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
+            //     jQuery('input[name="lp_le"]').removeAttr('disabled').val(lp_le);
+            //     jQuery('input[name="thickness_le"]').removeAttr('disabled').val(thickness_le);
+            //     jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
+            //     jQuery('input[name="bc_flat_le2"]').removeAttr('disabled').val(bc_flat_le);
+            //     jQuery('input[name="bc_steep_le2"]').removeAttr('disabled').val(bc_steep_le);
+            //     jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
+            //     jQuery('input[name="ac1_steep_le"]').removeAttr('disabled').val(ac1_steep_le);
+            //     jQuery('input[name="ac2_flat_le"]').removeAttr('disabled').val(ac2_flat_le);
+            //     jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
+            //     jQuery('input[name="pc_flat_le2"]').removeAttr('disabled').val(pc_flat_le);
+            //     jQuery('input[name="pc_steep_le2"]').removeAttr('disabled').val(pc_steep_le);
+            //     if(urlParams.get('exchange')=="Y"){
+            //         jQuery('input[name="patient_id"]').removeAttr('disabled');
+            //         jQuery('input[name="patient_name"]').removeAttr('disabled');
+            //         jQuery('input[name="sph_le"]').removeAttr('disabled');
+            //         jQuery('input[name="cyl_le"]').removeAttr('disabled');
+            //         jQuery('input[name="axis_le"]').removeAttr('disabled');
+            //         jQuery('input[name="flat_k_le"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_k_le"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_k_axis_le"]').removeAttr('disabled');
+            //         jQuery('input[name="flat_e_le"]').removeAttr('disabled');
+            //         jQuery('input[name="steep_e_le"]').removeAttr('disabled');
+            //         // jQuery('input[name="hvid_le"]').removeAttr('disabled');
+            //         // jQuery('input[name="pupil_size_le"]').removeAttr('disabled');
+            //     }
+            // }
         }else if(cbox_re_m=="Y"&&cbox_le_m=="N"){
             re_check_m="Y";
             orderClick("confirm",cbox_re_m,cbox_le_m);
@@ -889,6 +961,73 @@ function orderFormInit() {
             // }, 500);
             // jQuery(".single-product .woocommerce-variation-add-to-cart .variations").css("display","block !important");
         }else if(page=="confirm"){
+
+            // update all disabled field to enable
+            if(re_check){
+                jQuery('input[name="model_re"]').removeAttr('disabled').val(model_re);
+                jQuery('input[name="material_re"]').removeAttr('disabled').val(material_re);
+                jQuery('input[name="design_re"]').removeAttr('disabled').val(design_re);
+                jQuery('input[name="bc_design_re"]').removeAttr('disabled').val(bc_design_re);
+                jQuery('input[name="ld_re"]').removeAttr('disabled').val(ld_re);
+                jQuery('input[name="lp_re"]').removeAttr('disabled').val(lp_re);
+                jQuery('input[name="thickness_re"]').removeAttr('disabled').val(thickness_re);
+                jQuery('input[name="bc_width_re"]').removeAttr('disabled').val(bc_width_re);
+                jQuery('input[name="bc_flat_re2"]').removeAttr('disabled').val(bc_flat_re);
+                jQuery('input[name="bc_steep_re2"]').removeAttr('disabled').val(bc_steep_re);
+                jQuery('input[name="ac1_flat_re"]').removeAttr('disabled').val(ac1_flat_re);
+                jQuery('input[name="ac1_steep_re"]').removeAttr('disabled').val(ac1_steep_re);
+                jQuery('input[name="ac2_flat_re"]').removeAttr('disabled').val(ac2_flat_re);
+                jQuery('input[name="ac2_steep_re"]').removeAttr('disabled').val(ac2_steep_re);
+                jQuery('input[name="pc_flat_re2"]').removeAttr('disabled').val(pc_flat_re);
+                jQuery('input[name="pc_steep_re2"]').removeAttr('disabled').val(pc_steep_re);
+                if(urlParams.get('exchange')=="Y"){
+                    jQuery('input[name="patient_id"]').removeAttr('disabled');
+                    jQuery('input[name="patient_name"]').removeAttr('disabled');
+                    jQuery('input[name="sph_re"]').removeAttr('disabled');
+                    jQuery('input[name="cyl_re"]').removeAttr('disabled');
+                    jQuery('input[name="axis_re"]').removeAttr('disabled');
+                    jQuery('input[name="flat_k_re"]').removeAttr('disabled');
+                    jQuery('input[name="steep_k_re"]').removeAttr('disabled');
+                    jQuery('input[name="steep_k_axis_re"]').removeAttr('disabled')
+                    jQuery('input[name="flat_e_re"]').removeAttr('disabled');
+                    jQuery('input[name="steep_e_re"]').removeAttr('disabled');
+                    // jQuery('input[name="hvid_re"]').removeAttr('disabled');
+                    // jQuery('input[name="pupil_size_re"]').removeAttr('disabled');
+                }
+            }
+            if(le_check){
+                jQuery('input[name="model_le"]').removeAttr('disabled').val(model_le);
+                jQuery('input[name="material_le"]').removeAttr('disabled').val(material_le);
+                jQuery('input[name="design_le"]').removeAttr('disabled').val(design_le);
+                jQuery('input[name="bc_design_le"]').removeAttr('disabled').val(bc_design_le);
+                jQuery('input[name="ld_le"]').removeAttr('disabled').val(ld_le);
+                jQuery('input[name="lp_le"]').removeAttr('disabled').val(lp_le);
+                jQuery('input[name="thickness_le"]').removeAttr('disabled').val(thickness_le);
+                jQuery('input[name="bc_width_le"]').removeAttr('disabled').val(bc_width_le);
+                jQuery('input[name="bc_flat_le2"]').removeAttr('disabled').val(bc_flat_le);
+                jQuery('input[name="bc_steep_le2"]').removeAttr('disabled').val(bc_steep_le);
+                jQuery('input[name="ac1_flat_le"]').removeAttr('disabled').val(ac1_flat_le);
+                jQuery('input[name="ac1_steep_le"]').removeAttr('disabled').val(ac1_steep_le);
+                jQuery('input[name="ac2_flat_le"]').removeAttr('disabled').val(ac2_flat_le);
+                jQuery('input[name="ac2_steep_le"]').removeAttr('disabled').val(ac2_steep_le);
+                jQuery('input[name="pc_flat_le2"]').removeAttr('disabled').val(pc_flat_le);
+                jQuery('input[name="pc_steep_le2"]').removeAttr('disabled').val(pc_steep_le);
+                if(urlParams.get('exchange')=="Y"){
+                    jQuery('input[name="patient_id"]').removeAttr('disabled');
+                    jQuery('input[name="patient_name"]').removeAttr('disabled');
+                    jQuery('input[name="sph_le"]').removeAttr('disabled');
+                    jQuery('input[name="cyl_le"]').removeAttr('disabled');
+                    jQuery('input[name="axis_le"]').removeAttr('disabled');
+                    jQuery('input[name="flat_k_le"]').removeAttr('disabled');
+                    jQuery('input[name="steep_k_le"]').removeAttr('disabled');
+                    jQuery('input[name="steep_k_axis_le"]').removeAttr('disabled');
+                    jQuery('input[name="flat_e_le"]').removeAttr('disabled');
+                    jQuery('input[name="steep_e_le"]').removeAttr('disabled');
+                    // jQuery('input[name="hvid_le"]').removeAttr('disabled');
+                    // jQuery('input[name="pupil_size_le"]').removeAttr('disabled');
+                }
+            }
+
             // show Confirmation Page
             jQuery(".lens_val").hide();
             jQuery(".thwepo-extra-options.thwepo_variable.company").hide();
@@ -911,6 +1050,31 @@ function orderFormInit() {
 
             // setTimeout(function() { 
                 jQuery("#btn_submit_back").on( "click", function() {
+                    if(urlParams.get('exchange')=="Y"){
+                        jQuery('input[name="patient_id"]').attr('disabled', 'disabled');
+                        jQuery('input[name="patient_name"]').attr('disabled', 'disabled');
+                        jQuery('input[name="sph_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="cyl_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="axis_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="flat_k_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_k_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_k_axis_re"]').attr('disabled', 'disabled')
+                        jQuery('input[name="flat_e_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_e_re"]').attr('disabled', 'disabled');
+                        // jQuery('input[name="hvid_re"]').attr('disabled', 'disabled');
+                        // jQuery('input[name="pupil_size_re"]').attr('disabled', 'disabled');
+                        jQuery('input[name="sph_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="cyl_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="axis_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="flat_k_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_k_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_k_axis_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="flat_e_le"]').attr('disabled', 'disabled');
+                        jQuery('input[name="steep_e_le"]').attr('disabled', 'disabled');
+                        // jQuery('input[name="hvid_le"]').attr('disabled', 'disabled');
+                        // jQuery('input[name="pupil_size_le"]').attr('disabled', 'disabled');
+                    }
+                    jQuery(".woocommerce div.product form.cart .single_variation_wrap .woocommerce-variation-add-to-cart").css("display","flex");
                     jQuery("#modification").show();
                     jQuery(".lens_val").show();
                     // jQuery(".thwepo-extra-options.thwepo_variable.company").show();
@@ -1163,7 +1327,8 @@ function orderFormInit() {
             var eye_str_lc=eye_str.toLowerCase();
 
             var model=jQuery(".product_title.entry-title").text().split(" ");
-            var material="Boston XO2";
+            // var material="Boston XO2";
+            var material=jQuery(".woocommerce-product-details__short-description p").text();
             if(page=="cal"){
                 // set parameter value
                 var sph=jQuery('input[name="sph_'+eye_str_lc+'"]').val();
@@ -1331,6 +1496,7 @@ function orderFormInit() {
                 var made_bc_steep="";
                 var made_ac_steep="";
                 var made_pc_steep="";
+                var made_delta_target="";
                 var made="-";
                 if(lens_param["modified"]["modification"] != null){
                     if(lens_param["modified"]["modification"]["flat"] != null){
@@ -1385,7 +1551,15 @@ function orderFormInit() {
                             made_pc_steep=" PC(steep):"+lens_param["modified"]["modification"]["steep"]["PC"];
                         }
                     }
-                    made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep;
+                    if(jQuery('input[name="delta_target_le"]').val() != ""){
+                        if(eye_str_lc=="re"){
+                            delta_target_re=jQuery('input[name="delta_target_le"]').val();
+                        }else{
+                            delta_target_le=jQuery('input[name="delta_target_le"]').val();
+                        }
+                        made_delta_target=" ΔTarget:"+jQuery('input[name="delta_target_le"]').val();
+                    }
+                    made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep+made_delta_target;
                 }
                 
 
@@ -1398,6 +1572,8 @@ function orderFormInit() {
                 var ac2_steep=Math.round(lens_param["modified"]["steep"]["AC2"]*100)/100;
                 var pc_flat=Math.round(lens_param["modified"]["flat"]["PC"]*100)/100;
                 var pc_steep=Math.round(lens_param["modified"]["steep"]["PC"]*100)/100;
+
+                // console.log("eye_str_lc="+eye_str_lc+"||ld="+ld+"||bc_width="+bc_width);
 
                 // show parameter value
                 jQuery("#model_"+eye_str_lc).html(model[1]);
@@ -1421,9 +1597,11 @@ function orderFormInit() {
                 jQuery('input[name="model_'+eye_str_lc+'"]').val(model[1]);
                 jQuery('input[name="material_'+eye_str_lc+'"]').val(material);
                 jQuery('input[name="design_'+eye_str_lc+'"]').val(design);
+                jQuery('input[name="ld_'+eye_str_lc+'"]').val(ld);
                 jQuery('input[name="lp_'+eye_str_lc+'"]').val(lp);
                 jQuery('input[name="thickness_'+eye_str_lc+'"]').val(thickness);
                 jQuery('input[name="made_'+eye_str_lc+'"]').val(made);
+                jQuery('input[name="bc_width_'+eye_str_lc+'"]').val(bc_width);
                 jQuery('input[name="bc_flat_'+eye_str_lc+'2"]').val(bc_flat);
                 jQuery('input[name="bc_steep_'+eye_str_lc+'2"]').val(bc_steep);
                 jQuery('input[name="ac1_flat_'+eye_str_lc+'"]').val(ac1_flat);
@@ -1432,6 +1610,39 @@ function orderFormInit() {
                 jQuery('input[name="ac2_steep_'+eye_str_lc+'"]').val(ac2_steep);
                 jQuery('input[name="pc_flat_'+eye_str_lc+'2"]').val(pc_flat);
                 jQuery('input[name="pc_steep_'+eye_str_lc+'2"]').val(pc_steep);
+
+                if(eye_str_lc=="re"){
+                    design_re=design;
+                    ld_re=ld;
+                    lp_re=lp;
+                    thickness_re=thickness;
+                    made_re=made;
+                    bc_width_re=bc_width;
+                    bc_flat_re=bc_flat;
+                    bc_steep_re=bc_steep;
+                    ac1_flat_re=ac1_flat;
+                    ac1_flat_re=ac1_flat;
+                    ac1_steep_re=ac1_steep;
+                    ac2_steep_re=ac2_steep;
+                    pc_flat_re=pc_flat;
+                    pc_steep_re=pc_steep;
+
+                }else if(eye_str_lc=="le"){
+                    design_le=design;
+                    ld_le=ld;
+                    lp_le=lp;
+                    thickness_le=thickness;
+                    made_le=made;
+                    bc_width_le=bc_width;
+                    bc_flat_le=bc_flat;
+                    bc_steep_le=bc_steep;
+                    ac1_flat_le=ac1_flat;
+                    ac1_flat_le=ac1_flat;
+                    ac1_steep_le=ac1_steep;
+                    ac2_steep_le=ac2_steep;
+                    pc_flat_le=pc_flat;
+                    pc_steep_le=pc_steep;
+                }
             }
         }
         function get_lens_param(eye_obj, eye_str,invalid_list, page){
@@ -1466,19 +1677,19 @@ function orderFormInit() {
                                 re_ajax_check="Y";
                             }
                             if(re_ajax_check=="Y"&&le_ajax_check=="Y"){
-                                show_next_page(page);
+                                show_next_page("cal");
                             }
                         }else if(re_check=="Y"&&le_check=="N"){
                             if(eye_str=="RE"){
                                 re_ajax_check="Y";
                                 le_ajax_check="N";
-                                show_next_page(page);
+                                show_next_page("cal");
                             }
                         }else if(re_check=="N"&&le_check=="Y"){
                             if(eye_str=="LE"){
                                 re_ajax_check="N";
                                 le_ajax_check="Y";
-                                show_next_page(page);
+                                show_next_page("cal");
                             }
                         }
                     }else if(page=="confirm"){
@@ -1492,19 +1703,19 @@ function orderFormInit() {
                             }
                             if(re_ajax_check_m=="Y"&&le_ajax_check_m=="Y"){
                                 // console.log("re="+re_check_m+"//le="+le_check_m);
-                                show_next_page(page);
+                                show_next_page("confirm");
                             }
                         }else if(re_check_m=="Y"&&le_check_m=="N"){
                             // console.log("re="+re_check_m+"//le="+le_check_m+"//eye="+eye_str);
                             if(eye_str=="RE"){
                                 re_ajax_check_m="Y";
-                                show_next_page(page);
+                                show_next_page("confirm");
                             }
                         }else if(re_check_m=="N"&&le_check_m=="Y"){
                             // console.log("re="+re_check_m+"//le="+le_check_m+"//eye="+eye_str);
                             if(eye_str=="LE"){
                                 le_ajax_check_m="Y";
-                                show_next_page(page);
+                                show_next_page("confirm");
                             }
                         }
                     }
