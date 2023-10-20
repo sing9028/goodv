@@ -1551,13 +1551,17 @@ function orderFormInit() {
                             made_pc_steep=" PC(steep):"+lens_param["modified"]["modification"]["steep"]["PC"];
                         }
                     }
-                    if(jQuery('input[name="delta_target_le"]').val() != ""){
+                    // if(jQuery('input[name="delta_target_le"]').val() != ""){
+                    if(lens_param["modified"]["modification"]["delta_target"] != null){
                         if(eye_str_lc=="re"){
-                            delta_target_re=jQuery('input[name="delta_target_le"]').val();
+                            // delta_target_re=jQuery('input[name="delta_target_le"]').val();
+                            delta_target_re=Math.round(lens_param["modified"]["modification"]["delta_target"]*100)/100;
                         }else{
-                            delta_target_le=jQuery('input[name="delta_target_le"]').val();
+                            // delta_target_le=jQuery('input[name="delta_target_le"]').val();
+                            delta_target_le=Math.round(lens_param["modified"]["modification"]["delta_target"]*100)/100;
                         }
-                        made_delta_target=" ΔTarget:"+jQuery('input[name="delta_target_le"]').val();
+                        // made_delta_target=" ΔTarget:"+jQuery('input[name="delta_target_le"]').val();
+                        made_delta_target=" ΔTarget:"+Math.round(lens_param["modified"]["modification"]["delta_target"]*100)/100;
                     }
                     made=made_bc_flat+made_ac_flat+made_pc_flat+made_bc_steep+made_ac_steep+made_pc_steep+made_delta_target;
                 }
