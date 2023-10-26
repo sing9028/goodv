@@ -111,6 +111,12 @@ table.sfwc_table tr img.avatar,
     height: 38.19px;
     /* order: 1; */
 }
+.woocommerce div.product form.cart .button.single_add_to_cart_button#btn_confirm_back,
+.woocommerce div.product form.cart .button.single_add_to_cart_button#btn_confirm_reset,
+.woocommerce div.product form.cart .button.single_add_to_cart_button#btn_confirm{
+    display: flex;
+    align-items: center;
+}
 .woocommerce div.product form.cart .button.single_add_to_cart_button.btn_outline{
     background-color: transparent !important;
     color: #6750A4 !important;
@@ -421,6 +427,16 @@ min-height: 30px;
 .product-name .variation dd[class$="LE"]{
     /* order: 1; */
 }
+@media (max-width: 1119px) {
+    .woocommerce div.product form.cart table.thwepo-extra-options.thwepo_variable.modification2{
+        margin-top: -26px;
+    }
+}
+@media (max-width: 921px) {
+    #confirmation_price{
+        width: 100%;
+    }
+}
 @media (max-width: 580px) {
     .btn_cal,
     .btm_container,
@@ -435,15 +451,12 @@ min-height: 30px;
     .thwepo-extra-options.thwepo_variable.modification0 tbody{
         flex-wrap: inherit;
     }
-    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(1),
-    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(1),
-    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr:nth-child(3n+4),
     .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(1),
     .thwepo-extra-options.thwepo_variable.modification2 tbody tr:nth-child(3n+4),
     .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(1),
-    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6),
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr.label_m,
     .lens_val tr th:nth-child(1),
     .lens_val tr td:nth-child(1),
     .company_val tr td:nth-child(odd),
@@ -456,10 +469,28 @@ min-height: 30px;
         /* width: 26vw; */
         width: 20vw;
     }
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(5n+6){
+        /* width: 20vw; */
+    }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(odd){
+        /* width: 20vw; */
+        width: 32%;
+    }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(1),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(1){
+        min-width: 30vw;
+    }
     .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10) td:nth-child(2),
     .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9) td:nth-child(2),
     .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(even){
-        width: 80vw;
+        /* width: 80vw; */
+        width: 68%;
+    }
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(10),
+    .thwepo-extra-options.thwepo_variable.company tbody tr:nth-child(9){
+        width: 100%;
     }
     .thwepo-extra-options.thwepo_variable.modification0 tbody tr,
     .thwepo-extra-options.thwepo_variable.modification2 tbody tr{
@@ -467,6 +498,8 @@ min-height: 30px;
         /* width: 32vw; */
         width: 33vw;
     }
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(3),
+    .thwepo-extra-options.thwepo_variable.modification1 tbody tr:nth-child(2),
     .lens_val tr th,
     .lens_val tr td,
     .company_val tr td,
@@ -506,5 +539,10 @@ min-height: 30px;
         font-size: 11px;
         line-height: 19px;
         padding-left: 0;
+    }
+}
+@media (max-width: 261px) {
+    #btn_submit_back{
+        margin-left: 0.5rem;
     }
 }
